@@ -27,9 +27,11 @@ class NewsCoordinator: TabBarCoordinator<NewsRoute>, CoordinatorOutput {
   private let outputLogout = PublishRelay<Void>()
   
   init() {
-    super.init(rootViewController: nil, initialRoute: .selectNews)
+    super.init(controller: nil, initialRoute: .selectNews)
+//    super.init(rootViewController: nil, initialRoute: .selectNews)
+//    super.init(rootViewController: nil, initialRoute: .selectNews)
     
-    let home = AboutCoordinator(rootViewController: nil, initialRoute: .about)
+    let home = AboutCoordinator(controller: nil, initialRoute: .about)
     let output = home.configure()
     output.logout.do(onNext: { [weak self, weak home] _ in
       self?.removeChild(home)

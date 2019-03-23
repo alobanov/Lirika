@@ -30,22 +30,20 @@ class HomeCoordinator: NavigationCoordinator<HomeRoute>, CoordinatorOutput {
   
   // MARK: - Init
   
-  init(rootViewController: UINavigationController, initialRoute: HomeRoute) {
-    super.init(rootViewController: rootViewController, initialRoute: initialRoute)
-  }
+//  init(rootViewController: UINavigationController, initialRoute: HomeRoute) {
+//    super.init(rootViewController: rootViewController, initialRoute: initialRoute)
+//  }
   
   // MARK: - Overrides
   
   override func prepare(route: HomeRoute, completion: PresentationHandler?) {
     switch route {
     case .home:
-      router.set([home()], completion: completion)
-      // setModules([], hideBar: false, animated: false)
+      router.set([home()], animated: false, completion: completion)
     case .news:
       let coord = NewsCoordinator()
       startCoordinator(coord)
-      router.set([coord.presentable()], completion: completion, barHidden: true)
-      //setModules([coord.presentable()], hideBar: true, animated: false)
+      router.set([coord.presentable()], animated: false, completion: completion, barHidden: true)
     }
   }
   

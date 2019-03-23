@@ -32,14 +32,10 @@ extension Router where RootViewController: UITabBarController {
   }
 }
 
-class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
-  init(rootViewController: UITabBarController? = nil, initialRoute: RouteType) {
-    super.init(controller: rootViewController, initialRoute: initialRoute)
-  }
-  
-  override func generateRootViewController() -> UITabBarController {
-    return super.generateRootViewController()
-  }
+class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {  
+//  override func generateRootViewController() -> UITabBarController {
+//    return super.generateRootViewController()
+//  }
   
   deinit {
     print("Dead TabBarCoordinator")

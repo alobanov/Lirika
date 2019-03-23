@@ -12,36 +12,34 @@ import UIKit
 typealias NavigationRouter = Router<UINavigationController>
 
 extension Router where RootViewController: UINavigationController {
-  func push(_ viewController: Presentable,
-            completion: PresentationHandler? = nil) {
-    
+  func push(_ viewController: Presentable, completion: PresentationHandler? = nil) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion?()
     }
     
-    self.rootController?.pushViewController(unwrapPresentable(viewController), animated: true)
-    
+    rootController?.pushViewController(unwrapPresentable(viewController), animated: true)
     CATransaction.commit()
   }
   
-  func pop(toRoot: Bool, completion: PresentationHandler? = nil) {
+  func pop(toRoot: Bool = false, completion: PresentationHandler? = nil, animated: Bool = true) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion?()
     }
     
     if toRoot {
-      self.rootController?.popToRootViewController(animated: true)
+      rootController?.popToRootViewController(animated: animated)
     } else {
-      self.rootController?.popViewController(animated: true)
+      rootController?.popViewController(animated: animated)
     }
-    
     CATransaction.commit()
   }
   
   func set(_ viewControllers: [Presentable],
-           completion: PresentationHandler? = nil, barHidden: Bool = false) {
+           animated: Bool,
+           completion: PresentationHandler? = nil,
+           barHidden: Bool = false) {
     
     CATransaction.begin()
     CATransaction.setCompletionBlock {
@@ -49,15 +47,14 @@ extension Router where RootViewController: UINavigationController {
     }
    
     let controllers = unwrapPresentables(viewControllers)
-    self.rootController?.setViewControllers(controllers, animated: false)
-    self.rootController?.isNavigationBarHidden = barHidden
-    
-//    let controllers = unwrapPresentables(viewControllers)
-//    let stack = rootController!.viewControllers + controllers
-//    self.rootController?.setViewControllers(stack, animated: false)
-//    self.rootController?.isNavigationBarHidden = barHidden
+    rootController?.setViewControllers(controllers, animated: animated)
+    rootController?.isNavigationBarHidden = barHidden
     
     CATransaction.commit()
+  }
+  
+  func setImmediately(_ modules: [Presentable]) {
+    set(modules, animated: false, completion: nil, barHidden: false)
   }
   
   func pop(to viewController: Presentable,
@@ -68,26 +65,30 @@ extension Router where RootViewController: UINavigationController {
       completion?()
     }
     
-    self.rootController?.popToViewController(unwrapPresentable(viewController), animated: true)
+    rootController?.popToViewController(unwrapPresentable(viewController), animated: true)
     
     CATransaction.commit()
+  }
+  
+  func presentModal(_ module: Presentable, animated: Bool, completion: (() -> Void)?) {
+    DispatchQueue.main.async { [weak self] in
+      self?.rootController?.present(module.presentable(), animated: animated, completion: completion)
+    }
+  }
+  
+  func dismissModalImmediately() {
+    rootController?.dismiss(animated: false, completion: nil)
+  }
+  
+  func dismissModal(animated: Bool, completion: (() -> Void)?) {
+    rootController?.dismiss(animated: animated, completion: completion)
   }
 }
 
 class NavigationCoordinator<RouteType: Route>: Coordinator<RouteType, NavigationRouter> {
-  init(window: UIWindow, initialRoute: RouteType) {
-    super.init(controller: nil, initialRoute: initialRoute)
-    self.window = window
-    setRoot(for: window)
-  }
-  
-  init(rootViewController: UINavigationController? = nil, initialRoute: RouteType) {
-    super.init(controller: rootViewController, initialRoute: initialRoute)
-  }
-  
-  override func generateRootViewController() -> UINavigationController {
-    return super.generateRootViewController()
-  }
+//  override func generateRootViewController() -> UINavigationController {
+//    return super.generateRootViewController()
+//  }
   
   deinit {
     print("Dead NavigationCoordinator")

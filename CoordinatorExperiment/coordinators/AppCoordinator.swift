@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 enum AppRoute: Route {
-  case auth, home, pop
+  case authorization, home, pop
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
@@ -20,8 +20,8 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
     case .home:
       let coord = news()
       startCoordinator(coord)
-      router.set([coord], barHidden: true)
-    case .auth:
+      router.set([coord], animated: false, barHidden: true)
+    case .authorization:
       let coord = auth()
       startCoordinator(coord)
     case .pop:
@@ -50,7 +50,7 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
 
 extension AppCoordinator {
   func auth() -> Coordinatorable {
-    let auth = AuthCoordinator(rootViewController: rootViewController, initialRoute: .auth)
+    let auth = AuthCoordinator(controller: rootViewController, initialRoute: .auth)
     
     let output = auth.configure()
     output.successLogin.subscribe(onNext: { [weak self, weak auth] _ in
@@ -62,7 +62,7 @@ extension AppCoordinator {
   }
   
   func home() -> Coordinatorable {
-    let home = HomeCoordinator(rootViewController: rootViewController, initialRoute: .home)
+    let home = HomeCoordinator(controller: rootViewController, initialRoute: .home)
     let output = home.configure()
     
     output.didDeinit.subscribe(onNext: { [weak self, weak home] _ in
@@ -78,7 +78,7 @@ extension AppCoordinator {
     
     output.logout.subscribe(onNext: { [weak self, weak news] _ in
       self?.removeChild(news)
-      self?.trigger(.auth)
+      self?.trigger(.authorization)
     }).disposed(by: bag)
     
     return news

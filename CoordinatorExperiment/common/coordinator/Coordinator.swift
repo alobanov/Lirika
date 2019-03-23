@@ -26,7 +26,17 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
 
   let bag = DisposeBag()
   let router: Router<RootControllerType>
-
+    
+  func configureWindow(window: UIWindow) {
+    self.window = window
+    setRoot(for: window)
+  }
+  
+  convenience init(window: UIWindow, initialRoute: RouteType) {
+    self.init(controller: nil, initialRoute: initialRoute)
+    self.configureWindow(window: window)
+  }
+  
   init(controller: RootControllerType?, initialRoute: RouteType) {
     self.initialRoute = initialRoute
     self.router = Router<RootControllerType>()

@@ -29,9 +29,9 @@ class AboutCoordinator: NavigationCoordinator<AboutRoute>, CoordinatorOutput {
   
   // MARK: - Init
   
-  override init(rootViewController: UINavigationController?, initialRoute: AboutRoute) {
-    super.init(rootViewController: rootViewController, initialRoute: initialRoute)
-  }
+//  override init(rootViewController: UINavigationController?, initialRoute: AboutRoute) {
+//    super.init(rootViewController: rootViewController, initialRoute: initialRoute)
+//  }
   
   override func configureRootViewController() {
     rootViewController.navigationBar.isTranslucent = false
@@ -44,7 +44,7 @@ class AboutCoordinator: NavigationCoordinator<AboutRoute>, CoordinatorOutput {
   override func prepare(route: AboutRoute, completion: PresentationHandler?) {
     switch route {
     case .about:
-      router.set([about()], completion: completion)
+      router.set([about()], animated: false, completion: completion)
     case .details:
       outputLogout.onNext(())
 //      router.push(about())

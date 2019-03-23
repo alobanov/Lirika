@@ -31,14 +31,14 @@ class AuthCoordinator: NavigationCoordinator<AuthRoute>, CoordinatorOutput {
   
   private let outputSuccessLogin = PublishSubject<Void>()
   
-  override init(rootViewController: UINavigationController?, initialRoute: AuthRoute) {
-    super.init(rootViewController: rootViewController, initialRoute: initialRoute)
-  }
+//  override init(rootViewController: UINavigationController?, initialRoute: AuthRoute) {
+//    super.init(rootViewController: rootViewController, initialRoute: initialRoute)
+//  }
   
   override func prepare(route: AuthRoute, completion: PresentationHandler?)  {
     switch route {
     case .auth:
-      router.set([auth()])
+      router.setImmediately([auth()])
     case .signin:
       router.push(signin())
     case .signup:

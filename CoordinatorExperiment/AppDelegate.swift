@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   private lazy var appCoordinator: AppCoordinator = self.coordinator()
   
   func coordinator() -> AppCoordinator {
-    return AppCoordinator(window: window, initialRoute: .auth)
+    return AppCoordinator(window: window, initialRoute: .authorization)
   }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
