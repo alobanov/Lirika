@@ -10,7 +10,6 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   let window: UIWindow! = UIWindow()
   private lazy var appCoordinator: AppCoordinator = self.coordinator()
   
