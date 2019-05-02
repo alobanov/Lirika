@@ -27,8 +27,8 @@ class OptionsViewController: UIViewController, ControllerInOutType {
   let tapRelay = PublishRelay<TapEventType>()
 
   // IBOutlet & UI
-  lazy var customView: StartView = {
-    let customView = StartView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+  lazy var customView: OptionsView = {
+    let customView = OptionsView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
     return customView
   }()
 
