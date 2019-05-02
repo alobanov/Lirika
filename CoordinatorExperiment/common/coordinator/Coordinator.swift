@@ -86,7 +86,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
       break
     }
   }
-  
+
   func define(coordinatorCustomPresentId id: String) {
     customCoordinatorNameIdentifier = id
   }
@@ -106,7 +106,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     }
     return items.first
   }
-  
+
   func allChailds() -> [Presentable] {
     return childs
   }
@@ -135,7 +135,7 @@ extension Coordinator: Presentable {
     guard let id = customCoordinatorNameIdentifier else {
       return String(describing: type(of: self))
     }
-    
+
     return id
   }
 

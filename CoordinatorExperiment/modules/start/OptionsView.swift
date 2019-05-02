@@ -34,13 +34,13 @@ class OptionsView: UIView {
       make.top.equalTo(vc.view.snp.top).inset(20)
       make.height.equalTo(40)
     }
-    
+
     showNavigationButton.snp.makeConstraints { make in
       make.left.right.equalToSuperview().inset(15)
       make.top.equalTo(showTabBarButton.snp.bottom).inset(-20)
       make.height.equalTo(40)
     }
-    
+
     showModalButton.snp.makeConstraints { make in
       make.left.right.equalToSuperview().inset(15)
       make.top.equalTo(showNavigationButton.snp.bottom).inset(-20)

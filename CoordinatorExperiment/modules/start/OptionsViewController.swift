@@ -9,7 +9,7 @@ class OptionsViewController: UIViewController, ControllerInOutType {
   enum TapEventType {
     case tabbar, navigation, modal
   }
-  
+
   struct Output {
     let tabbar: Driver<TapEventType>
   }
@@ -58,7 +58,7 @@ class OptionsViewController: UIViewController, ControllerInOutType {
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
   }
-  
+
   deinit {
     print("StartViewController dead")
   }
@@ -68,15 +68,15 @@ class OptionsViewController: UIViewController, ControllerInOutType {
   private func configureUI() {
     customView.makeConstraints(vc: self)
     title = "Choose flow"
-    
+
     customView.showModalButton.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.tapRelay.accept(.modal)
     }).disposed(by: bag)
-    
+
     customView.showTabBarButton.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.tapRelay.accept(.tabbar)
     }).disposed(by: bag)
-    
+
     customView.showNavigationButton.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.tapRelay.accept(.navigation)
     }).disposed(by: bag)

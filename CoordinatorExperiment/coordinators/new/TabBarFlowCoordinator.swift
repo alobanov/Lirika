@@ -22,7 +22,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
 
   init() {
     super.init(controller: nil, initialRoute: .first)
-    
+
     let first = NavFlowCoordinator(tag: 0, tabBarSystemItem: .favorites)
     let output = first.configure()
     output.didDeinit
@@ -32,14 +32,14 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
       })
       .drive(onNext: { [weak self] _ in
         self?.outputLogout.accept(())
-    }).disposed(by: bag)
+      }).disposed(by: bag)
     startCoordinator(first)
 
     let second = NavFlowCoordinator(tag: 1, tabBarSystemItem: .history)
     second.define(coordinatorCustomPresentId: "second")
     _ = second.configure()
     startCoordinator(second)
-    
+
     let third = NavExitTabFlowCoordinator(tag: 2, tabBarSystemItem: .more)
     third.define(coordinatorCustomPresentId: "third")
     let outputThird = third.configure()
@@ -48,7 +48,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
       self?.removeAll()
     }).disposed(by: bag)
     startCoordinator(third)
-    
+
     let vcs: [UIViewController] = [first.presentable(), second.presentable(), third.presentable()]
     router.set(vcs, animated: false, completion: nil)
   }
@@ -65,7 +65,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
       router.select(index: 2, completion: completion)
     }
   }
-  
+
   func removeAll() {
     for chaild in allChailds() {
       removeChild(chaild)

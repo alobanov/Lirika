@@ -75,18 +75,18 @@ extension Router where RootViewController: UINavigationController {
   func dismissModal(animated: Bool, completion: (() -> Void)?) {
     rootController?.dismiss(animated: animated, completion: completion)
   }
-  
+
   func push(_ modules: [Presentable], after: PresentableID, animated: Bool) {
     guard var stack = rootController?.viewControllers else {
       return
     }
-    
+
     let viewController = stack.first(
       where: { controller -> Bool in
         controller.presentId() == after
-    }
+      }
     )
-    
+
     if let controller = viewController {
       while true {
         if stack.isEmpty { break }
@@ -98,13 +98,13 @@ extension Router where RootViewController: UINavigationController {
           }
         }
       }
-      
+
       let controllers = unwrapPresentables(modules)
       stack += controllers
       rootController?.setViewControllers(stack, animated: animated)
     }
   }
-  
+
   func activePresentableID() -> String? {
     if let current = rootController?.topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController?.presentId()
@@ -112,7 +112,7 @@ extension Router where RootViewController: UINavigationController {
       return rootController?.visibleViewController?.presentId()
     }
   }
-  
+
   func activeController() -> UIViewController? {
     if let current = rootController?.topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController
