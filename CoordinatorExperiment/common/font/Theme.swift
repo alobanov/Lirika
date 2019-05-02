@@ -1,10 +1,4 @@
-//
-//  F.swift
-//  CoordinatorExperiment
-//
-//  Created by Lobanov Aleksey on 27/01/2019.
-//  Copyright © 2019 Lobanov Aleksey. All rights reserved.
-//
+// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import UIKit.UIFont
@@ -13,7 +7,7 @@ class Appearance {
   static func apply() {
     UINavigationBar.appearance().largeTitleTextAttributes = [
       NSAttributedString.Key.foregroundColor: S.colorBlackLight,
-      NSAttributedString.Key.font: F.bold(32).font
+      NSAttributedString.Key.font: F.bold(32).font,
     ]
   }
 }
@@ -33,7 +27,7 @@ class S {
 
 enum F {
   case regular(CGFloat), bold(CGFloat)
-  
+
   var font: UIFont {
     switch self {
     case let .bold(fontSize):

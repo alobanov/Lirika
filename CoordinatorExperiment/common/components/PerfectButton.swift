@@ -1,10 +1,4 @@
-//
-//  PerfectButton.swift
-//  CoordinatorExperiment
-//
-//  Created by Lobanov Aleksey on 27/01/2019.
-//  Copyright © 2019 Lobanov Aleksey. All rights reserved.
-//
+// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import SimpleButton
@@ -28,7 +22,7 @@ class PerfectButton: SimpleButton {
     setTitleColor(.white, for: .normal)
     setBackgroundColor(S.colorBlue, for: .normal, animated: true, animationDuration: 0.3)
     setBackgroundColor(S.colorBlueLight, for: .highlighted, animated: true, animationDuration: 0.3)
-    
+
 //    setShadowRadius(10, for: .normal, animated: true)
 //    setShadowColor(S.colorBlackLight, for: .normal)
 //    setShadowOpacity(0.2, for: .normal, animated: true)

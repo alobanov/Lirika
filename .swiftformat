@@ -1,0 +1,34 @@
+--allman false
+--wraparguments preserve
+--wrapelements beforefirst
+--self init-only
+--header ignore
+--binarygrouping none
+--octalgrouping none
+--indentcase false
+--trimwhitespace always
+--decimalgrouping none
+--patternlet hoist
+--commas always
+--semicolons inline
+--indent 2
+--exponentcase lowercase
+--operatorfunc spaced
+--elseposition same-line
+--empty void
+--ranges nospace
+--hexliteralcase uppercase
+--linebreaks lf
+--hexgrouping 4,8
+--comments indent
+--ifdef indent
+--stripunusedargs closure-only
+--wrapcollections beforefirst
+--patternlet hoist
+
+--enable blankLinesAroundMark,consecutiveBlankLines,blankLinesBetweenScopes, duplicateImports, spaceAroundComments, elseOnSameLine, redundantLet, redundantNilInit, redundantParens, redundantReturn, redundantSelf, spaceAroundBraces, spaceAroundBrackets, spaceAroundGenerics, spaceInsideBraces, todos, trailingSpace
+
+--header "Copyright (c) {year} Lobanov Aleksey. All rights reserved."
+
+--exclude Pods,Carthage,SourceryTemplates,scripts,fastlane,documents,CoinsBankTests,CoinsBank/resources,CoinsBank/vendors,CoinsBank/common/al/formbuilder/additions/Interpreter/Evaluator.swift
+

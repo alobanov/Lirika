@@ -4,7 +4,7 @@ import UIKit
 
 typealias PresentableID = String
 
-protocol Presentable: class {
+protocol Presentable: AnyObject {
   func presentable() -> UIViewController
   func presentId() -> PresentableID
   static func presentId() -> PresentableID

@@ -70,6 +70,14 @@
 		E84FA32A21FE28D0006A6705 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA32521FE28D0006A6705 /* SignUpView.swift */; };
 		E84FA32B21FE28D0006A6705 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA32621FE28D0006A6705 /* SignUpViewModel.swift */; };
 		E84FA32C21FE28D0006A6705 /* SignUpConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA32721FE28D0006A6705 /* SignUpConfigurator.swift */; };
+		E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */; };
+		E8E7FA6C2279A2C700B62CA1 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6B2279A2C700B62CA1 /* StartViewController.swift */; };
+		E8E7FA6E2279A32E00B62CA1 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6D2279A32E00B62CA1 /* StartView.swift */; };
+		E8E7FA712279A79B00B62CA1 /* ControllerInOutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA702279A79B00B62CA1 /* ControllerInOutProtocol.swift */; };
+		E8E7FA742279C64300B62CA1 /* SingleButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA732279C64300B62CA1 /* SingleButtonViewController.swift */; };
+		E8E7FA762279C65200B62CA1 /* SingleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA752279C65200B62CA1 /* SingleButtonView.swift */; };
+		E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */; };
+		E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +161,14 @@
 		E84FA32521FE28D0006A6705 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		E84FA32621FE28D0006A6705 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		E84FA32721FE28D0006A6705 /* SignUpConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpConfigurator.swift; sourceTree = "<group>"; };
+		E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFlowCoordinator.swift; sourceTree = "<group>"; };
+		E8E7FA6B2279A2C700B62CA1 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		E8E7FA6D2279A32E00B62CA1 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		E8E7FA702279A79B00B62CA1 /* ControllerInOutProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerInOutProtocol.swift; sourceTree = "<group>"; };
+		E8E7FA732279C64300B62CA1 /* SingleButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleButtonViewController.swift; sourceTree = "<group>"; };
+		E8E7FA752279C65200B62CA1 /* SingleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleButtonView.swift; sourceTree = "<group>"; };
+		E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFlowCoordinator.swift; sourceTree = "<group>"; };
+		E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavExitTabFlowCoordinator.swift; sourceTree = "<group>"; };
 		FA046313C6C589AD4D7303DE /* Pods-CoordinatorExperiment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoordinatorExperiment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,6 +259,8 @@
 		E836990E21F096CC007D4A05 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8E7FA722279C62B00B62CA1 /* singleButton */,
+				E8E7FA6A2279A2B900B62CA1 /* start */,
 				E84FA32221FE28BF006A6705 /* signup */,
 				E84FA31721FDB9F6006A6705 /* signin */,
 				E84FA30221FDA53B006A6705 /* auth */,
@@ -318,6 +336,7 @@
 		E836994C21F0E452007D4A05 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				E8E7FA6F2279A77100B62CA1 /* controller */,
 				E84FA31421FDB541006A6705 /* components */,
 				E84FA30F21FDAE45006A6705 /* font */,
 				E84FA2F021FCB1B8006A6705 /* coordinator */,
@@ -337,6 +356,7 @@
 		E836995B21F0E555007D4A05 /* coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				E8E7FA79227ADE0500B62CA1 /* new */,
 				E836995D21F0E570007D4A05 /* AppCoordinator.swift */,
 				E836995C21F0E570007D4A05 /* AboutCoordiantor.swift */,
 				E836995E21F0E570007D4A05 /* HomeCoordinator.swift */,
@@ -419,6 +439,42 @@
 				E84FA32721FE28D0006A6705 /* SignUpConfigurator.swift */,
 			);
 			path = signup;
+			sourceTree = "<group>";
+		};
+		E8E7FA6A2279A2B900B62CA1 /* start */ = {
+			isa = PBXGroup;
+			children = (
+				E8E7FA6B2279A2C700B62CA1 /* StartViewController.swift */,
+				E8E7FA6D2279A32E00B62CA1 /* StartView.swift */,
+			);
+			path = start;
+			sourceTree = "<group>";
+		};
+		E8E7FA6F2279A77100B62CA1 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				E8E7FA702279A79B00B62CA1 /* ControllerInOutProtocol.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		E8E7FA722279C62B00B62CA1 /* singleButton */ = {
+			isa = PBXGroup;
+			children = (
+				E8E7FA732279C64300B62CA1 /* SingleButtonViewController.swift */,
+				E8E7FA752279C65200B62CA1 /* SingleButtonView.swift */,
+			);
+			path = singleButton;
+			sourceTree = "<group>";
+		};
+		E8E7FA79227ADE0500B62CA1 /* new */ = {
+			isa = PBXGroup;
+			children = (
+				E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */,
+				E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */,
+				E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */,
+			);
+			path = new;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,8 +631,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SimpleButton/SimpleButton.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -585,8 +641,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -618,6 +674,7 @@
 				E836991521F096E3007D4A05 /* Login+Structures.swift in Sources */,
 				E836994721F097FF007D4A05 /* About+Structures.swift in Sources */,
 				E836991621F096E3007D4A05 /* LoginViewController.swift in Sources */,
+				E8E7FA742279C64300B62CA1 /* SingleButtonViewController.swift in Sources */,
 				E84FA32A21FE28D0006A6705 /* SignUpView.swift in Sources */,
 				E84FA2FF21FCB5DE006A6705 /* TabBarCoordinator.swift in Sources */,
 				E836993721F097EA007D4A05 /* NewsListConfigurator.swift in Sources */,
@@ -631,8 +688,12 @@
 				E84FA2FC21FCB1B8006A6705 /* Coordinator.swift in Sources */,
 				E836993621F097EA007D4A05 /* NewsListViewModel.swift in Sources */,
 				E836992221F096F7007D4A05 /* HomeView.swift in Sources */,
+				E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */,
 				E84FA2FB21FCB1B8006A6705 /* Coordinatorable.swift in Sources */,
+				E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */,
 				E84FA32021FDBA09006A6705 /* SignInViewModel.swift in Sources */,
+				E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */,
+				E8E7FA6C2279A2C700B62CA1 /* StartViewController.swift in Sources */,
 				E84FA31D21FDBA09006A6705 /* SignIn+Structures.swift in Sources */,
 				E836994021F097F4007D4A05 /* NewsViewModel.swift in Sources */,
 				E836992421F096F7007D4A05 /* HomeConfigurator.swift in Sources */,
@@ -652,12 +713,15 @@
 				E836993421F097EA007D4A05 /* NewsListViewController.swift in Sources */,
 				E84FA30121FCC21D006A6705 /* NevigationCoordinator.swift in Sources */,
 				E84FA30821FDA550006A6705 /* Auth+Structures.swift in Sources */,
+				E8E7FA6E2279A32E00B62CA1 /* StartView.swift in Sources */,
 				E836996221F0E571007D4A05 /* HomeCoordinator.swift in Sources */,
+				E8E7FA712279A79B00B62CA1 /* ControllerInOutProtocol.swift in Sources */,
 				E836993321F097EA007D4A05 /* NewsList+Structures.swift in Sources */,
 				E836993521F097EA007D4A05 /* NewsListView.swift in Sources */,
 				E84FA30B21FDA550006A6705 /* AuthViewModel.swift in Sources */,
 				E836994B21F097FF007D4A05 /* AboutConfigurator.swift in Sources */,
 				E836993D21F097F4007D4A05 /* News+Structures.swift in Sources */,
+				E8E7FA762279C65200B62CA1 /* SingleButtonView.swift in Sources */,
 				E836991821F096E3007D4A05 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

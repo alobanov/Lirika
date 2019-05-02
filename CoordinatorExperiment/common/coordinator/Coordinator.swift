@@ -5,20 +5,20 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-protocol DeepLink {
-}
+protocol DeepLink {}
 
 extension Coordinator {
   public typealias RootControllerType = RouterType.RootViewController
 }
 
-class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {  
+class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {
   private var childs: [Presentable] = []
-  
+  private var customCoordinatorNameIdentifier: String?
+
   let rootViewControllerBox = ReferenceBox<RootControllerType>()
   var window: UIWindow?
   var initialRoute: RouteType
-  
+
   var rootViewController: RootControllerType {
     // swiftlint:disable:next force_unwrapping
     return rootViewControllerBox.get()!
@@ -26,31 +26,31 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
 
   let bag = DisposeBag()
   let router: Router<RootControllerType>
-    
+
   func configureWindow(window: UIWindow) {
     self.window = window
     setRoot(for: window)
   }
-  
+
   convenience init(window: UIWindow, initialRoute: RouteType) {
     self.init(controller: nil, initialRoute: initialRoute)
     self.configureWindow(window: window)
   }
-  
+
   init(controller: RootControllerType?, initialRoute: RouteType) {
     self.initialRoute = initialRoute
     self.router = Router<RootControllerType>()
-    
+
     if let controller = controller {
       rootViewControllerBox.set(controller)
     } else {
       rootViewControllerBox.set(self.generateRootViewController())
     }
-    
+
     self.router.define(root: rootViewController)
     self.configureRootViewController()
   }
-  
+
   func generateRootViewController() -> RootControllerType {
     return RootControllerType()
   }
@@ -58,7 +58,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   func start() {
     trigger(initialRoute)
   }
-  
+
   func configureRootViewController() {}
 
   func startCoordinator(_ coordinator: Coordinatorable) {
@@ -87,22 +87,30 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     }
   }
   
+  func define(coordinatorCustomPresentId id: String) {
+    customCoordinatorNameIdentifier = id
+  }
+
   private func lastChild() -> Coordinatorable? {
     if let coord = childs.last as? Coordinatorable {
       print("Coordinator next is: \(coord.presentId())")
       return coord
     }
-    
+
     return nil
   }
 
   func child(presentId: PresentableID) -> Presentable? {
     let items = childs.filter { item -> Bool in
-      return item.presentId() == presentId
+      item.presentId() == presentId
     }
     return items.first
   }
   
+  func allChailds() -> [Presentable] {
+    return childs
+  }
+
   func coordinator<T: Coordinatorable>(by type: T.Type) -> Coordinatorable? {
     return child(presentId: type.presentId()) as? Coordinatorable
   }
@@ -114,7 +122,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   func trigger(_ route: RouteType, comletion: PresentationHandler? = nil) {
     prepare(route: route, completion: comletion)
   }
-  
+
   func deepLink(link: DeepLink) {}
 }
 
@@ -124,7 +132,11 @@ extension Coordinator: Presentable {
   }
 
   func presentId() -> PresentableID {
-    return String(describing: type(of: self))
+    guard let id = customCoordinatorNameIdentifier else {
+      return String(describing: type(of: self))
+    }
+    
+    return id
   }
 
   static func presentId() -> PresentableID {
