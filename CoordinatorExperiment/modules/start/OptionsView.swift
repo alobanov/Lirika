@@ -2,7 +2,7 @@
 
 import UIKit
 
-class StartView: UIView {
+class OptionsView: UIView {
   let showTabBarButton = PerfectButton()
   let showNavigationButton = PerfectButton()
   let showModalButton = PerfectButton()

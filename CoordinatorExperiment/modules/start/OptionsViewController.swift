@@ -5,7 +5,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-class StartViewController: UIViewController, ControllerInOutType {
+class OptionsViewController: UIViewController, ControllerInOutType {
   enum TapEventType {
     case tabbar, navigation, modal
   }
@@ -82,7 +82,7 @@ class StartViewController: UIViewController, ControllerInOutType {
     }).disposed(by: bag)
   }
 
-  func configure(input: StartViewController.Input) -> StartViewController.Output {
+  func configure(input: OptionsViewController.Input) -> OptionsViewController.Output {
     return Output(tabbar: tapRelay.asDriver(onErrorJustReturn: .tabbar))
   }
 }

@@ -51,7 +51,7 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
 
 extension AppCoordinator {
   fileprivate func options() -> Presentable {
-    let controller = StartViewController()
+    let controller = OptionsViewController()
     let output = controller.configure(input: .init())
 
     output.tabbar.drive(onNext: { [weak self] action in

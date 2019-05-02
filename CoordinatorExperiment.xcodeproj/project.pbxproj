@@ -27,8 +27,8 @@
 		E84FA31321FDAE92006A6705 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31221FDAE92006A6705 /* Theme.swift */; };
 		E84FA31621FDB554006A6705 /* PerfectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31521FDB554006A6705 /* PerfectButton.swift */; };
 		E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */; };
-		E8E7FA6C2279A2C700B62CA1 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6B2279A2C700B62CA1 /* StartViewController.swift */; };
-		E8E7FA6E2279A32E00B62CA1 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6D2279A32E00B62CA1 /* StartView.swift */; };
+		E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */; };
+		E8E7FA6E2279A32E00B62CA1 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */; };
 		E8E7FA712279A79B00B62CA1 /* ControllerInOutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA702279A79B00B62CA1 /* ControllerInOutProtocol.swift */; };
 		E8E7FA742279C64300B62CA1 /* SingleButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA732279C64300B62CA1 /* SingleButtonViewController.swift */; };
 		E8E7FA762279C65200B62CA1 /* SingleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA752279C65200B62CA1 /* SingleButtonView.swift */; };
@@ -75,8 +75,8 @@
 		E84FA31221FDAE92006A6705 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E84FA31521FDB554006A6705 /* PerfectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectButton.swift; sourceTree = "<group>"; };
 		E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFlowCoordinator.swift; sourceTree = "<group>"; };
-		E8E7FA6B2279A2C700B62CA1 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		E8E7FA6D2279A32E00B62CA1 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		E8E7FA702279A79B00B62CA1 /* ControllerInOutProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerInOutProtocol.swift; sourceTree = "<group>"; };
 		E8E7FA732279C64300B62CA1 /* SingleButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleButtonViewController.swift; sourceTree = "<group>"; };
 		E8E7FA752279C65200B62CA1 /* SingleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleButtonView.swift; sourceTree = "<group>"; };
@@ -250,8 +250,8 @@
 		E8E7FA6A2279A2B900B62CA1 /* start */ = {
 			isa = PBXGroup;
 			children = (
-				E8E7FA6B2279A2C700B62CA1 /* StartViewController.swift */,
-				E8E7FA6D2279A32E00B62CA1 /* StartView.swift */,
+				E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */,
+				E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */,
 			);
 			path = start;
 			sourceTree = "<group>";
@@ -480,11 +480,11 @@
 				E84FA2FB21FCB1B8006A6705 /* Coordinatorable.swift in Sources */,
 				E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */,
 				E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */,
-				E8E7FA6C2279A2C700B62CA1 /* StartViewController.swift in Sources */,
+				E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */,
 				E83698EC21F094FF007D4A05 /* AppDelegate.swift in Sources */,
 				E836996121F0E571007D4A05 /* AppCoordinator.swift in Sources */,
 				E84FA30121FCC21D006A6705 /* NevigationCoordinator.swift in Sources */,
-				E8E7FA6E2279A32E00B62CA1 /* StartView.swift in Sources */,
+				E8E7FA6E2279A32E00B62CA1 /* OptionsView.swift in Sources */,
 				E8E7FA712279A79B00B62CA1 /* ControllerInOutProtocol.swift in Sources */,
 				E8E7FA762279C65200B62CA1 /* SingleButtonView.swift in Sources */,
 			);
