@@ -1,5 +1,5 @@
 //
-//  NavTableFlowCoordinator.swift
+//  NavModalFlowCoordinator.swift
 //  CoordinatorExperiment
 //
 //  Created by Lobanov Aleksey on 02/05/2019.
@@ -11,12 +11,12 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-enum NavExitTabFlowRoute: Route {
-  case setAsRoot
+enum NavModalFlowRoute: Route {
+  case setAsRoot, push, pop
 }
 
-class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, CoordinatorOutput {
-  func configure() -> NavExitTabFlowCoordinator.Output {
+class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, CoordinatorOutput {
+  func configure() -> NavModalFlowCoordinator.Output {
     return Output(
       didDeinit: didDeinit.asDriver(onErrorJustReturn: ()),
       completeFlow: completeFlow.asDriver(onErrorJustReturn: ())
@@ -45,17 +45,24 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
     rootViewController.navigationBar.prefersLargeTitles = true
   }
   
-  init(rootViewController: UINavigationController?, initialRoute: NavExitTabFlowRoute) {
+  init(rootViewController: UINavigationController?, initialRoute: NavModalFlowRoute) {
     super.init(controller: rootViewController, initialRoute: initialRoute)
   }
   
   // MARK: - Overrides
   
-  override func prepare(route: NavExitTabFlowRoute, completion: PresentationHandler?) {
+  override func prepare(route: NavModalFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .setAsRoot:
-      let controller = dummyController(title: "Exit from tabbar", actionButtonTitle: "Exit", isFirst: true)
+      let controller = dummyController(title: "Modal navigation", actionButtonTitle: "Push", isFirst: true)
       router.set([controller], animated: false, completion: completion)
+      
+    case .push:
+      let controller = dummyController(title: "Navigation next one", actionButtonTitle: "Push new one")
+      router.push(controller)
+      
+    case .pop:
+      router.pop()
     }
   }
   
@@ -64,7 +71,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
   }
 }
 
-extension NavExitTabFlowCoordinator {
+extension NavModalFlowCoordinator {
   fileprivate func dummyController(title: String, actionButtonTitle: String, isFirst: Bool = false) -> Presentable {
     let controller = SingleButtonViewController()
     let input = SingleButtonViewController.Input(
@@ -74,21 +81,27 @@ extension NavExitTabFlowCoordinator {
     
     let output = controller.configure(input: input)
     
-    controller.customView.buttonSecond.isHidden = true
+    let title: String = isFirst ? "Dismiss" : "Pop"
+    controller.customView.buttonSecond.setTitle(title.uppercased(), for: .normal)
     
     output.tapFirstAction.drive(onNext: { [weak self] in
-      self?.completeFlow.accept(())
+      self?.trigger(.push)
     }).disposed(by: bag)
     
-    output.tabSecondAction.drive(onNext: { _ in
-      // nothing
+    output.tabSecondAction.drive(onNext: { [weak self] _ in
+      if isFirst {
+        self?.completeFlow.accept(())
+      } else {
+        self?.trigger(.pop)
+      }
     }).disposed(by: bag)
     
     output.didDeinit.drive(onNext: { [weak self] in
-      self?.didDeinit.accept(())
+      if isFirst {
+        self?.didDeinit.accept(())
+      }
     }).disposed(by: bag)
     
     return controller
   }
 }
-

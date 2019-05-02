@@ -75,12 +75,57 @@ extension Router where RootViewController: UINavigationController {
   func dismissModal(animated: Bool, completion: (() -> Void)?) {
     rootController?.dismiss(animated: animated, completion: completion)
   }
+  
+  func push(_ modules: [Presentable], after: PresentableID, animated: Bool) {
+    guard var stack = rootController?.viewControllers else {
+      return
+    }
+    
+    let viewController = stack.first(
+      where: { controller -> Bool in
+        controller.presentId() == after
+    }
+    )
+    
+    if let controller = viewController {
+      while true {
+        if stack.isEmpty { break }
+        if let current = stack.last {
+          if current == controller {
+            break
+          } else {
+            stack.removeLast()
+          }
+        }
+      }
+      
+      let controllers = unwrapPresentables(modules)
+      stack += controllers
+      rootController?.setViewControllers(stack, animated: animated)
+    }
+  }
+  
+  func activePresentableID() -> String? {
+    if let current = rootController?.topViewController as? UITabBarController {
+      return (current.selectedViewController as? UINavigationController)?.visibleViewController?.presentId()
+    } else {
+      return rootController?.visibleViewController?.presentId()
+    }
+  }
+  
+  func activeController() -> UIViewController? {
+    if let current = rootController?.topViewController as? UITabBarController {
+      return (current.selectedViewController as? UINavigationController)?.visibleViewController
+    } else {
+      return rootController?.visibleViewController
+    }
+  }
 }
 
 class NavigationCoordinator<RouteType: Route>: Coordinator<RouteType, NavigationRouter> {
-//  override func generateRootViewController() -> UINavigationController {
-//    return super.generateRootViewController()
-//  }
+  override func generateRootViewController() -> UINavigationController {
+    return super.generateRootViewController()
+  }
 
   deinit {
     print("Dead NavigationCoordinator")

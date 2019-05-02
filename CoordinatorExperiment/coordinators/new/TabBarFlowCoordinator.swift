@@ -23,7 +23,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
   init() {
     super.init(controller: nil, initialRoute: .first)
     
-    let first = NavFlowCoordinator(tag: 0, tabBarSystemItem: .downloads)
+    let first = NavFlowCoordinator(tag: 0, tabBarSystemItem: .favorites)
     let output = first.configure()
     output.didDeinit
       .do(onNext: { [weak self, weak first] _ in
@@ -35,12 +35,12 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
     }).disposed(by: bag)
     startCoordinator(first)
 
-    let second = NavFlowCoordinator(tag: 1, tabBarSystemItem: .bookmarks)
+    let second = NavFlowCoordinator(tag: 1, tabBarSystemItem: .history)
     second.define(coordinatorCustomPresentId: "second")
     _ = second.configure()
     startCoordinator(second)
     
-    let third = NavExitTabFlowCoordinator(tag: 2, tabBarSystemItem: .history)
+    let third = NavExitTabFlowCoordinator(tag: 2, tabBarSystemItem: .more)
     third.define(coordinatorCustomPresentId: "third")
     let outputThird = third.configure()
     outputThird.completeFlow.drive(onNext: { [weak self] in

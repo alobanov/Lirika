@@ -5,27 +5,19 @@ import RxCocoa
 import RxSwift
 
 enum AppRoute: Route {
-  case authorization, home, pop, options, navigationFlow, tabbarFlow
+  case options, navigationFlow, tabbarFlow, modalFlow, dissmisModal
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
   override func prepare(route: AppRoute, completion _: PresentationHandler?) {
     switch route {
-    case .home:
-      let coord = news()
-      startCoordinator(coord)
-      router.set([coord], animated: false, barHidden: true)
-    case .authorization:
-      let coord = auth()
-      startCoordinator(coord)
-    case .pop:
-      router.pop(toRoot: false)
     case .options:
       router.set([options()], animated: true)
+      
     case .navigationFlow:
       let coord = navigationCoordinator()
-      
       startCoordinator(coord)
+      
     case .tabbarFlow:
       let coord = TabBarFlowCoordinator()
       let output = coord.configure()
@@ -35,6 +27,14 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
       }).disposed(by: bag)
       startCoordinator(coord)
       router.set([coord], animated: false, barHidden: true)
+      
+    case .modalFlow:
+      let coord = modalNavigationCoordinator()
+      startCoordinator(coord.0)
+      router.presentModal(coord.1, animated: true, completion: nil)
+      
+    case .dissmisModal:
+      router.dismissModal(animated: true, completion: nil)
     }
   }
 
@@ -43,14 +43,6 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
     rootViewController.navigationBar.prefersLargeTitles = true
   }
 
-  override func deepLink(link: DeepLink) {
-    switch link {
-    case let event as SignupDeepLink:
-      coordinator(by: AuthCoordinator.self)?.deepLink(link: event)
-    default:
-      break
-    }
-  }
 
   deinit {
     print("Dead AppCoordinator")
@@ -58,14 +50,14 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
 }
 
 extension AppCoordinator {
-  func options() -> Presentable {
+  fileprivate func options() -> Presentable {
     let controller = StartViewController()
     let output = controller.configure(input: .init())
 
     output.tabbar.drive(onNext: { [weak self] action in
       switch action {
       case .modal:
-        break
+        self?.trigger(.modalFlow)
       case .navigation:
         self?.trigger(.navigationFlow)
       case .tabbar:
@@ -76,12 +68,12 @@ extension AppCoordinator {
     return controller
   }
   
-  func navigationCoordinator() -> Coordinatorable {
-    guard let cuurentRoot = router.rootController else {
+  fileprivate func navigationCoordinator() -> Coordinatorable {
+    guard let curentRoot = router.rootController else {
       fatalError()
     }
     
-    let navCoord = NavFlowCoordinator(rootViewController: cuurentRoot, initialRoute: .pushIntoExtistNav)
+    let navCoord = NavFlowCoordinator(rootViewController: curentRoot, initialRoute: .pushIntoExtistNav)
     let output = navCoord.configure()
     
     output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
@@ -90,39 +82,24 @@ extension AppCoordinator {
     
     return navCoord
   }
-
-  func auth() -> Coordinatorable {
-    let auth = AuthCoordinator(controller: rootViewController, initialRoute: .auth)
-
-    let output = auth.configure()
-    output.successLogin.subscribe(onNext: { [weak self, weak auth] _ in
-      self?.removeChild(auth)
-      self?.trigger(.home)
+  
+  fileprivate func modalNavigationCoordinator() -> (Coordinatorable, Presentable) {
+    let rootNav = UINavigationController()
+    rootNav.navigationBar.isTranslucent = false
+    rootNav.navigationBar.prefersLargeTitles = true
+    
+    let navCoord = NavModalFlowCoordinator(rootViewController: rootNav, initialRoute: .setAsRoot)
+    let output = navCoord.configure()
+    
+    output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
+      self?.removeChild(navCoord)
     }).disposed(by: bag)
-
-    return auth
-  }
-
-  func home() -> Coordinatorable {
-    let home = HomeCoordinator(controller: rootViewController, initialRoute: .home)
-    let output = home.configure()
-
-    output.didDeinit.subscribe(onNext: { [weak self, weak home] _ in
-      self?.removeChild(home)
+    
+    output.completeFlow.drive(onNext: { [weak navCoord, weak self] in
+      rootNav.dismiss(animated: true, completion: nil)
+      self?.removeChild(navCoord)
     }).disposed(by: bag)
-
-    return home
-  }
-
-  func news() -> Coordinatorable {
-    let news = NewsCoordinator()
-    let output = news.configure()
-
-    output.logout.subscribe(onNext: { [weak self, weak news] _ in
-      self?.removeChild(news)
-      self?.trigger(.authorization)
-    }).disposed(by: bag)
-
-    return news
+    
+    return (navCoord, rootNav)
   }
 }

@@ -87,6 +87,10 @@ extension NavFlowCoordinator {
     
     let output = controller.configure(input: input)
     
+    if isFirst {
+      controller.customView.buttonSecond.isHidden = true
+    }
+    
     output.tapFirstAction.drive(onNext: { [weak self] in
       self?.trigger(.newDummy)
     }).disposed(by: bag)

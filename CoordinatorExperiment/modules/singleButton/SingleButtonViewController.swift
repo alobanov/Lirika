@@ -83,10 +83,6 @@ class SingleButtonViewController: UIViewController, ControllerInOutType {
     customView.buttonFirst.setTitle(input.buttonTitle.uppercased(), for: .normal)
     customView.buttonSecond.setTitle("POP", for: .normal)
     
-    if input.isFirstInStackController {
-      customView.buttonSecond.isHidden = true
-    }
-    
     return Output(
       tapFirstAction: customView.buttonFirst.rx.tap.asDriver(),
       tabSecondAction: customView.buttonSecond.rx.tap.asDriver(),
