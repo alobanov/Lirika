@@ -12,13 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
     Appearance.apply()
     appCoordinator.start()
-
-//    CommonHelper.delay(0.1) { [weak self] in
-//      self?.appCoordinator.deepLink(link: SignupDeepLink())
-//    }
     return true
   }
 }

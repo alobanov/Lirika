@@ -6,7 +6,7 @@ import RxSwift
 import UIKit
 
 enum TabBarFlowRoute: Route {
-  case first, second, third
+  case first, second, third, exit
 }
 
 class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutput {
@@ -18,39 +18,22 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
     let logout: Observable<Void>
   }
 
-  private let outputLogout = PublishRelay<Void>()
+  fileprivate let outputLogout = PublishRelay<Void>()
 
   init() {
-    super.init(controller: nil, initialRoute: .first)
-
-    let first = NavFlowCoordinator(tag: 0, tabBarSystemItem: .favorites)
-    let output = first.configure()
-    output.didDeinit
-      .do(onNext: { [weak self, weak first] _ in
-        self?.removeChild(first)
-        self?.router.rootController = nil
-      })
-      .drive(onNext: { [weak self] _ in
-        self?.outputLogout.accept(())
-      }).disposed(by: bag)
-    startCoordinator(first)
-
-    let second = NavFlowCoordinator(tag: 1, tabBarSystemItem: .history)
-    second.define(coordinatorCustomPresentId: "second")
-    _ = second.configure()
-    startCoordinator(second)
-
-    let third = NavExitTabFlowCoordinator(tag: 2, tabBarSystemItem: .more)
-    third.define(coordinatorCustomPresentId: "third")
-    let outputThird = third.configure()
-    outputThird.completeFlow.drive(onNext: { [weak self] in
-      self?.outputLogout.accept(())
-      self?.removeAll()
-    }).disposed(by: bag)
-    startCoordinator(third)
-
-    let vcs: [UIViewController] = [first.presentable(), second.presentable(), third.presentable()]
-    router.set(vcs, animated: false, completion: nil)
+    super.init(controller: nil, initialRoute: .third)
+    router.set(buildTabs(), animated: false, completion: nil)
+  }
+  
+  func buildTabs() -> [UIViewController] {
+    let coords = [
+      firstTabCoordinator(),
+      secondTabCoordinator(),
+      thirdTabCoordinator()
+    ]
+    
+    coords.forEach { startCoordinator($0) }
+    return coords.map { $0.presentable() }
   }
 
   // MARK: - Overrides
@@ -63,16 +46,38 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
       router.select(index: 1, completion: completion)
     case .third:
       router.select(index: 2, completion: completion)
-    }
-  }
-
-  func removeAll() {
-    for chaild in allChailds() {
-      removeChild(chaild)
+    case .exit:
+      outputLogout.accept(())
+      removeAllChilds()
     }
   }
 
   deinit {
     print("Dead NewsCoordinator")
+  }
+}
+
+extension TabBarFlowCoordinator {
+  fileprivate func firstTabCoordinator() -> Coordinatorable {
+    let first = NavFlowCoordinator(tag: 0, tabBarSystemItem: .favorites)
+    _ = first.configure()
+    return first
+  }
+  
+  fileprivate func secondTabCoordinator() -> Coordinatorable {
+    let second = NavFlowCoordinator(tag: 1, tabBarSystemItem: .history)
+    second.define(coordinatorCustomPresentId: "second")
+    _ = second.configure()
+    return second
+  }
+  
+  fileprivate func thirdTabCoordinator() -> Coordinatorable {
+    let third = NavExitTabFlowCoordinator(tag: 2, tabBarSystemItem: .more)
+    third.define(coordinatorCustomPresentId: "third")
+    let outputThird = third.configure()
+    outputThird.completeFlow.drive(onNext: { [weak self] in
+      self?.trigger(.exit)
+    }).disposed(by: bag)
+    return third
   }
 }

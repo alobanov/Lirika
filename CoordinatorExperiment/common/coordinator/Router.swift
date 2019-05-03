@@ -24,9 +24,6 @@ class Router<RootViewController: UIViewController>: RouterProtocol {
 
   func unwrapPresentable(_ module: Presentable) -> UIViewController {
     let controller = module.presentable()
-    if controller is UINavigationController {
-      assertionFailure("Forbidden push UINavigationController.")
-    }
     return controller
   }
 

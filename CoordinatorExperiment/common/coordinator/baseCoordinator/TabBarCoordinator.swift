@@ -6,12 +6,13 @@ import UIKit
 typealias TabBarRouter = Router<UITabBarController>
 
 extension Router where RootViewController: UITabBarController {
-  func set(_ viewControllers: [UIViewController], animated: Bool,
-           completion: PresentationHandler?) {
+  func set(_ viewControllers: [Presentable], animated: Bool, completion: PresentationHandler?) {
+    let controllers = unwrapPresentables(viewControllers)
+    
     CATransaction.begin()
     CATransaction.setCompletionBlock(completion)
 
-    rootController?.setViewControllers(viewControllers, animated: animated)
+    rootController?.setViewControllers(controllers, animated: animated)
 
     CATransaction.commit()
   }

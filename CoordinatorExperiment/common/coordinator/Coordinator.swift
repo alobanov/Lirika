@@ -75,15 +75,19 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   }
 
   func removeChild(_ child: Presentable?) {
-    guard childs.isEmpty == false,
-      let child = child
-    else {
+    guard childs.isEmpty == false, let child = child else {
       return
     }
 
     for (index, element) in childs.enumerated() where element.presentId() == child.presentId() {
       childs.remove(at: index)
       break
+    }
+  }
+  
+  func removeAllChilds() {
+    for chaild in allChailds() {
+      removeChild(chaild)
     }
   }
 
