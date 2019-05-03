@@ -1,4 +1,5 @@
 PODS:
+  - Lirika (0.1)
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -9,6 +10,7 @@ PODS:
   - SnapKit (5.0.0)
 
 DEPENDENCIES:
+  - Lirika (from `https://github.com/alobanov/Lirika.git`, branch `develop`)
   - RxCocoa
   - RxSwift
   - SimpleButton
@@ -22,13 +24,24 @@ SPEC REPOS:
     - SimpleButton
     - SnapKit
 
+EXTERNAL SOURCES:
+  Lirika:
+    :branch: develop
+    :git: https://github.com/alobanov/Lirika.git
+
+CHECKOUT OPTIONS:
+  Lirika:
+    :commit: 336be3c94c0a5d6deb663d3a6e1674336cd94d32
+    :git: https://github.com/alobanov/Lirika.git
+
 SPEC CHECKSUMS:
+  Lirika: 337affbc8bb82512f868a03a14b24d2ba9d4bb30
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SimpleButton: 2d1696c628bea9ea6a7eeb2081650564ac701cb9
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: 700cee2949cec4d73f8fe52f727df4db3ea68253
+PODFILE CHECKSUM: 5f0a0aa247a3b3332ac7426069e7be787a36c9d0
 
 COCOAPODS: 1.5.3

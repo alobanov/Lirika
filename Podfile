@@ -1,4 +1,4 @@
-source 'https://github.com/alobanov/ALSpec.git'
+#source 'https://github.com/alobanov/ALSpec.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
@@ -11,7 +11,7 @@ target 'CoordinatorExperiment' do
   pod 'RxCocoa'
   pod 'SnapKit'
   pod 'SimpleButton'
-  pod 'Lirika', :git => 'https://github.com/alobanov/Lirika.git', :branch => 'develop'
+#  pod 'Lirika', :git => 'https://github.com/alobanov/Lirika.git', :branch => 'develop'
 
   target 'CoordinatorExperimentTests' do
     inherit! :search_paths
