@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.default_subspec = "Lirika"
   s.source_files = 'CoordinatorExperiment/common/coordinator/**/*.swift'
 
-  s.swift_version = "4.2"
+  s.swift_version = '4.2'
   s.swift_versions = ['4.2', '5.0']
 
   s.ios.deployment_target = "10.0"

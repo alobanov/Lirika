@@ -8,6 +8,7 @@ target 'CoordinatorExperiment' do
   pod 'RxCocoa'
   pod 'SnapKit'
   pod 'SimpleButton'
+  pod 'Lirika', :git => 'https://github.com/alobanov/Lirika.git', :branch => 'develop'
 
   target 'CoordinatorExperimentTests' do
     inherit! :search_paths
