@@ -1,3 +1,6 @@
+source 'https://github.com/alobanov/ALSpec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 use_frameworks!
 platform :ios, '10.0'
 
