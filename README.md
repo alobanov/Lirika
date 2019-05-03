@@ -51,3 +51,18 @@ class SampleCoordinator: NavigationCoordinator<SampleRoute>, CoordinatorOutput {
     }
   }
 ```
+
+## Install
+
+```
+source 'https://github.com/alobanov/ALSpec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+platform :ios, '10.0'
+
+target 'Proj' do
+  inhibit_all_warnings!
+  pod 'Lirika', :git => 'https://github.com/alobanov/Lirika.git', :branch => 'develop'
+end
+```
