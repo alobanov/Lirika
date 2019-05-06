@@ -5,7 +5,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-class SingleButtonViewController: UIViewController, ControllerInOutType {
+class ButtonsViewController: UIViewController, ControllerInOutType {
   struct Output {
     let tapFirstAction: Driver<Void>
     let tabSecondAction: Driver<Void>
@@ -29,8 +29,8 @@ class SingleButtonViewController: UIViewController, ControllerInOutType {
   let didDeinit = PublishRelay<Void>()
 
   // IBOutlet & UI
-  lazy var customView: SingleButtonView = {
-    let customView = SingleButtonView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+  lazy var customView: ButtonsView = {
+    let customView = ButtonsView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
     return customView
   }()
 

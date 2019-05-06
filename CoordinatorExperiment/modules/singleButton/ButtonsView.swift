@@ -3,7 +3,7 @@
 import SnapKit
 import UIKit
 
-class SingleButtonView: UIView {
+class ButtonsView: UIView {
   let buttonFirst = PerfectButton()
   let buttonSecond = PerfectButton()
 
