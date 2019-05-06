@@ -12,11 +12,26 @@ extension Coordinator {
 }
 
 class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {
+  
+  // All child presentables modules (contorollers, coordinators)
   private var childs: [Presentable] = []
+  
+  // Define custom coordinator/module identifier if you use same module more then one times
   private var customCoordinatorNameIdentifier: String?
 
+  // Root controller depends on RootControllerType
   let rootViewControllerBox = ReferenceBox<RootControllerType>()
+  
+  // Only for first coordinator, and define in AppDelegate, example:
+  //
+  // let window: UIWindow! = UIWindow()
+  // private lazy var appCoordinator: AppCoordinator = self.coordinator()
+  // func coordinator() -> AppCoordinator {
+  //   return AppCoordinator(window: window, initialRoute: .root)
+  // }
   var window: UIWindow?
+  
+  // Route from which the coordinator starts
   var initialRoute: RouteType
 
   var rootViewController: RootControllerType {
@@ -25,9 +40,10 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   }
 
   let bag = DisposeBag()
+  
   let router: Router<RootControllerType>
 
-  func configureWindow(window: UIWindow) {
+  private func configureWindow(window: UIWindow) {
     self.window = window
     setRoot(for: window)
   }

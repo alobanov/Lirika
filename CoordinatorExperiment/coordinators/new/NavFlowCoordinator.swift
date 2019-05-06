@@ -72,8 +72,8 @@ extension NavFlowCoordinator {
   func firstRootDummyController() {}
 
   func dummyController(title: String, actionButtonTitle: String, isFirst: Bool = false) -> Presentable {
-    let controller = SingleButtonViewController()
-    let input = SingleButtonViewController.Input(
+    let controller = ButtonsViewController()
+    let input = ButtonsViewController.Input(
       controllerTitle: title,
       buttonTitle: actionButtonTitle,
       isFirstInStackController: isFirst

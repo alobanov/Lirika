@@ -63,6 +63,6 @@ platform :ios, '10.0'
 
 target 'Proj' do
   inhibit_all_warnings!
-  pod 'Lirika', :git => 'https://github.com/alobanov/Lirika.git', :branch => 'develop'
+  pod 'Lirika', :git => 'https://github.com/alobanov/Lirika.git', :branch => 'master'
 end
 ```
