@@ -13,6 +13,8 @@ extension Coordinator {
 
 class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {
   
+  // MARK: - Properties
+  
   // All child presentables modules (contorollers, coordinators)
   private var childs: [Presentable] = []
   
@@ -32,7 +34,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   var window: UIWindow?
   
   // Route from which the coordinator starts
-  var initialRoute: RouteType
+  var initialRoute: RouteType?
 
   var rootViewController: RootControllerType {
     // swiftlint:disable:next force_unwrapping
@@ -42,18 +44,15 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   let bag = DisposeBag()
   
   let router: Router<RootControllerType>
+  
+  // MARK: - Init
 
-  private func configureWindow(window: UIWindow) {
-    self.window = window
-    setRoot(for: window)
-  }
-
-  convenience init(window: UIWindow, initialRoute: RouteType) {
+  convenience init(window: UIWindow, initialRoute: RouteType? = nil) {
     self.init(controller: nil, initialRoute: initialRoute)
     self.configureWindow(window: window)
   }
 
-  init(controller: RootControllerType?, initialRoute: RouteType) {
+  init(controller: RootControllerType?, initialRoute: RouteType? = nil) {
     self.initialRoute = initialRoute
     self.router = Router<RootControllerType>()
 
@@ -66,12 +65,18 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     self.router.define(root: rootViewController)
     self.configureRootViewController()
   }
+  
+  // MARK: - Public
 
   func generateRootViewController() -> RootControllerType {
     return RootControllerType()
   }
 
   func start() {
+    guard let route = initialRoute else {
+      return
+    }
+    
     trigger(initialRoute)
   }
 
@@ -111,15 +116,6 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     customCoordinatorNameIdentifier = id
   }
 
-  private func lastChild() -> Coordinatorable? {
-    if let coord = childs.last as? Coordinatorable {
-      print("Coordinator next is: \(coord.presentId())")
-      return coord
-    }
-
-    return nil
-  }
-
   func child(presentId: PresentableID) -> Presentable? {
     let items = childs.filter { item -> Bool in
       item.presentId() == presentId
@@ -144,7 +140,25 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   }
 
   func deepLink(link: DeepLink) {}
+  
+  // MARK: - Private
+  
+  private func lastChild() -> Coordinatorable? {
+    if let coord = childs.last as? Coordinatorable {
+      print("Coordinator next is: \(coord.presentId())")
+      return coord
+    }
+    
+    return nil
+  }
+  
+  private func configureWindow(window: UIWindow) {
+    self.window = window
+    setRoot(for: window)
+  }
 }
+
+// MARK: - Coordinator presentable
 
 extension Coordinator: Presentable {
   func presentable() -> UIViewController {

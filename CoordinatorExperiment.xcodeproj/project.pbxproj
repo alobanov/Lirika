@@ -16,13 +16,6 @@
 		E836990121F09501007D4A05 /* CoordinatorExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E836990021F09501007D4A05 /* CoordinatorExperimentTests.swift */; };
 		E836994F21F0E460007D4A05 /* RxViewModelPorotocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E836994E21F0E460007D4A05 /* RxViewModelPorotocol.swift */; };
 		E836996121F0E571007D4A05 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E836995D21F0E570007D4A05 /* AppCoordinator.swift */; };
-		E84FA2F721FCB1B8006A6705 /* ReferenceBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA2F121FCB1B8006A6705 /* ReferenceBox.swift */; };
-		E84FA2F921FCB1B8006A6705 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA2F321FCB1B8006A6705 /* Presentable.swift */; };
-		E84FA2FA21FCB1B8006A6705 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA2F421FCB1B8006A6705 /* Router.swift */; };
-		E84FA2FB21FCB1B8006A6705 /* Coordinatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA2F521FCB1B8006A6705 /* Coordinatorable.swift */; };
-		E84FA2FC21FCB1B8006A6705 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA2F621FCB1B8006A6705 /* Coordinator.swift */; };
-		E84FA2FF21FCB5DE006A6705 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA2FE21FCB5DE006A6705 /* TabBarCoordinator.swift */; };
-		E84FA30121FCC21D006A6705 /* NevigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA30021FCC21D006A6705 /* NevigationCoordinator.swift */; };
 		E84FA31121FDAE61006A6705 /* PTSans.ttc in Resources */ = {isa = PBXBuildFile; fileRef = E84FA31021FDAE61006A6705 /* PTSans.ttc */; };
 		E84FA31321FDAE92006A6705 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31221FDAE92006A6705 /* Theme.swift */; };
 		E84FA31621FDB554006A6705 /* PerfectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31521FDB554006A6705 /* PerfectButton.swift */; };
@@ -35,6 +28,15 @@
 		E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */; };
 		E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */; };
 		E8E7FA7D227AF63500B62CA1 /* NavModalFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */; };
+		E8FA376822808B1F0099BE76 /* ReferenceBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376022808B1F0099BE76 /* ReferenceBox.swift */; };
+		E8FA376922808B1F0099BE76 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376122808B1F0099BE76 /* Presentable.swift */; };
+		E8FA376A22808B1F0099BE76 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376322808B1F0099BE76 /* TabBarCoordinator.swift */; };
+		E8FA376B22808B1F0099BE76 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376422808B1F0099BE76 /* NavigationCoordinator.swift */; };
+		E8FA376C22808B1F0099BE76 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376522808B1F0099BE76 /* Router.swift */; };
+		E8FA376D22808B1F0099BE76 /* Coordinatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376622808B1F0099BE76 /* Coordinatorable.swift */; };
+		E8FA376E22808B1F0099BE76 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376722808B1F0099BE76 /* Coordinator.swift */; };
+		E8FA377122808BE60099BE76 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA377022808BE60099BE76 /* TabBarRouter.swift */; };
+		E8FA377422808C370099BE76 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA377322808C370099BE76 /* NavigationRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,13 +66,6 @@
 		E836990221F09501007D4A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E836994E21F0E460007D4A05 /* RxViewModelPorotocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxViewModelPorotocol.swift; sourceTree = "<group>"; };
 		E836995D21F0E570007D4A05 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		E84FA2F121FCB1B8006A6705 /* ReferenceBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceBox.swift; sourceTree = "<group>"; };
-		E84FA2F321FCB1B8006A6705 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
-		E84FA2F421FCB1B8006A6705 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		E84FA2F521FCB1B8006A6705 /* Coordinatorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatorable.swift; sourceTree = "<group>"; };
-		E84FA2F621FCB1B8006A6705 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		E84FA2FE21FCB5DE006A6705 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
-		E84FA30021FCC21D006A6705 /* NevigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NevigationCoordinator.swift; sourceTree = "<group>"; };
 		E84FA31021FDAE61006A6705 /* PTSans.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSans.ttc; sourceTree = "<group>"; };
 		E84FA31221FDAE92006A6705 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E84FA31521FDB554006A6705 /* PerfectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectButton.swift; sourceTree = "<group>"; };
@@ -83,6 +78,15 @@
 		E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavExitTabFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavModalFlowCoordinator.swift; sourceTree = "<group>"; };
+		E8FA376022808B1F0099BE76 /* ReferenceBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceBox.swift; sourceTree = "<group>"; };
+		E8FA376122808B1F0099BE76 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		E8FA376322808B1F0099BE76 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		E8FA376422808B1F0099BE76 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		E8FA376522808B1F0099BE76 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		E8FA376622808B1F0099BE76 /* Coordinatorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatorable.swift; sourceTree = "<group>"; };
+		E8FA376722808B1F0099BE76 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		E8FA377022808BE60099BE76 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
+		E8FA377322808C370099BE76 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		FA046313C6C589AD4D7303DE /* Pods-CoordinatorExperiment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoordinatorExperiment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +153,7 @@
 		E83698EA21F094FF007D4A05 /* CoordinatorExperiment */ = {
 			isa = PBXGroup;
 			children = (
+				E8FA375F22808B1F0099BE76 /* sources */,
 				E836995B21F0E555007D4A05 /* coordinators */,
 				E836994C21F0E452007D4A05 /* common */,
 				E836990E21F096CC007D4A05 /* modules */,
@@ -185,7 +190,6 @@
 				E8E7FA6F2279A77100B62CA1 /* controller */,
 				E84FA31421FDB541006A6705 /* components */,
 				E84FA30F21FDAE45006A6705 /* font */,
-				E84FA2F021FCB1B8006A6705 /* coordinator */,
 				E836994D21F0E460007D4A05 /* rxmvvm */,
 			);
 			path = common;
@@ -206,28 +210,6 @@
 				E836995D21F0E570007D4A05 /* AppCoordinator.swift */,
 			);
 			path = coordinators;
-			sourceTree = "<group>";
-		};
-		E84FA2F021FCB1B8006A6705 /* coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				E84FA2FD21FCB5B7006A6705 /* baseCoordinator */,
-				E84FA2F121FCB1B8006A6705 /* ReferenceBox.swift */,
-				E84FA2F321FCB1B8006A6705 /* Presentable.swift */,
-				E84FA2F421FCB1B8006A6705 /* Router.swift */,
-				E84FA2F521FCB1B8006A6705 /* Coordinatorable.swift */,
-				E84FA2F621FCB1B8006A6705 /* Coordinator.swift */,
-			);
-			path = coordinator;
-			sourceTree = "<group>";
-		};
-		E84FA2FD21FCB5B7006A6705 /* baseCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				E84FA2FE21FCB5DE006A6705 /* TabBarCoordinator.swift */,
-				E84FA30021FCC21D006A6705 /* NevigationCoordinator.swift */,
-			);
-			path = baseCoordinator;
 			sourceTree = "<group>";
 		};
 		E84FA30F21FDAE45006A6705 /* font */ = {
@@ -282,6 +264,46 @@
 				E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */,
 			);
 			path = new;
+			sourceTree = "<group>";
+		};
+		E8FA375F22808B1F0099BE76 /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA376222808B1F0099BE76 /* coords */,
+				E8FA376022808B1F0099BE76 /* ReferenceBox.swift */,
+				E8FA376622808B1F0099BE76 /* Coordinatorable.swift */,
+				E8FA376122808B1F0099BE76 /* Presentable.swift */,
+				E8FA376522808B1F0099BE76 /* Router.swift */,
+				E8FA376722808B1F0099BE76 /* Coordinator.swift */,
+			);
+			path = sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		E8FA376222808B1F0099BE76 /* coords */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA377222808C140099BE76 /* navigation */,
+				E8FA376F22808BD30099BE76 /* tabbar */,
+			);
+			path = coords;
+			sourceTree = "<group>";
+		};
+		E8FA376F22808BD30099BE76 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA376322808B1F0099BE76 /* TabBarCoordinator.swift */,
+				E8FA377022808BE60099BE76 /* TabBarRouter.swift */,
+			);
+			path = tabbar;
+			sourceTree = "<group>";
+		};
+		E8FA377222808C140099BE76 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA376422808B1F0099BE76 /* NavigationCoordinator.swift */,
+				E8FA377322808C370099BE76 /* NavigationRouter.swift */,
+			);
+			path = navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,7 +460,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Lirika/Lirika.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -449,7 +470,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lirika.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -468,27 +488,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E84FA2F721FCB1B8006A6705 /* ReferenceBox.swift in Sources */,
 				E8E7FA7D227AF63500B62CA1 /* NavModalFlowCoordinator.swift in Sources */,
-				E84FA2FA21FCB1B8006A6705 /* Router.swift in Sources */,
+				E8FA376922808B1F0099BE76 /* Presentable.swift in Sources */,
 				E84FA31621FDB554006A6705 /* PerfectButton.swift in Sources */,
 				E84FA31321FDAE92006A6705 /* Theme.swift in Sources */,
+				E8FA376822808B1F0099BE76 /* ReferenceBox.swift in Sources */,
+				E8FA376A22808B1F0099BE76 /* TabBarCoordinator.swift in Sources */,
+				E8FA376C22808B1F0099BE76 /* Router.swift in Sources */,
 				E8E7FA742279C64300B62CA1 /* ButtonsViewController.swift in Sources */,
-				E84FA2FF21FCB5DE006A6705 /* TabBarCoordinator.swift in Sources */,
+				E8FA377122808BE60099BE76 /* TabBarRouter.swift in Sources */,
 				E836994F21F0E460007D4A05 /* RxViewModelPorotocol.swift in Sources */,
-				E84FA2F921FCB1B8006A6705 /* Presentable.swift in Sources */,
-				E84FA2FC21FCB1B8006A6705 /* Coordinator.swift in Sources */,
+				E8FA376B22808B1F0099BE76 /* NavigationCoordinator.swift in Sources */,
 				E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */,
-				E84FA2FB21FCB1B8006A6705 /* Coordinatorable.swift in Sources */,
 				E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */,
+				E8FA376D22808B1F0099BE76 /* Coordinatorable.swift in Sources */,
 				E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */,
 				E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */,
 				E83698EC21F094FF007D4A05 /* AppDelegate.swift in Sources */,
 				E836996121F0E571007D4A05 /* AppCoordinator.swift in Sources */,
-				E84FA30121FCC21D006A6705 /* NevigationCoordinator.swift in Sources */,
 				E8E7FA6E2279A32E00B62CA1 /* OptionsView.swift in Sources */,
 				E8E7FA712279A79B00B62CA1 /* ControllerInOutProtocol.swift in Sources */,
 				E8E7FA762279C65200B62CA1 /* ButtonsView.swift in Sources */,
+				E8FA376E22808B1F0099BE76 /* Coordinator.swift in Sources */,
+				E8FA377422808C370099BE76 /* NavigationRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
