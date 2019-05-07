@@ -77,7 +77,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
       return
     }
     
-    trigger(initialRoute)
+    trigger(route)
   }
 
   func configureRootViewController() {}
