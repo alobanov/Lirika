@@ -33,7 +33,7 @@ class Router<RootViewController: LirikaRootContaierType>: RouterProtocol {
     guard let controller = rootController?.rootContainer() else {
       return UIViewController()
     }
-    
+
     switch controller {
     case let c as UIViewController:
       return c

@@ -2,38 +2,23 @@
 
 import UIKit
 
-class LirikaNavigation: LirikaRootContaierType {
-  class RootContainer: UINavigationController {}
-  
-  private let container: RootContainer
-  init(container: RootContainer? = nil) {
-    self.container = container ?? RootContainer()
-  }
-  
-  func rootContainer() -> RootContainer {
-    return container
-  }
-}
-
-typealias NavigationRouter = Router<LirikaNavigation>
-
 extension Router where RootViewController: LirikaNavigation {
   func push(_ viewController: Presentable, completion: PresentationHandler? = nil) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion?()
     }
-    
+
     rootController?.rootContainer().pushViewController(unwrapPresentable(viewController), animated: true)
     CATransaction.commit()
   }
-  
+
   func pop(toRoot: Bool = false, completion: PresentationHandler? = nil, animated: Bool = true) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion?()
     }
-    
+
     if toRoot {
       rootController?.rootContainer().popToRootViewController(animated: animated)
     } else {
@@ -41,7 +26,7 @@ extension Router where RootViewController: LirikaNavigation {
     }
     CATransaction.commit()
   }
-  
+
   func set(_ viewControllers: [Presentable],
            animated: Bool,
            completion: PresentationHandler? = nil,
@@ -50,55 +35,55 @@ extension Router where RootViewController: LirikaNavigation {
     CATransaction.setCompletionBlock {
       completion?()
     }
-    
+
     let controllers = unwrapPresentables(viewControllers)
     rootController?.rootContainer().setViewControllers(controllers, animated: animated)
     rootController?.rootContainer().isNavigationBarHidden = barHidden
-    
+
     CATransaction.commit()
   }
-  
+
   func setImmediately(_ modules: [Presentable]) {
     set(modules, animated: false, completion: nil, barHidden: false)
   }
-  
+
   func pop(to viewController: Presentable,
            completion: PresentationHandler? = nil) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion?()
     }
-    
+
     rootController?.rootContainer().popToViewController(unwrapPresentable(viewController), animated: true)
-    
+
     CATransaction.commit()
   }
-  
+
   func presentModal(_ module: Presentable, animated: Bool, completion: (() -> Void)?) {
     DispatchQueue.main.async { [weak self] in
       self?.rootController?.rootContainer().present(module.presentable(), animated: animated, completion: completion)
     }
   }
-  
+
   func dismissModalImmediately() {
     rootController?.rootContainer().dismiss(animated: false, completion: nil)
   }
-  
+
   func dismissModal(animated: Bool, completion: (() -> Void)?) {
     rootController?.rootContainer().dismiss(animated: animated, completion: completion)
   }
-  
+
   func push(_ modules: [Presentable], after: PresentableID, animated: Bool) {
     guard var stack = rootController?.rootContainer().viewControllers else {
       return
     }
-    
+
     let viewController = stack.first(
       where: { controller -> Bool in
         controller.presentId() == after
-    }
+      }
     )
-    
+
     if let controller = viewController {
       while true {
         if stack.isEmpty { break }
@@ -110,13 +95,13 @@ extension Router where RootViewController: LirikaNavigation {
           }
         }
       }
-      
+
       let controllers = unwrapPresentables(modules)
       stack += controllers
       rootController?.rootContainer().setViewControllers(stack, animated: animated)
     }
   }
-  
+
   func activePresentableID() -> String? {
     if let current = rootController?.rootContainer().topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController?.presentId()
@@ -124,7 +109,7 @@ extension Router where RootViewController: LirikaNavigation {
       return rootController?.rootContainer().visibleViewController?.presentId()
     }
   }
-  
+
   func activeController() -> UIViewController? {
     if let current = rootController?.rootContainer().topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController

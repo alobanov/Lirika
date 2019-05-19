@@ -34,7 +34,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
   init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
     super.init(controller: nil, initialRoute: .setAsRoot)
     self.tag = tag
-    
+
     rootViewController.rootContainer().tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
     rootViewController.rootContainer().navigationBar.isTranslucent = false
     rootViewController.rootContainer().navigationBar.prefersLargeTitles = true
