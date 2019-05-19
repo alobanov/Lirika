@@ -3,14 +3,14 @@
 import UIKit
 
 class LirikaWindow: LirikaRootContaierType {
-  class RootContainer: UIWindow {}
+  class Container: UIWindow {}
 
-  private let container: RootContainer
-  init(container: RootContainer) {
+  private let container: Container
+  init(container: Container) {
     self.container = container
   }
 
-  func rootContainer() -> RootContainer {
+  func get() -> Container {
     return container
   }
 }
@@ -18,7 +18,7 @@ class LirikaWindow: LirikaRootContaierType {
 typealias LirikaRouter = Router<LirikaWindow>
 
 class WindowCoordinator<RouteType: Route>: Coordinator<RouteType, LirikaRouter> {
-  override func generateRootViewController() -> LirikaWindow {
-    return LirikaWindow(container: LirikaWindow.RootContainer())
+  override func generateRootContainer() -> LirikaWindow {
+    return LirikaWindow(container: LirikaWindow.Container())
   }
 }

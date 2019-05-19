@@ -3,7 +3,7 @@
 import UIKit
 
 class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
-  override func generateRootViewController() -> LirikaTabBar {
+  override func generateRootContainer() -> LirikaTabBar {
     return LirikaTabBar(container: nil)
   }
 

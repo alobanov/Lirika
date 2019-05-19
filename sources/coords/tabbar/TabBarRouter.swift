@@ -3,14 +3,14 @@
 import UIKit
 
 class LirikaTabBar: LirikaRootContaierType {
-  class RootContainer: UITabBarController {}
+  class Container: UITabBarController {}
 
-  private let container: RootContainer
-  init(container: RootContainer?) {
-    self.container = container ?? RootContainer()
+  private let container: Container
+  init(container: Container?) {
+    self.container = container ?? Container()
   }
 
-  func rootContainer() -> RootContainer {
+  func get() -> Container {
     return container
   }
 }
@@ -24,7 +24,7 @@ extension Router where RootContainer: LirikaTabBar {
     CATransaction.begin()
     CATransaction.setCompletionBlock(completion)
 
-    rootController?.rootContainer().setViewControllers(controllers, animated: animated)
+    rootController?.get().setViewControllers(controllers, animated: animated)
 
     CATransaction.commit()
   }
@@ -33,7 +33,7 @@ extension Router where RootContainer: LirikaTabBar {
     CATransaction.begin()
     CATransaction.setCompletionBlock(completion)
 
-    rootController?.rootContainer().selectedIndex = index
+    rootController?.get().selectedIndex = index
 
     CATransaction.commit()
   }

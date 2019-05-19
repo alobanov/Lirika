@@ -3,14 +3,14 @@
 import UIKit
 
 class LirikaNavigation: LirikaRootContaierType {
-  class RootContainer: UINavigationController {}
+  class Container: UINavigationController {}
 
-  private let container: RootContainer
-  init(container: RootContainer? = nil) {
-    self.container = container ?? RootContainer()
+  private let container: Container
+  init(container: Container? = nil) {
+    self.container = container ?? Container()
   }
 
-  func rootContainer() -> RootContainer {
+  func get() -> Container {
     return container
   }
 }
@@ -18,7 +18,7 @@ class LirikaNavigation: LirikaRootContaierType {
 typealias NavigationRouter = Router<LirikaNavigation>
 
 class NavigationCoordinator<RouteType: Route>: Coordinator<RouteType, NavigationRouter> {
-  override func generateRootViewController() -> LirikaNavigation {
+  override func generateRootContainer() -> LirikaNavigation {
     return LirikaNavigation(container: nil)
   }
 

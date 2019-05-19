@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   private lazy var appCoordinator: AppCoordinator = self.coordinator()
 
   func coordinator() -> AppCoordinator {
-    return AppCoordinator(controller: LirikaWindow(container: LirikaWindow.RootContainer()), initialRoute: .options)
+    return AppCoordinator(controller: LirikaWindow(container: LirikaWindow.Container()), initialRoute: .options)
   }
 
   func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

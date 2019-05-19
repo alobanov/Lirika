@@ -3,6 +3,6 @@
 import Foundation
 
 protocol LirikaRootContaierType: AnyObject {
-  associatedtype RootContainer
-  func rootContainer() -> RootContainer
+  associatedtype Container
+  func get() -> Container
 }

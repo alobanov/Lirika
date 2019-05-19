@@ -21,14 +21,14 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   private var customCoordinatorNameIdentifier: String?
 
   // Root controller depends on RootControllerType
-  let rootViewControllerBox = ReferenceBox<RootContainerType>()
+  let rootContainerBox = ReferenceBox<RootContainerType>()
 
   // Route from which the coordinator starts
   var initialRoute: RouteType?
 
-  var rootViewController: RootContainerType {
+  var rootContainer: RootContainerType {
     // swiftlint:disable:next force_unwrapping
-    return rootViewControllerBox.get()!
+    return rootContainerBox.get()!
   }
 
   let bag = DisposeBag()
@@ -42,18 +42,18 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     self.router = Router<RootContainerType>()
 
     if let controller = controller {
-      rootViewControllerBox.set(controller)
+      rootContainerBox.set(controller)
     } else {
-      rootViewControllerBox.set(self.generateRootViewController())
+      rootContainerBox.set(self.generateRootContainer())
     }
 
-    self.router.define(root: rootViewController)
+    self.router.define(root: rootContainer)
     self.configureRootViewController()
   }
 
   // MARK: - Public
 
-  func generateRootViewController() -> RootContainerType {
+  func generateRootContainer() -> RootContainerType {
     return LirikaNavigation() as! RouterType.RootContainer
   }
 

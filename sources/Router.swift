@@ -30,15 +30,15 @@ class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
   // MARK: - Presentable
 
   func presentable() -> UIViewController {
-    guard let controller = rootController?.rootContainer() else {
+    guard let controller = rootController?.get() else {
       return UIViewController()
     }
 
     switch controller {
     case let c as UIViewController:
       return c
-    case let n as UINavigationController:
-      return n
+//    case let n as UINavigationController:
+//      return n
     default:
       return UIViewController()
     }
