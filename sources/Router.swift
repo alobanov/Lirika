@@ -5,10 +5,10 @@ import UIKit
 public typealias PresentationHandler = () -> Void
 
 protocol RouterProtocol {
-  associatedtype RootViewController: UIViewController
+  associatedtype RootViewController: LirikaRootContaierType
 }
 
-class Router<RootViewController: UIViewController>: RouterProtocol {
+class Router<RootViewController: LirikaRootContaierType>: RouterProtocol {
   weak var rootController: RootViewController?
 
   func define(root: RootViewController) {
@@ -30,11 +30,22 @@ class Router<RootViewController: UIViewController>: RouterProtocol {
   // MARK: - Presentable
 
   func presentable() -> UIViewController {
-    return rootController!
+    guard let controller = rootController?.rootContainer() else {
+      return UIViewController()
+    }
+    
+    switch controller {
+    case let c as UIViewController:
+      return c
+    case let n as UINavigationController:
+      return n
+    default:
+      return UIViewController()
+    }
   }
 
   func presentId() -> String {
-    return rootController!.presentId()
+    return presentable().presentId()
   }
 
   static func presentId() -> String {

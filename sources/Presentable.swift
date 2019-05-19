@@ -20,7 +20,7 @@ extension Presentable {
 
 extension Coordinator {
   public var viewController: UIViewController! {
-    return rootViewController
+    return (rootViewController.rootContainer() as! UIViewController)
   }
 }
 

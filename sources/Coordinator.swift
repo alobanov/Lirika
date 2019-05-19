@@ -69,7 +69,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   // MARK: - Public
 
   func generateRootViewController() -> RootControllerType {
-    return RootControllerType()
+    return LirikaNavigation() as! RouterType.RootViewController
   }
 
   func start() {

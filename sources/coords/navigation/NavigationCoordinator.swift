@@ -3,8 +3,8 @@
 import UIKit
 
 class NavigationCoordinator<RouteType: Route>: Coordinator<RouteType, NavigationRouter> {
-  override func generateRootViewController() -> UINavigationController {
-    return super.generateRootViewController()
+  override func generateRootViewController() -> LirikaNavigation {
+    return LirikaNavigation(container: nil)
   }
 
   deinit {

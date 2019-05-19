@@ -2,16 +2,29 @@
 
 import UIKit
 
-typealias NavigationRouter = Router<UINavigationController>
+class LirikaNavigation: LirikaRootContaierType {
+  class RootContainer: UINavigationController {}
+  
+  private let container: RootContainer
+  init(container: RootContainer? = nil) {
+    self.container = container ?? RootContainer()
+  }
+  
+  func rootContainer() -> RootContainer {
+    return container
+  }
+}
 
-extension Router where RootViewController: UINavigationController {
+typealias NavigationRouter = Router<LirikaNavigation>
+
+extension Router where RootViewController: LirikaNavigation {
   func push(_ viewController: Presentable, completion: PresentationHandler? = nil) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion?()
     }
     
-    rootController?.pushViewController(unwrapPresentable(viewController), animated: true)
+    rootController?.rootContainer().pushViewController(unwrapPresentable(viewController), animated: true)
     CATransaction.commit()
   }
   
@@ -22,9 +35,9 @@ extension Router where RootViewController: UINavigationController {
     }
     
     if toRoot {
-      rootController?.popToRootViewController(animated: animated)
+      rootController?.rootContainer().popToRootViewController(animated: animated)
     } else {
-      rootController?.popViewController(animated: animated)
+      rootController?.rootContainer().popViewController(animated: animated)
     }
     CATransaction.commit()
   }
@@ -39,8 +52,8 @@ extension Router where RootViewController: UINavigationController {
     }
     
     let controllers = unwrapPresentables(viewControllers)
-    rootController?.setViewControllers(controllers, animated: animated)
-    rootController?.isNavigationBarHidden = barHidden
+    rootController?.rootContainer().setViewControllers(controllers, animated: animated)
+    rootController?.rootContainer().isNavigationBarHidden = barHidden
     
     CATransaction.commit()
   }
@@ -56,27 +69,27 @@ extension Router where RootViewController: UINavigationController {
       completion?()
     }
     
-    rootController?.popToViewController(unwrapPresentable(viewController), animated: true)
+    rootController?.rootContainer().popToViewController(unwrapPresentable(viewController), animated: true)
     
     CATransaction.commit()
   }
   
   func presentModal(_ module: Presentable, animated: Bool, completion: (() -> Void)?) {
     DispatchQueue.main.async { [weak self] in
-      self?.rootController?.present(module.presentable(), animated: animated, completion: completion)
+      self?.rootController?.rootContainer().present(module.presentable(), animated: animated, completion: completion)
     }
   }
   
   func dismissModalImmediately() {
-    rootController?.dismiss(animated: false, completion: nil)
+    rootController?.rootContainer().dismiss(animated: false, completion: nil)
   }
   
   func dismissModal(animated: Bool, completion: (() -> Void)?) {
-    rootController?.dismiss(animated: animated, completion: completion)
+    rootController?.rootContainer().dismiss(animated: animated, completion: completion)
   }
   
   func push(_ modules: [Presentable], after: PresentableID, animated: Bool) {
-    guard var stack = rootController?.viewControllers else {
+    guard var stack = rootController?.rootContainer().viewControllers else {
       return
     }
     
@@ -100,23 +113,23 @@ extension Router where RootViewController: UINavigationController {
       
       let controllers = unwrapPresentables(modules)
       stack += controllers
-      rootController?.setViewControllers(stack, animated: animated)
+      rootController?.rootContainer().setViewControllers(stack, animated: animated)
     }
   }
   
   func activePresentableID() -> String? {
-    if let current = rootController?.topViewController as? UITabBarController {
+    if let current = rootController?.rootContainer().topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController?.presentId()
     } else {
-      return rootController?.visibleViewController?.presentId()
+      return rootController?.rootContainer().visibleViewController?.presentId()
     }
   }
   
   func activeController() -> UIViewController? {
-    if let current = rootController?.topViewController as? UITabBarController {
+    if let current = rootController?.rootContainer().topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController
     } else {
-      return rootController?.visibleViewController
+      return rootController?.rootContainer().visibleViewController
     }
   }
 }

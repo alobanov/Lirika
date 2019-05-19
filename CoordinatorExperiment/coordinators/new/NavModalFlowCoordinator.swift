@@ -34,13 +34,13 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
   init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
     super.init(controller: nil, initialRoute: .setAsRoot)
     self.tag = tag
-    rootViewController.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
+    rootViewController.rootContainer().tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
 
-    rootViewController.navigationBar.isTranslucent = false
-    rootViewController.navigationBar.prefersLargeTitles = true
+    rootViewController.rootContainer().navigationBar.isTranslucent = false
+    rootViewController.rootContainer().navigationBar.prefersLargeTitles = true
   }
 
-  init(rootViewController: UINavigationController?, initialRoute: NavModalFlowRoute) {
+  init(rootViewController: LirikaNavigation?, initialRoute: NavModalFlowRoute) {
     super.init(controller: rootViewController, initialRoute: initialRoute)
   }
 

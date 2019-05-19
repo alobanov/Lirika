@@ -39,8 +39,8 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
   }
 
   override func configureRootViewController() {
-    rootViewController.navigationBar.isTranslucent = false
-    rootViewController.navigationBar.prefersLargeTitles = true
+    rootViewController.rootContainer().navigationBar.isTranslucent = false
+    rootViewController.rootContainer().navigationBar.prefersLargeTitles = true
   }
 
   deinit {
@@ -83,9 +83,9 @@ extension AppCoordinator {
   }
 
   fileprivate func modalNavigationCoordinator() -> (Coordinatorable, Presentable) {
-    let rootNav = UINavigationController()
-    rootNav.navigationBar.isTranslucent = false
-    rootNav.navigationBar.prefersLargeTitles = true
+    let rootNav = LirikaNavigation()
+    rootNav.rootContainer().navigationBar.isTranslucent = false
+    rootNav.rootContainer().navigationBar.prefersLargeTitles = true
 
     let navCoord = NavModalFlowCoordinator(rootViewController: rootNav, initialRoute: .setAsRoot)
     let output = navCoord.configure()
@@ -95,10 +95,10 @@ extension AppCoordinator {
     }).disposed(by: bag)
 
     output.completeFlow.drive(onNext: { [weak navCoord, weak self] in
-      rootNav.dismiss(animated: true, completion: nil)
+      rootNav.rootContainer().dismiss(animated: true, completion: nil)
       self?.removeChild(navCoord)
     }).disposed(by: bag)
 
-    return (navCoord, rootNav)
+    return (navCoord, rootNav.rootContainer())
   }
 }

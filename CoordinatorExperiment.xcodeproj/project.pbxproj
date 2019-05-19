@@ -19,6 +19,7 @@
 		E84FA31121FDAE61006A6705 /* PTSans.ttc in Resources */ = {isa = PBXBuildFile; fileRef = E84FA31021FDAE61006A6705 /* PTSans.ttc */; };
 		E84FA31321FDAE92006A6705 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31221FDAE92006A6705 /* Theme.swift */; };
 		E84FA31621FDB554006A6705 /* PerfectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31521FDB554006A6705 /* PerfectButton.swift */; };
+		E86C8D42228EB6460090E9FD /* WindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */; };
 		E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */; };
 		E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */; };
 		E8E7FA6E2279A32E00B62CA1 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */; };
@@ -69,6 +70,7 @@
 		E84FA31021FDAE61006A6705 /* PTSans.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSans.ttc; sourceTree = "<group>"; };
 		E84FA31221FDAE92006A6705 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E84FA31521FDB554006A6705 /* PerfectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectButton.swift; sourceTree = "<group>"; };
+		E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -229,6 +231,14 @@
 			path = components;
 			sourceTree = "<group>";
 		};
+		E86C8D40228EB6050090E9FD /* window */ = {
+			isa = PBXGroup;
+			children = (
+				E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */,
+			);
+			path = window;
+			sourceTree = "<group>";
+		};
 		E8E7FA6A2279A2B900B62CA1 /* start */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +292,7 @@
 		E8FA376222808B1F0099BE76 /* coords */ = {
 			isa = PBXGroup;
 			children = (
+				E86C8D40228EB6050090E9FD /* window */,
 				E8FA377222808C140099BE76 /* navigation */,
 				E8FA376F22808BD30099BE76 /* tabbar */,
 			);
@@ -502,6 +513,7 @@
 				E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */,
 				E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */,
 				E8FA376D22808B1F0099BE76 /* Coordinatorable.swift in Sources */,
+				E86C8D42228EB6460090E9FD /* WindowCoordinator.swift in Sources */,
 				E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */,
 				E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */,
 				E83698EC21F094FF007D4A05 /* AppDelegate.swift in Sources */,
