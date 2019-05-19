@@ -8,7 +8,7 @@ import UIKit
 protocol DeepLink {}
 
 extension Coordinator {
-  public typealias RootControllerType = RouterType.RootViewController
+  public typealias RootContainerType = RouterType.RootViewController
 }
 
 class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {
@@ -21,39 +21,25 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   private var customCoordinatorNameIdentifier: String?
 
   // Root controller depends on RootControllerType
-  let rootViewControllerBox = ReferenceBox<RootControllerType>()
-
-  // Only for first coordinator, and define in AppDelegate, example:
-  //
-  // let window: UIWindow! = UIWindow()
-  // private lazy var appCoordinator: AppCoordinator = self.coordinator()
-  // func coordinator() -> AppCoordinator {
-  //   return AppCoordinator(window: window, initialRoute: .root)
-  // }
-  var window: UIWindow?
+  let rootViewControllerBox = ReferenceBox<RootContainerType>()
 
   // Route from which the coordinator starts
   var initialRoute: RouteType?
 
-  var rootViewController: RootControllerType {
+  var rootViewController: RootContainerType {
     // swiftlint:disable:next force_unwrapping
     return rootViewControllerBox.get()!
   }
 
   let bag = DisposeBag()
 
-  let router: Router<RootControllerType>
+  let router: Router<RootContainerType>
 
   // MARK: - Init
 
-  convenience init(window: UIWindow, initialRoute: RouteType? = nil) {
-    self.init(controller: nil, initialRoute: initialRoute)
-    self.configureWindow(window: window)
-  }
-
-  init(controller: RootControllerType?, initialRoute: RouteType? = nil) {
+  init(controller: RootContainerType?, initialRoute: RouteType? = nil) {
     self.initialRoute = initialRoute
-    self.router = Router<RootControllerType>()
+    self.router = Router<RootContainerType>()
 
     if let controller = controller {
       rootViewControllerBox.set(controller)
@@ -67,7 +53,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
 
   // MARK: - Public
 
-  func generateRootViewController() -> RootControllerType {
+  func generateRootViewController() -> RootContainerType {
     return LirikaNavigation() as! RouterType.RootViewController
   }
 
@@ -149,11 +135,6 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     }
 
     return nil
-  }
-
-  private func configureWindow(window: UIWindow) {
-    self.window = window
-    setRoot(for: window)
   }
 }
 
