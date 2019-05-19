@@ -6,6 +6,7 @@ class LirikaWindow: LirikaRootContaierType {
   class Container: UIWindow {}
 
   private let container: Container
+  
   init(container: Container) {
     self.container = container
   }

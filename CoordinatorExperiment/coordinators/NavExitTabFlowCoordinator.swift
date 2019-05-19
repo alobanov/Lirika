@@ -32,7 +32,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
   // MARK: - Init
 
   init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(controller: nil, initialRoute: .setAsRoot)
+    super.init(container: nil, initialRoute: .setAsRoot)
     self.tag = tag
 
     rootContainer.get().tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
@@ -41,7 +41,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
   }
 
   init(rootViewController: LirikaNavigation?, initialRoute: NavExitTabFlowRoute) {
-    super.init(controller: rootViewController, initialRoute: initialRoute)
+    super.init(container: rootViewController, initialRoute: initialRoute)
   }
 
   // MARK: - Overrides

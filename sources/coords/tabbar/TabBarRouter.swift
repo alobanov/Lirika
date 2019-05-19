@@ -6,6 +6,7 @@ class LirikaTabBar: LirikaRootContaierType {
   class Container: UITabBarController {}
 
   private let container: Container
+  
   init(container: Container?) {
     self.container = container ?? Container()
   }

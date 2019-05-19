@@ -6,6 +6,7 @@ class LirikaNavigation: LirikaRootContaierType {
   class Container: UINavigationController {}
 
   private let container: Container
+  
   init(container: Container? = nil) {
     self.container = container ?? Container()
   }

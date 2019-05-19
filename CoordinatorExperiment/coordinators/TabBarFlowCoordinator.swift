@@ -21,7 +21,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
   fileprivate let outputLogout = PublishRelay<Void>()
 
   init() {
-    super.init(controller: nil, initialRoute: .third)
+    super.init(container: nil, initialRoute: .third)
     router.set(buildTabs(), animated: false, completion: nil)
   }
 

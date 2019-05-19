@@ -14,12 +14,13 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
     case .options:
       let coord = options()
       startCoordinator(coord)
-      router.setRootCoordinator(controller: coord)
+      router.setRoot(controller: coord)
+      router.makeKeyAndVisible()
 
     case .tabbarFlow:
       let coord = tabbar()
       startCoordinator(coord)
-      router.setRootCoordinator(controller: coord)
+      router.setRoot(controller: coord)
     }
   }
 
@@ -42,7 +43,7 @@ extension AppCoordinator {
   }
 
   fileprivate func options() -> Coordinatorable {
-    let optionCoord = OptionFlowCoordinator(controller: nil, initialRoute: .options)
+    let optionCoord = OptionFlowCoordinator(container: nil, initialRoute: .options)
     let output = optionCoord.configure()
 
     output.tabbarFlow.drive(onNext: { [weak optionCoord, weak self] in

@@ -48,7 +48,7 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
   }
 
   deinit {
-    print("Dead NavFlowCoordinator")
+    print("Dead OptionFlowCoordinator")
   }
 }
 

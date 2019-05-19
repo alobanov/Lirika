@@ -35,12 +35,9 @@ class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
     }
 
     switch controller {
-    case let c as UIViewController:
-      return c
-//    case let n as UINavigationController:
-//      return n
-    default:
-      return UIViewController()
+    case let vc as UIViewController: return vc
+    case let nvc as UINavigationController: return nvc
+    default: return UIViewController()
     }
   }
 

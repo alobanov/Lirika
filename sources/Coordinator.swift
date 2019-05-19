@@ -37,11 +37,11 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
 
   // MARK: - Init
 
-  init(controller: RootContainerType?, initialRoute: RouteType? = nil) {
+  init(container: RootContainerType?, initialRoute: RouteType? = nil) {
     self.initialRoute = initialRoute
     self.router = Router<RootContainerType>()
 
-    if let controller = controller {
+    if let controller = container {
       rootContainerBox.set(controller)
     } else {
       rootContainerBox.set(self.generateRootContainer())
