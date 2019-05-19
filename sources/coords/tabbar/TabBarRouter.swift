@@ -17,7 +17,7 @@ class LirikaTabBar: LirikaRootContaierType {
 
 typealias TabBarRouter = Router<LirikaTabBar>
 
-extension Router where RootViewController: LirikaTabBar {
+extension Router where RootContainer: LirikaTabBar {
   func set(_ viewControllers: [Presentable], animated: Bool, completion: PresentationHandler?) {
     let controllers = unwrapPresentables(viewControllers)
 

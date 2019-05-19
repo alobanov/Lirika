@@ -5,13 +5,13 @@ import UIKit
 public typealias PresentationHandler = () -> Void
 
 protocol RouterProtocol {
-  associatedtype RootViewController: LirikaRootContaierType
+  associatedtype RootContainer: LirikaRootContaierType
 }
 
-class Router<RootViewController: LirikaRootContaierType>: RouterProtocol {
-  weak var rootController: RootViewController?
+class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
+  weak var rootController: RootContainer?
 
-  func define(root: RootViewController) {
+  func define(root: RootContainer) {
     rootController = root
   }
 

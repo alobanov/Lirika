@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension Router where RootViewController: LirikaNavigation {
+extension Router where RootContainer: LirikaNavigation {
   func push(_ viewController: Presentable, completion: PresentationHandler? = nil) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {

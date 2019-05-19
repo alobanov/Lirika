@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension Router where RootViewController: LirikaWindow {
+extension Router where RootContainer: LirikaWindow {
   func setRootCoordinator(controller: Presentable) {
     rootController?.rootContainer().rootViewController = controller.presentable()
     rootController?.rootContainer().makeKeyAndVisible()

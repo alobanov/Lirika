@@ -10,12 +10,6 @@ protocol Presentable: AnyObject {
   static func presentId() -> PresentableID
 }
 
-extension Coordinator {
-  public var viewController: UIViewController! {
-    return (rootViewController.rootContainer() as! UIViewController)
-  }
-}
-
 extension UIViewController: Presentable {
   func presentable() -> UIViewController {
     return self

@@ -8,7 +8,7 @@ import UIKit
 protocol DeepLink {}
 
 extension Coordinator {
-  public typealias RootContainerType = RouterType.RootViewController
+  public typealias RootContainerType = RouterType.RootContainer
 }
 
 class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {
@@ -54,7 +54,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   // MARK: - Public
 
   func generateRootViewController() -> RootContainerType {
-    return LirikaNavigation() as! RouterType.RootViewController
+    return LirikaNavigation() as! RouterType.RootContainer
   }
 
   func start() {
