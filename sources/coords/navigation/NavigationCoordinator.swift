@@ -22,8 +22,4 @@ class NavigationCoordinator<RouteType: Route>: Coordinator<RouteType, Navigation
   override func generateRootContainer() -> LirikaNavigation {
     return LirikaNavigation(container: nil)
   }
-
-  deinit {
-    print("Dead NavigationCoordinator")
-  }
 }

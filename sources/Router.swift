@@ -48,8 +48,4 @@ class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
   static func presentId() -> String {
     return UINavigationController.presentId()
   }
-
-  deinit {
-    print("Dead Router")
-  }
 }
