@@ -4,12 +4,10 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  let window: UIWindow! = UIWindow()
-  private lazy var appCoordinator: AppCoordinator = self.coordinator()
-
-  func coordinator() -> AppCoordinator {
-    return AppCoordinator(window: window, initialRoute: .options)
-  }
+  private var appCoordinator: AppCoordinator = {
+    let coord = AppCoordinator(container: LirikaWindow(container: LirikaWindow.Container()), initialRoute: .options)
+    return coord
+  }() 
 
   func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     Appearance.apply()

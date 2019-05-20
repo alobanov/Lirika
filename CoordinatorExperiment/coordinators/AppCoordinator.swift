@@ -5,42 +5,23 @@ import RxCocoa
 import RxSwift
 
 enum AppRoute: Route {
-  case options, navigationFlow, tabbarFlow, modalFlow, dissmisModal
+  case options, tabbarFlow
 }
 
-class AppCoordinator: NavigationCoordinator<AppRoute> {
+class AppCoordinator: WindowCoordinator<AppRoute> {
   override func prepare(route: AppRoute, completion _: PresentationHandler?) {
     switch route {
     case .options:
-      router.set([options()], animated: true)
-
-    case .navigationFlow:
-      let coord = navigationCoordinator()
+      let coord = options()
       startCoordinator(coord)
+      router.setRoot(controller: coord)
+      router.makeKeyAndVisible()
 
     case .tabbarFlow:
-      let coord = TabBarFlowCoordinator()
-      let output = coord.configure()
-      output.logout.subscribe(onNext: { [weak self, weak coord] in
-        self?.removeChild(coord)
-        self?.trigger(.options)
-      }).disposed(by: bag)
+      let coord = tabbar()
       startCoordinator(coord)
-      router.set([coord], animated: false, barHidden: true)
-
-    case .modalFlow:
-      let coord = modalNavigationCoordinator()
-      startCoordinator(coord.0)
-      router.presentModal(coord.1, animated: true, completion: nil)
-
-    case .dissmisModal:
-      router.dismissModal(animated: true, completion: nil)
+      router.setRoot(controller: coord)
     }
-  }
-
-  override func configureRootViewController() {
-    rootViewController.navigationBar.isTranslucent = false
-    rootViewController.navigationBar.prefersLargeTitles = true
   }
 
   deinit {
@@ -49,56 +30,27 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
 }
 
 extension AppCoordinator {
-  fileprivate func options() -> Presentable {
-    let controller = OptionsViewController()
-    let output = controller.configure(input: .init())
+  fileprivate func tabbar() -> Coordinatorable {
+    let coord = TabBarFlowCoordinator()
+    let output = coord.configure()
 
-    output.tabbar.drive(onNext: { [weak self] action in
-      switch action {
-      case .modal:
-        self?.trigger(.modalFlow)
-      case .navigation:
-        self?.trigger(.navigationFlow)
-      case .tabbar:
-        self?.trigger(.tabbarFlow)
-      }
+    output.logout.subscribe(onNext: { [weak self, weak coord] in
+      self?.removeChild(coord)
+      self?.trigger(.options)
     }).disposed(by: bag)
 
-    return controller
+    return coord
   }
 
-  fileprivate func navigationCoordinator() -> Coordinatorable {
-    guard let curentRoot = router.rootController else {
-      fatalError()
-    }
+  fileprivate func options() -> Coordinatorable {
+    let optionCoord = OptionFlowCoordinator(container: nil, initialRoute: .options)
+    let output = optionCoord.configure()
 
-    let navCoord = NavFlowCoordinator(rootViewController: curentRoot, initialRoute: .pushIntoExtistNav)
-    let output = navCoord.configure()
-
-    output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
-      self?.removeChild(navCoord)
+    output.tabbarFlow.drive(onNext: { [weak optionCoord, weak self] in
+      self?.removeChild(optionCoord)
+      self?.trigger(.tabbarFlow)
     }).disposed(by: bag)
 
-    return navCoord
-  }
-
-  fileprivate func modalNavigationCoordinator() -> (Coordinatorable, Presentable) {
-    let rootNav = UINavigationController()
-    rootNav.navigationBar.isTranslucent = false
-    rootNav.navigationBar.prefersLargeTitles = true
-
-    let navCoord = NavModalFlowCoordinator(rootViewController: rootNav, initialRoute: .setAsRoot)
-    let output = navCoord.configure()
-
-    output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
-      self?.removeChild(navCoord)
-    }).disposed(by: bag)
-
-    output.completeFlow.drive(onNext: { [weak navCoord, weak self] in
-      rootNav.dismiss(animated: true, completion: nil)
-      self?.removeChild(navCoord)
-    }).disposed(by: bag)
-
-    return (navCoord, rootNav)
+    return optionCoord
   }
 }

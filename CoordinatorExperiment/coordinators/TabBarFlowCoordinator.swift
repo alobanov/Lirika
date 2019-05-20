@@ -21,17 +21,17 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
   fileprivate let outputLogout = PublishRelay<Void>()
 
   init() {
-    super.init(controller: nil, initialRoute: .third)
+    super.init(container: nil, initialRoute: .third)
     router.set(buildTabs(), animated: false, completion: nil)
   }
-  
+
   func buildTabs() -> [UIViewController] {
     let coords = [
       firstTabCoordinator(),
       secondTabCoordinator(),
-      thirdTabCoordinator()
+      thirdTabCoordinator(),
     ]
-    
+
     coords.forEach { startCoordinator($0) }
     return coords.map { $0.presentable() }
   }
@@ -63,14 +63,14 @@ extension TabBarFlowCoordinator {
     _ = first.configure()
     return first
   }
-  
+
   fileprivate func secondTabCoordinator() -> Coordinatorable {
     let second = NavFlowCoordinator(tag: 1, tabBarSystemItem: .history)
     second.define(coordinatorCustomPresentId: "second")
     _ = second.configure()
     return second
   }
-  
+
   fileprivate func thirdTabCoordinator() -> Coordinatorable {
     let third = NavExitTabFlowCoordinator(tag: 2, tabBarSystemItem: .more)
     third.define(coordinatorCustomPresentId: "third")

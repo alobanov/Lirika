@@ -8,75 +8,60 @@ import UIKit
 protocol DeepLink {}
 
 extension Coordinator {
-  public typealias RootControllerType = RouterType.RootViewController
+  public typealias RootContainerType = RouterType.RootContainer
 }
 
 class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {
-  
   // MARK: - Properties
-  
+
   // All child presentables modules (contorollers, coordinators)
   private var childs: [Presentable] = []
-  
+
   // Define custom coordinator/module identifier if you use same module more then one times
   private var customCoordinatorNameIdentifier: String?
 
   // Root controller depends on RootControllerType
-  let rootViewControllerBox = ReferenceBox<RootControllerType>()
-  
-  // Only for first coordinator, and define in AppDelegate, example:
-  //
-  // let window: UIWindow! = UIWindow()
-  // private lazy var appCoordinator: AppCoordinator = self.coordinator()
-  // func coordinator() -> AppCoordinator {
-  //   return AppCoordinator(window: window, initialRoute: .root)
-  // }
-  var window: UIWindow?
-  
+  let rootContainerBox = ReferenceBox<RootContainerType>()
+
   // Route from which the coordinator starts
   var initialRoute: RouteType?
 
-  var rootViewController: RootControllerType {
+  var rootContainer: RootContainerType {
     // swiftlint:disable:next force_unwrapping
-    return rootViewControllerBox.get()!
+    return rootContainerBox.get()!
   }
 
   let bag = DisposeBag()
-  
-  let router: Router<RootControllerType>
-  
+
+  let router: Router<RootContainerType>
+
   // MARK: - Init
 
-  convenience init(window: UIWindow, initialRoute: RouteType? = nil) {
-    self.init(controller: nil, initialRoute: initialRoute)
-    self.configureWindow(window: window)
-  }
-
-  init(controller: RootControllerType?, initialRoute: RouteType? = nil) {
+  init(container: RootContainerType?, initialRoute: RouteType? = nil) {
     self.initialRoute = initialRoute
-    self.router = Router<RootControllerType>()
+    self.router = Router<RootContainerType>()
 
-    if let controller = controller {
-      rootViewControllerBox.set(controller)
+    if let controller = container {
+      rootContainerBox.set(controller)
     } else {
-      rootViewControllerBox.set(self.generateRootViewController())
+      rootContainerBox.set(self.generateRootContainer())
     }
 
-    self.router.define(root: rootViewController)
+    self.router.define(root: rootContainer)
     self.configureRootViewController()
   }
-  
+
   // MARK: - Public
 
-  func generateRootViewController() -> RootControllerType {
-    return RootControllerType()
+  func generateRootContainer() -> RootContainerType {
+    return LirikaNavigation() as! RouterType.RootContainer
   }
 
   func start() {
     guard let route = initialRoute else {
       return
     }
-    
+
     trigger(route)
   }
 
@@ -105,7 +90,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
       break
     }
   }
-  
+
   func removeAllChilds() {
     for chaild in allChailds() {
       removeChild(chaild)
@@ -140,21 +125,16 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   }
 
   func deepLink(link: DeepLink) {}
-  
+
   // MARK: - Private
-  
+
   private func lastChild() -> Coordinatorable? {
     if let coord = childs.last as? Coordinatorable {
       print("Coordinator next is: \(coord.presentId())")
       return coord
     }
-    
+
     return nil
-  }
-  
-  private func configureWindow(window: UIWindow) {
-    self.window = window
-    setRoot(for: window)
   }
 }
 

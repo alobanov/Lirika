@@ -30,16 +30,16 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
   // MARK: - Init
 
   init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(controller: nil, initialRoute: .setAsRoot)
+    super.init(container: nil, initialRoute: .setAsRoot)
     self.tag = tag
-    rootViewController.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
-
-    rootViewController.navigationBar.isTranslucent = false
-    rootViewController.navigationBar.prefersLargeTitles = true
+    
+    rootContainer.get().tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
+    rootContainer.get().navigationBar.isTranslucent = false
+    rootContainer.get().navigationBar.prefersLargeTitles = true
   }
 
-  init(rootViewController: UINavigationController?, initialRoute: NavFlowRoute) {
-    super.init(controller: rootViewController, initialRoute: initialRoute)
+  init(rootViewController: LirikaNavigation?, initialRoute: NavFlowRoute) {
+    super.init(container: rootViewController, initialRoute: initialRoute)
   }
 
   // MARK: - Overrides
