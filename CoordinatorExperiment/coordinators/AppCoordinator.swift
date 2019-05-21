@@ -65,7 +65,7 @@ extension AppCoordinator {
   }
   
   fileprivate func pageCoordinator() -> Coordinatorable {
-    let container = LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    let container = LirikaPage.Container(transitionStyle: .pageCurl, navigationOrientation: .vertical, options: nil)
     let root = LirikaPage(container: container)
     
     let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)
