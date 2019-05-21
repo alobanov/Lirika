@@ -6,6 +6,8 @@ class OptionsView: UIView {
   let showTabBarButton = PerfectButton()
   let showNavigationButton = PerfectButton()
   let showModalButton = PerfectButton()
+  let showPageAsRootButton = PerfectButton()
+  let showPageAsModalButton = PerfectButton()
 
   override init(frame: CGRect = CGRect.zero) {
     super.init(frame: frame)
@@ -19,13 +21,15 @@ class OptionsView: UIView {
 
   private func configureView() {
     backgroundColor = .white
-    showTabBarButton.setTitle("Tab Bar Controller".uppercased(), for: .normal)
-    showNavigationButton.setTitle("Navigation Controller".uppercased(), for: .normal)
-    showModalButton.setTitle("Modal Controller".uppercased(), for: .normal)
+    showTabBarButton.setTitle("Tab Bar as ROOT".uppercased(), for: .normal)
+    showNavigationButton.setTitle("Push into navigation".uppercased(), for: .normal)
+    showModalButton.setTitle("Present modal".uppercased(), for: .normal)
+    showPageAsRootButton.setTitle("Page as ROOT".uppercased(), for: .normal)
+    showPageAsModalButton.setTitle("Present page as modal".uppercased(), for: .normal)
   }
 
   private func addSubviews() {
-    [showTabBarButton, showNavigationButton, showModalButton].forEach { addSubview($0) }
+    [showTabBarButton, showNavigationButton, showModalButton, showPageAsRootButton, showPageAsModalButton].forEach { addSubview($0) }
   }
 
   public func makeConstraints(vc: UIViewController) {
@@ -44,6 +48,18 @@ class OptionsView: UIView {
     showModalButton.snp.makeConstraints { make in
       make.left.right.equalToSuperview().inset(15)
       make.top.equalTo(showNavigationButton.snp.bottom).inset(-20)
+      make.height.equalTo(40)
+    }
+    
+    showPageAsRootButton.snp.makeConstraints { make in
+      make.left.right.equalToSuperview().inset(15)
+      make.top.equalTo(showModalButton.snp.bottom).inset(-20)
+      make.height.equalTo(40)
+    }
+    
+    showPageAsModalButton.snp.makeConstraints { make in
+      make.left.right.equalToSuperview().inset(15)
+      make.top.equalTo(showPageAsRootButton.snp.bottom).inset(-20)
       make.height.equalTo(40)
     }
   }
