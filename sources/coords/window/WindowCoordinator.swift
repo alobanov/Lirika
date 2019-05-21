@@ -16,9 +16,9 @@ class LirikaWindow: LirikaRootContaierType {
   }
 }
 
-typealias LirikaRouter = Router<LirikaWindow>
+typealias WindowRouter = Router<LirikaWindow>
 
-class WindowCoordinator<RouteType: Route>: Coordinator<RouteType, LirikaRouter> {
+class WindowCoordinator<RouteType: Route>: Coordinator<RouteType, WindowRouter> {
   override func generateRootContainer() -> LirikaWindow {
     return LirikaWindow(container: LirikaWindow.Container())
   }

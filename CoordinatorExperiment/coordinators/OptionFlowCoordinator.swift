@@ -6,19 +6,22 @@ import RxSwift
 import UIKit
 
 enum OptionFlowRoute: Route {
-  case options, navigationFlow, tabbarFlow, modalFlow, dissmisModal
+  case options, navigationFlow, tabbarFlow, modalFlow, dissmisModal, pageAsRootFlow, pageModalFlow
 }
 
 class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, CoordinatorOutput {
   func configure() -> OptionFlowCoordinator.Output {
-    return Output(tabbarFlow: tabbarFlow.asDriver(onErrorJustReturn: ()))
+    return Output(tabbarFlow: tabbarFlow.asDriver(onErrorJustReturn: ()),
+                  pageFlow: pageFlow.asDriver(onErrorJustReturn: ()))
   }
 
   struct Output {
     let tabbarFlow: Driver<Void>
+    let pageFlow: Driver<Void>
   }
 
   private let tabbarFlow = PublishRelay<Void>()
+  private let pageFlow = PublishRelay<Void>()
 
   override func prepare(route: OptionFlowRoute, completion _: PresentationHandler?) {
     switch route {
@@ -39,6 +42,14 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
 
     case .dissmisModal:
       router.dismissModal(animated: true, completion: nil)
+      
+    case .pageAsRootFlow:
+      pageFlow.accept(())
+      
+    case .pageModalFlow:
+      let coord = pageCoordinator()
+      startCoordinator(coord)
+      router.presentModal(coord, animated: true, completion: nil)
     }
   }
 
@@ -65,6 +76,10 @@ extension OptionFlowCoordinator {
         self?.trigger(.navigationFlow)
       case .tabbar:
         self?.trigger(.tabbarFlow)
+      case .pageAsRoot:
+        self?.trigger(.pageAsRootFlow)
+      case .pageModal:
+        self?.trigger(.pageModalFlow)
       }
     }).disposed(by: bag)
 
@@ -104,5 +119,20 @@ extension OptionFlowCoordinator {
     }).disposed(by: bag)
 
     return (navCoord, rootNav.get())
+  }
+  
+  fileprivate func pageCoordinator() -> Coordinatorable {
+    let container = LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    let root = LirikaPage(container: container)
+    
+    let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)
+    let output = pageCoord.configure()
+    
+    output.logout.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak pageCoord, weak self] in
+      self?.removeChild(pageCoord)
+      self?.router.dismissModal(animated: true, completion: nil)
+    }).disposed(by: bag)
+    
+    return pageCoord
   }
 }

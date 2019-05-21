@@ -5,7 +5,7 @@ import RxCocoa
 import RxSwift
 
 enum AppRoute: Route {
-  case options, tabbarFlow
+  case options, tabbarFlow, pageFlow
 }
 
 class AppCoordinator: WindowCoordinator<AppRoute> {
@@ -19,6 +19,11 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
 
     case .tabbarFlow:
       let coord = tabbar()
+      startCoordinator(coord)
+      router.setRoot(controller: coord)
+    
+    case .pageFlow:
+      let coord = pageCoordinator()
       startCoordinator(coord)
       router.setRoot(controller: coord)
     }
@@ -50,7 +55,27 @@ extension AppCoordinator {
       self?.removeChild(optionCoord)
       self?.trigger(.tabbarFlow)
     }).disposed(by: bag)
+    
+    output.pageFlow.drive(onNext: { [weak optionCoord, weak self] in
+      self?.removeChild(optionCoord)
+      self?.trigger(.pageFlow)
+    }).disposed(by: bag)
 
     return optionCoord
+  }
+  
+  fileprivate func pageCoordinator() -> Coordinatorable {
+    let container = LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    let root = LirikaPage(container: container)
+    
+    let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)
+    let output = pageCoord.configure()
+    
+    output.logout.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak pageCoord, weak self] in
+      self?.removeChild(pageCoord)
+      self?.trigger(.options)
+    }).disposed(by: bag)
+    
+    return pageCoord
   }
 }
