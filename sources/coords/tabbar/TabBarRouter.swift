@@ -3,13 +3,17 @@
 import UIKit
 
 extension Router where RootContainer: LirikaTabBar {
+  func container() -> LirikaTabBar.Container {
+    return rootController?.get() ?? LirikaTabBar.Container()
+  }
+  
   func set(_ viewControllers: [Presentable], animated: Bool, completion: PresentationHandler?) {
     let controllers = unwrapPresentables(viewControllers)
 
     CATransaction.begin()
     CATransaction.setCompletionBlock(completion)
 
-    rootController?.get().setViewControllers(controllers, animated: animated)
+    container().setViewControllers(controllers, animated: animated)
 
     CATransaction.commit()
   }
@@ -18,7 +22,7 @@ extension Router where RootContainer: LirikaTabBar {
     CATransaction.begin()
     CATransaction.setCompletionBlock(completion)
 
-    rootController?.get().selectedIndex = index
+    container().selectedIndex = index
 
     CATransaction.commit()
   }

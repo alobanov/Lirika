@@ -3,13 +3,17 @@
 import UIKit
 
 extension Router where RootContainer: LirikaNavigation {
+  func container() -> LirikaNavigation.Container {
+    return rootController?.get() ?? LirikaNavigation.Container()
+  }
+  
   func push(_ viewController: Presentable, completion: PresentationHandler? = nil) {
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion?()
     }
 
-    rootController?.get().pushViewController(unwrapPresentable(viewController), animated: true)
+    container().pushViewController(unwrapPresentable(viewController), animated: true)
     CATransaction.commit()
   }
 
@@ -20,9 +24,9 @@ extension Router where RootContainer: LirikaNavigation {
     }
 
     if toRoot {
-      rootController?.get().popToRootViewController(animated: animated)
+      container().popToRootViewController(animated: animated)
     } else {
-      rootController?.get().popViewController(animated: animated)
+      container().popViewController(animated: animated)
     }
     CATransaction.commit()
   }
@@ -37,8 +41,8 @@ extension Router where RootContainer: LirikaNavigation {
     }
 
     let controllers = unwrapPresentables(viewControllers)
-    rootController?.get().setViewControllers(controllers, animated: animated)
-    rootController?.get().isNavigationBarHidden = barHidden
+    container().setViewControllers(controllers, animated: animated)
+    container().isNavigationBarHidden = barHidden
 
     CATransaction.commit()
   }
@@ -54,23 +58,23 @@ extension Router where RootContainer: LirikaNavigation {
       completion?()
     }
 
-    rootController?.get().popToViewController(unwrapPresentable(viewController), animated: true)
+    container().popToViewController(unwrapPresentable(viewController), animated: true)
 
     CATransaction.commit()
   }
 
   func presentModal(_ module: Presentable, animated: Bool, completion: (() -> Void)?) {
     DispatchQueue.main.async { [weak self] in
-      self?.rootController?.get().present(module.presentable(), animated: animated, completion: completion)
+      self?.container().present(module.presentable(), animated: animated, completion: completion)
     }
   }
 
   func dismissModalImmediately() {
-    rootController?.get().dismiss(animated: false, completion: nil)
+    container().dismiss(animated: false, completion: nil)
   }
 
   func dismissModal(animated: Bool, completion: (() -> Void)?) {
-    rootController?.get().dismiss(animated: animated, completion: completion)
+    container().dismiss(animated: animated, completion: completion)
   }
 
   func push(_ modules: [Presentable], after: PresentableID, animated: Bool) {
@@ -98,7 +102,7 @@ extension Router where RootContainer: LirikaNavigation {
 
       let controllers = unwrapPresentables(modules)
       stack += controllers
-      rootController?.get().setViewControllers(stack, animated: animated)
+      container().setViewControllers(stack, animated: animated)
     }
   }
 
@@ -106,7 +110,7 @@ extension Router where RootContainer: LirikaNavigation {
     if let current = rootController?.get().topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController?.presentId()
     } else {
-      return rootController?.get().visibleViewController?.presentId()
+      return container().visibleViewController?.presentId()
     }
   }
 
@@ -114,7 +118,7 @@ extension Router where RootContainer: LirikaNavigation {
     if let current = rootController?.get().topViewController as? UITabBarController {
       return (current.selectedViewController as? UINavigationController)?.visibleViewController
     } else {
-      return rootController?.get().visibleViewController
+      return container().visibleViewController
     }
   }
 }

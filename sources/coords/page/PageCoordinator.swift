@@ -18,7 +18,7 @@ class LirikaPage: LirikaRootContaierType {
   private let container: Container
   
   init(container: Container?) {
-    self.container = container ?? Container()
+    self.container = container ?? Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
   }
   
   func get() -> Container {
@@ -30,7 +30,7 @@ typealias PageRouter = Router<LirikaPage>
 
 class PageCoordinator<RouteType: Route>: Coordinator<RouteType, PageRouter> {
   override func generateRootContainer() -> LirikaPage {
-    return LirikaPage(container: LirikaPage.Container())
+    return LirikaPage(container: LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
   }
 }
 

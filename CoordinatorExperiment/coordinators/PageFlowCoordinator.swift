@@ -11,14 +11,14 @@ enum PageFlowRoute: Route {
 
 class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
   func configure() -> Output {
-    return Output(logout: outputLogout.asObservable())
+    return Output(exit: exit.asObservable())
   }
   
   struct Output {
-    let logout: Observable<Void>
+    let exit: Observable<Void>
   }
   
-  fileprivate let outputLogout = PublishRelay<Void>()
+  fileprivate let exit = PublishRelay<Void>()
   
   struct Page {
     var title: String
@@ -48,7 +48,7 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
       
     case .exit:
       router.reset()
-      outputLogout.accept(())
+      exit.accept(())
     }
   }
   
@@ -61,8 +61,7 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
       return nil
     }
     
-    let model = pages[index]
-    return page(model: model)
+    return page(model: pages[index])
   }
   
   func goto(index: Int, derection: UIPageViewController.NavigationDirection) {
@@ -82,13 +81,13 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
   }
 }
 
-extension PageFlowCoordinator: PagerProtocol {
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-    guard let vc = viewController as? LirikaPageIndexProtocol else {
+extension PageFlowCoordinator: LirikaPagerProtocol {
+  func pageViewController(_ page: UIPageViewController, controllerBefore: UIViewController) -> UIViewController? {
+    guard let controller = controllerBefore as? LirikaPageIndexProtocol else {
       return nil
     }
     
-    var index = vc.index
+    var index = controller.index
     if index == 0 || index == NSNotFound {
       return nil
     } else {
@@ -98,12 +97,12 @@ extension PageFlowCoordinator: PagerProtocol {
     return self.viewControllerAtIndex(index: index)?.presentable()
   }
   
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-    guard let vc = viewController as? LirikaPageIndexProtocol else {
+  func pageViewController(_ page: UIPageViewController, controllerAfter: UIViewController) -> UIViewController? {
+    guard let controller = controllerAfter as? LirikaPageIndexProtocol else {
       return nil
     }
     
-    var index = vc.index
+    var index = controller.index
     if index == NSNotFound {
       return nil
     }
@@ -116,11 +115,11 @@ extension PageFlowCoordinator: PagerProtocol {
     return self.viewControllerAtIndex(index: index)?.presentable()
   }
   
-  func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+  func presentationCountForPageViewController(page: UIPageViewController) -> Int {
     return pages.count
   }
   
-  func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+  func presentationIndexForPageViewController(page: UIPageViewController) -> Int {
     return 0
   }
 }

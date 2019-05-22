@@ -2,15 +2,15 @@
 
 import UIKit
 
-protocol PagerProtocol: class {
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
-  func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?
-  func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
-  func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
+protocol LirikaPagerProtocol: class {
+  func pageViewController(_ page: UIPageViewController, controllerBefore: UIViewController) -> UIViewController?
+  func pageViewController(_ page: UIPageViewController, controllerAfter: UIViewController) -> UIViewController?
+  func presentationCountForPageViewController(page: UIPageViewController) -> Int
+  func presentationIndexForPageViewController(page: UIPageViewController) -> Int
 }
 
 class LirikaPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-  weak var pagerDataSource: PagerProtocol?
+  weak var pagerDataSource: LirikaPagerProtocol?
   
   override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
     super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
@@ -22,32 +22,36 @@ class LirikaPageViewController: UIPageViewController, UIPageViewControllerDataSo
   }
   
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-    return pagerDataSource?.pageViewController(pageViewController, viewControllerBefore: viewController)
+    return pagerDataSource?.pageViewController(pageViewController, controllerBefore: viewController)
   }
   
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-    return pagerDataSource?.pageViewController(pageViewController, viewControllerAfter: viewController)
+    return pagerDataSource?.pageViewController(pageViewController, controllerAfter: viewController)
   }
   
   func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-    return pagerDataSource?.presentationCountForPageViewController(pageViewController: pageViewController) ?? 0
+    return pagerDataSource?.presentationCountForPageViewController(page: pageViewController) ?? 0
   }
   
   func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-    return pagerDataSource?.presentationIndexForPageViewController(pageViewController: pageViewController) ?? 0
+    return pagerDataSource?.presentationIndexForPageViewController(page: pageViewController) ?? 0
   }
 }
 
 extension Router where RootContainer: LirikaPage {
-  func define(dataSource: PagerProtocol) {
-    rootController?.get().pagerDataSource = dataSource
+  func container() -> LirikaPage.Container {
+    return rootController?.get() ?? LirikaPage.Container()
+  }
+  
+  func define(dataSource: LirikaPagerProtocol) {
+    container().pagerDataSource = dataSource
   }
   
   func reset() {
-    rootController?.get().pagerDataSource = nil
+    container().pagerDataSource = nil
   }
   
   func set(_ controllers: [UIViewController]?, direction: UIPageViewController.NavigationDirection, animated: Bool, completion: PresentationHandler?) {
-    rootController?.get().setViewControllers(controllers, direction: direction, animated: animated, completion: { state in completion?() })
+    container().setViewControllers(controllers, direction: direction, animated: animated, completion: { state in completion?() })
   }
 }

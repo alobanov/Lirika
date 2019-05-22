@@ -1,5 +1,5 @@
 # Lirika
-Coordinator + RxMVVM
+Coordinator
 
 ## init
 
@@ -8,15 +8,10 @@ Coordinator + RxMVVM
 ```swift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  let window: UIWindow! = UIWindow()
-  private lazy var appCoordinator: AppCoordinator = self.coordinator()
-  
-  func coordinator() -> AppCoordinator {
-    return AppCoordinator(window: window, initialRoute: .authorization)
-  }
+  private lazy var coordinator = AppCoordinator(container: LirikaWindow(container: LirikaWindow.Container()), initialRoute: .options)
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    appCoordinator.start()
+  func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    coordinator.start()
     return true
   }
 }

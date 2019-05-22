@@ -71,7 +71,7 @@ extension AppCoordinator {
     let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)
     let output = pageCoord.configure()
     
-    output.logout.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak pageCoord, weak self] in
+    output.exit.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak pageCoord, weak self] in
       self?.removeChild(pageCoord)
       self?.trigger(.options)
     }).disposed(by: bag)

@@ -3,11 +3,15 @@
 import UIKit
 
 extension Router where RootContainer: LirikaWindow {
+  func container() -> LirikaWindow.Container {
+    return rootController?.get() ?? LirikaWindow.Container()
+  }
+  
   func setRoot(controller: Presentable) {
-    rootController?.get().rootViewController = controller.presentable()
+    container().rootViewController = controller.presentable()
   }
   
   func makeKeyAndVisible() {
-    rootController?.get().makeKeyAndVisible()
+    container().makeKeyAndVisible()
   }
 }

@@ -54,7 +54,7 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   // MARK: - Public
 
   func generateRootContainer() -> RootContainerType {
-    return LirikaNavigation() as! RouterType.RootContainer
+    fatalError("Override generateRootContainer for each Lirika container")
   }
 
   func start() {
