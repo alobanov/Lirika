@@ -6,7 +6,7 @@ import RxSwift
 import UIKit
 
 enum PageFlowRoute: Route {
-  case prepareFirstPage, exit
+  case prepareFirstPage, exit, prepareForTabBar(tag: Int)
 }
 
 class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
@@ -19,6 +19,8 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
   }
   
   fileprivate let exit = PublishRelay<Void>()
+  
+  var pageInTabBar = false
   
   struct Page {
     var title: String
@@ -46,8 +48,18 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
         self.router.set([controller], direction: .forward, animated: true, completion: completion)
       }
       
+    case let .prepareForTabBar(tag):
+      if let controller = viewControllerAtIndex(index: 0)?.presentable() {
+        self.router.set([controller], direction: .forward, animated: true, completion: completion)
+      }
+      pageInTabBar = true
+      router.container().presentable().tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: tag)
+      
     case .exit:
-      router.reset()
+      if !pageInTabBar {
+        router.reset()
+      }
+      
       exit.accept(())
     }
   }

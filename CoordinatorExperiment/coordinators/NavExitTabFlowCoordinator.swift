@@ -36,12 +36,15 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
     self.tag = tag
 
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
-    rootContainer.container.navigationBar.isTranslucent = false
-    rootContainer.container.navigationBar.prefersLargeTitles = true
   }
 
   init(rootViewController: LirikaNavigation?, initialRoute: NavExitTabFlowRoute) {
     super.init(container: rootViewController, initialRoute: initialRoute)
+  }
+  
+  override func configureRootViewController() {
+    rootContainer.container.navigationBar.isTranslucent = false
+    rootContainer.container.navigationBar.prefersLargeTitles = true
   }
 
   // MARK: - Overrides

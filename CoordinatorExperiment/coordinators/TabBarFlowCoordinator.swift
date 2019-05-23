@@ -6,7 +6,7 @@ import RxSwift
 import UIKit
 
 enum TabBarFlowRoute: Route {
-  case first, second, third, exit
+  case first, second, third, fourth, exit
 }
 
 class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutput {
@@ -22,6 +22,9 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
 
   init() {
     super.init(container: nil, initialRoute: .third)
+  }
+  
+  override func configureRootViewController() {
     router.set(buildTabs(), animated: false, completion: nil)
   }
 
@@ -30,6 +33,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
       firstTabCoordinator(),
       secondTabCoordinator(),
       thirdTabCoordinator(),
+      page()
     ]
 
     coords.forEach { startCoordinator($0) }
@@ -46,6 +50,8 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
       router.select(index: 1, completion: completion)
     case .third:
       router.select(index: 2, completion: completion)
+    case .fourth:
+      router.select(index: 3, completion: completion)
     case .exit:
       outputLogout.accept(())
       removeAllChilds()
@@ -79,5 +85,16 @@ extension TabBarFlowCoordinator {
       self?.trigger(.exit)
     }).disposed(by: bag)
     return third
+  }
+  
+  fileprivate func page() -> Coordinatorable {
+    let pageCoord = PageFlowCoordinator(container: LirikaPage(), initialRoute: .prepareForTabBar(tag: 3))
+    let output = pageCoord.configure()
+    
+    output.exit.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak self] in
+      self?.trigger(.third)
+    }).disposed(by: bag)
+    
+    return pageCoord
   }
 }
