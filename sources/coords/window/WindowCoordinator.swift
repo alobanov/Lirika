@@ -3,16 +3,11 @@
 import UIKit
 
 class LirikaWindow: LirikaRootContaierType {
+  private(set) var container: LirikaWindow.Container
   class Container: UIWindow {}
-
-  private let container: Container
   
-  init(container: Container) {
-    self.container = container
-  }
-
-  func get() -> Container {
-    return container
+  init(container: Container? = nil) {
+    self.container = container ?? Container()
   }
 }
 

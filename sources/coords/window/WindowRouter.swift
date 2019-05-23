@@ -4,7 +4,7 @@ import UIKit
 
 extension Router where RootContainer: LirikaWindow {
   func container() -> LirikaWindow.Container {
-    return rootController?.get() ?? LirikaWindow.Container()
+    return rootController?.container ?? LirikaWindow.Container()
   }
   
   func setRoot(controller: Presentable) {

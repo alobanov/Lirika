@@ -40,7 +40,7 @@ class LirikaPageViewController: UIPageViewController, UIPageViewControllerDataSo
 
 extension Router where RootContainer: LirikaPage {
   func container() -> LirikaPage.Container {
-    return rootController?.get() ?? LirikaPage.Container()
+    return rootController?.container ?? LirikaPage.Container()
   }
   
   func define(dataSource: LirikaPagerProtocol) {

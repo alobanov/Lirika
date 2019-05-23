@@ -3,16 +3,11 @@
 import UIKit
 
 class LirikaNavigation: LirikaRootContaierType {
+  private(set) var container: LirikaNavigation.Container
   class Container: UINavigationController {}
-
-  private let container: Container
   
   init(container: Container? = nil) {
     self.container = container ?? Container()
-  }
-
-  func get() -> Container {
-    return container
   }
 }
 

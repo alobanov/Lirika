@@ -34,7 +34,7 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
   init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
     super.init(container: nil, initialRoute: .setAsRoot)
     self.tag = tag
-    rootContainer.get().tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
+    rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
 
   init(rootViewController: LirikaNavigation?, initialRoute: NavModalFlowRoute) {
@@ -42,8 +42,8 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
   }
   
   override func configureRootViewController() {
-    rootContainer.get().navigationBar.isTranslucent = false
-    rootContainer.get().navigationBar.prefersLargeTitles = true
+    rootContainer.container.navigationBar.isTranslucent = false
+    rootContainer.container.navigationBar.prefersLargeTitles = true
   }
 
   // MARK: - Overrides

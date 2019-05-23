@@ -23,7 +23,7 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
       router.setRoot(controller: coord)
     
     case .pageFlow:
-      let coord = pageCoordinator()
+      let coord = page()
       startCoordinator(coord)
       router.setRoot(controller: coord)
     }
@@ -64,7 +64,7 @@ extension AppCoordinator {
     return optionCoord
   }
   
-  fileprivate func pageCoordinator() -> Coordinatorable {
+  fileprivate func page() -> Coordinatorable {
     let container = LirikaPage.Container(transitionStyle: .pageCurl, navigationOrientation: .vertical, options: nil)
     let root = LirikaPage(container: container)
     

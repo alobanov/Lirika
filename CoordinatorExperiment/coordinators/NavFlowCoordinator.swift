@@ -32,7 +32,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
   init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
     super.init(container: nil, initialRoute: .setAsRoot)
     self.tag = tag
-    rootContainer.get().tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
+    rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
 
   init(rootViewController: LirikaNavigation?, initialRoute: NavFlowRoute) {
@@ -40,7 +40,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
   }
   
   override func configureRootViewController() {
-    rootContainer.get().navigationBar.isTranslucent = false
+    rootContainer.container.navigationBar.isTranslucent = false
   }
 
   // MARK: - Overrides

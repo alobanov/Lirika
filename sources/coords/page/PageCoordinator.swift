@@ -13,16 +13,11 @@ protocol LirikaPageIndexProtocol {
 }
 
 class LirikaPage: LirikaRootContaierType {
+  private(set) var container: LirikaPage.Container
   class Container: LirikaPageViewController {}
   
-  private let container: Container
-  
-  init(container: Container?) {
+  init(container: Container? = nil) {
     self.container = container ?? Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-  }
-  
-  func get() -> Container {
-    return container
   }
 }
 
@@ -33,4 +28,3 @@ class PageCoordinator<RouteType: Route>: Coordinator<RouteType, PageRouter> {
     return LirikaPage(container: LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
   }
 }
-

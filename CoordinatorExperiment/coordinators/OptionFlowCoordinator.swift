@@ -54,8 +54,8 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
   }
 
   override func configureRootViewController() {
-    rootContainer.get().navigationBar.isTranslucent = false
-    rootContainer.get().navigationBar.prefersLargeTitles = true
+    rootContainer.container.navigationBar.isTranslucent = false
+    rootContainer.container.navigationBar.prefersLargeTitles = true
   }
 
   deinit {
@@ -87,7 +87,7 @@ extension OptionFlowCoordinator {
   }
 
   fileprivate func navigationCoordinator() -> Coordinatorable {
-    guard let curentRoot = router.rootController?.get() else {
+    guard let curentRoot = router.rootController?.container else {
       fatalError()
     }
 
@@ -103,8 +103,8 @@ extension OptionFlowCoordinator {
 
   fileprivate func modalNavigationCoordinator() -> (Coordinatorable, Presentable) {
     let rootNav = LirikaNavigation()
-    rootNav.get().navigationBar.isTranslucent = false
-    rootNav.get().navigationBar.prefersLargeTitles = true
+    rootNav.container.navigationBar.isTranslucent = false
+    rootNav.container.navigationBar.prefersLargeTitles = true
 
     let navCoord = NavModalFlowCoordinator(rootViewController: rootNav, initialRoute: .setAsRoot)
     let output = navCoord.configure()
@@ -114,11 +114,11 @@ extension OptionFlowCoordinator {
     }).disposed(by: bag)
 
     output.completeFlow.drive(onNext: { [weak navCoord, weak self] in
-      rootNav.get().dismiss(animated: true, completion: nil)
+      rootNav.container.dismiss(animated: true, completion: nil)
       self?.removeChild(navCoord)
     }).disposed(by: bag)
 
-    return (navCoord, rootNav.get())
+    return (navCoord, rootNav.container)
   }
   
   fileprivate func pageCoordinator() -> Coordinatorable {

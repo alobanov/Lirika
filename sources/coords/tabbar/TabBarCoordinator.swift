@@ -3,16 +3,11 @@
 import UIKit
 
 class LirikaTabBar: LirikaRootContaierType {
+  private(set) var container: LirikaTabBar.Container
   class Container: UITabBarController {}
   
-  private let container: Container
-  
-  init(container: Container?) {
+  init(container: Container? = nil) {
     self.container = container ?? Container()
-  }
-  
-  func get() -> Container {
-    return container
   }
 }
 

@@ -4,5 +4,5 @@ import Foundation
 
 protocol LirikaRootContaierType: AnyObject {
   associatedtype Container
-  func get() -> Container
+  var container: Container { get }
 }
