@@ -23,7 +23,7 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
   private let tabbarFlow = PublishRelay<Void>()
   private let pageFlow = PublishRelay<Void>()
 
-  override func prepare(route: OptionFlowRoute, completion _: PresentationHandler?) {
+  override func drive(route: OptionFlowRoute, completion _: PresentationHandler?) {
     switch route {
     case .options:
       router.set([options()], animated: true)
@@ -91,7 +91,7 @@ extension OptionFlowCoordinator {
       fatalError()
     }
 
-    let navCoord = NavFlowCoordinator(rootViewController: LirikaNavigation(container: curentRoot), initialRoute: .pushIntoExtistNav)
+    let navCoord = NavFlowCoordinator(container: LirikaNavigation(container: curentRoot), initialRoute: .pushIntoExtistNav)
     let output = navCoord.configure()
 
     output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
@@ -106,7 +106,7 @@ extension OptionFlowCoordinator {
     rootNav.container.navigationBar.isTranslucent = false
     rootNav.container.navigationBar.prefersLargeTitles = true
 
-    let navCoord = NavModalFlowCoordinator(rootViewController: rootNav, initialRoute: .setAsRoot)
+    let navCoord = NavModalFlowCoordinator(container: rootNav, initialRoute: .setAsRoot)
     let output = navCoord.configure()
 
     output.didDeinit.drive(onNext: { [weak navCoord, weak self] in

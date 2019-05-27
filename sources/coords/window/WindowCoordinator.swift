@@ -14,7 +14,9 @@ class LirikaWindow: LirikaRootContaierType {
 typealias WindowRouter = Router<LirikaWindow>
 
 class WindowCoordinator<RouteType: Route>: Coordinator<RouteType, WindowRouter> {
-  override func generateRootContainer() -> LirikaWindow {
-    return LirikaWindow(container: LirikaWindow.Container())
+  
+  convenience init(initialRoute: RouteType) {
+    self.init(container: LirikaWindow(container: LirikaWindow.Container()), initialRoute: initialRoute)
   }
+  
 }

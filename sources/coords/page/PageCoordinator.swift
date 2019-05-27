@@ -24,7 +24,9 @@ class LirikaPage: LirikaRootContaierType {
 typealias PageRouter = Router<LirikaPage>
 
 class PageCoordinator<RouteType: Route>: Coordinator<RouteType, PageRouter> {
-  override func generateRootContainer() -> LirikaPage {
-    return LirikaPage(container: LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
+  
+  convenience init() {
+    self.init(container: LirikaPage(container: LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)))
   }
+  
 }

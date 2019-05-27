@@ -14,7 +14,9 @@ class LirikaTabBar: LirikaRootContaierType {
 typealias TabBarRouter = Router<LirikaTabBar>
 
 class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
-  override func generateRootContainer() -> LirikaTabBar {
-    return LirikaTabBar(container: nil)
+  
+  convenience init(initialRoute: RouteType) {
+    self.init(container: LirikaTabBar(container: nil), initialRoute: initialRoute)
   }
+  
 }

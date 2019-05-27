@@ -45,7 +45,4 @@ class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
     return presentable().presentId()
   }
 
-  static func presentId() -> String {
-    return UINavigationController.presentId()
-  }
 }

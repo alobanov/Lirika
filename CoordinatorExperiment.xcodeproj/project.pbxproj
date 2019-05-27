@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,7 +37,6 @@
 		E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */; };
 		E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */; };
 		E8E7FA7D227AF63500B62CA1 /* NavModalFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */; };
-		E8FA376822808B1F0099BE76 /* ReferenceBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376022808B1F0099BE76 /* ReferenceBox.swift */; };
 		E8FA376922808B1F0099BE76 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376122808B1F0099BE76 /* Presentable.swift */; };
 		E8FA376A22808B1F0099BE76 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376322808B1F0099BE76 /* TabBarCoordinator.swift */; };
 		E8FA376B22808B1F0099BE76 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376422808B1F0099BE76 /* NavigationCoordinator.swift */; };
@@ -96,7 +95,6 @@
 		E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavExitTabFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavModalFlowCoordinator.swift; sourceTree = "<group>"; };
-		E8FA376022808B1F0099BE76 /* ReferenceBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceBox.swift; sourceTree = "<group>"; };
 		E8FA376122808B1F0099BE76 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		E8FA376322808B1F0099BE76 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		E8FA376422808B1F0099BE76 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -310,7 +308,6 @@
 			isa = PBXGroup;
 			children = (
 				E8FA376222808B1F0099BE76 /* coords */,
-				E8FA376022808B1F0099BE76 /* ReferenceBox.swift */,
 				E8FA376622808B1F0099BE76 /* Coordinatorable.swift */,
 				E8FA376122808B1F0099BE76 /* Presentable.swift */,
 				E8FA376522808B1F0099BE76 /* Router.swift */,
@@ -500,28 +497,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleButton/SimpleButton.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -537,7 +521,6 @@
 				E84FA31621FDB554006A6705 /* PerfectButton.swift in Sources */,
 				E853AC912291F33500B86553 /* OptionFlowCoordinator.swift in Sources */,
 				E84FA31321FDAE92006A6705 /* Theme.swift in Sources */,
-				E8FA376822808B1F0099BE76 /* ReferenceBox.swift in Sources */,
 				E8FA376A22808B1F0099BE76 /* TabBarCoordinator.swift in Sources */,
 				E8FA376C22808B1F0099BE76 /* Router.swift in Sources */,
 				E853AC8D2291EC7B00B86553 /* WindowRouter.swift in Sources */,

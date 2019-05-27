@@ -35,13 +35,9 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
     Page(title: "Third page", buttonTitle: "Finish", index: 2, color: .blue),
   ]
   
-  override init(container: RootContainerType?, initialRoute: PageFlowRoute? = nil) {
-    super.init(container: container, initialRoute: initialRoute)
-  }
-  
   // MARK: - Overrides
   
-  override func prepare(route: PageFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: PageFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .prepareFirstPage:
       if let controller = viewControllerAtIndex(index: 0)?.presentable() {

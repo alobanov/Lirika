@@ -20,8 +20,8 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
 
   fileprivate let outputLogout = PublishRelay<Void>()
 
-  init() {
-    super.init(container: nil, initialRoute: .third)
+  convenience init() {
+    self.init(initialRoute: .third)
   }
   
   override func configureRootViewController() {
@@ -42,7 +42,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
 
   // MARK: - Overrides
 
-  override func prepare(route: TabBarFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: TabBarFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .first:
       router.select(index: 0, completion: completion)
