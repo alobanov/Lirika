@@ -24,9 +24,7 @@ class LirikaPage: LirikaRootContaierType {
 typealias PageRouter = Router<LirikaPage>
 
 class PageCoordinator<RouteType: Route>: Coordinator<RouteType, PageRouter> {
-  
   convenience init() {
-    self.init(container: LirikaPage(container: LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)))
+    self.init(container: LirikaPage())
   }
-  
 }

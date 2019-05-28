@@ -16,7 +16,6 @@ typealias TabBarRouter = Router<LirikaTabBar>
 class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
   
   convenience init(initialRoute: RouteType) {
-    self.init(container: LirikaTabBar(container: nil), initialRoute: initialRoute)
+    self.init(container: LirikaTabBar(), initialRoute: initialRoute)
   }
-  
 }

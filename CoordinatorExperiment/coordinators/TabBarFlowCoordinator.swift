@@ -19,6 +19,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
   }
 
   fileprivate let outputLogout = PublishRelay<Void>()
+  fileprivate let bag = DisposeBag()
 
   convenience init() {
     self.init(initialRoute: .third)

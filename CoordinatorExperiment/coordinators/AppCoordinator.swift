@@ -9,6 +9,8 @@ enum AppRoute: Route {
 }
 
 class AppCoordinator: WindowCoordinator<AppRoute> {
+  fileprivate let bag = DisposeBag()
+  
   override func drive(route: AppRoute, completion _: PresentationHandler?) {
     switch route {
     case .options:

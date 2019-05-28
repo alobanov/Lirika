@@ -22,6 +22,7 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
 
   private let tabbarFlow = PublishRelay<Void>()
   private let pageFlow = PublishRelay<Void>()
+  fileprivate let bag = DisposeBag()
 
   override func drive(route: OptionFlowRoute, completion _: PresentationHandler?) {
     switch route {

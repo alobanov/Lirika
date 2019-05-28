@@ -24,7 +24,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
   // MARK: - Stored properties
 
   private var tag: Int = 0
-
+  fileprivate let bag = DisposeBag()
   private let didDeinit = PublishRelay<Void>()
 
   // MARK: - Init

@@ -25,7 +25,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
   // MARK: - Stored properties
 
   private var tag: Int = 0
-
+  fileprivate let bag = DisposeBag()
   fileprivate let didDeinit = PublishRelay<Void>()
   fileprivate let completeFlow = PublishRelay<Void>()
 

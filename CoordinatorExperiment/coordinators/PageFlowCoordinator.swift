@@ -19,6 +19,7 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
   }
   
   fileprivate let exit = PublishRelay<Void>()
+  fileprivate let bag = DisposeBag()
   
   var pageInTabBar = false
   
