@@ -9,6 +9,8 @@ enum AppRoute: Route {
 }
 
 class AppCoordinator: WindowCoordinator<AppRoute> {
+  fileprivate let bag = DisposeBag()
+
   override func drive(route: AppRoute, completion _: PresentationHandler?) {
     switch route {
     case .options:
@@ -21,7 +23,7 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
       let coord = tabbar()
       startCoordinator(coord)
       router.setRoot(controller: coord)
-    
+
     case .pageFlow:
       let coord = page()
       startCoordinator(coord)
@@ -55,7 +57,7 @@ extension AppCoordinator {
       self?.removeChild(optionCoord)
       self?.trigger(.tabbarFlow)
     }).disposed(by: bag)
-    
+
     output.pageFlow.drive(onNext: { [weak optionCoord, weak self] in
       self?.removeChild(optionCoord)
       self?.trigger(.pageFlow)
@@ -63,19 +65,19 @@ extension AppCoordinator {
 
     return optionCoord
   }
-  
+
   fileprivate func page() -> Coordinatorable {
     let container = LirikaPage.Container(transitionStyle: .pageCurl, navigationOrientation: .vertical, options: nil)
     let root = LirikaPage(container: container)
-    
+
     let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)
     let output = pageCoord.configure()
-    
+
     output.exit.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak pageCoord, weak self] in
       self?.removeChild(pageCoord)
       self?.trigger(.options)
     }).disposed(by: bag)
-    
+
     return pageCoord
   }
 }

@@ -25,7 +25,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
   // MARK: - Stored properties
 
   private var tag: Int = 0
-
+  fileprivate let bag = DisposeBag()
   fileprivate let didDeinit = PublishRelay<Void>()
   fileprivate let completeFlow = PublishRelay<Void>()
 
@@ -37,7 +37,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
 
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
-  
+
   override func configureRootViewController() {
     rootContainer.container.navigationBar.isTranslucent = false
     rootContainer.container.navigationBar.prefersLargeTitles = true

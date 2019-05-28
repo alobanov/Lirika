@@ -22,6 +22,7 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
 
   private let tabbarFlow = PublishRelay<Void>()
   private let pageFlow = PublishRelay<Void>()
+  fileprivate let bag = DisposeBag()
 
   override func drive(route: OptionFlowRoute, completion _: PresentationHandler?) {
     switch route {
@@ -42,10 +43,10 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
 
     case .dissmisModal:
       router.dismissModal(animated: true, completion: nil)
-      
+
     case .pageAsRootFlow:
       pageFlow.accept(())
-      
+
     case .pageModalFlow:
       let coord = pageCoordinator()
       startCoordinator(coord)
@@ -120,19 +121,19 @@ extension OptionFlowCoordinator {
 
     return (navCoord, rootNav.container)
   }
-  
+
   fileprivate func pageCoordinator() -> Coordinatorable {
     let container = LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     let root = LirikaPage(container: container)
-    
+
     let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)
     let output = pageCoord.configure()
-    
+
     output.exit.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak pageCoord, weak self] in
       self?.removeChild(pageCoord)
       self?.router.dismissModal(animated: true, completion: nil)
     }).disposed(by: bag)
-    
+
     return pageCoord
   }
 }

@@ -24,7 +24,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
   // MARK: - Stored properties
 
   private var tag: Int = 0
-
+  fileprivate let bag = DisposeBag()
   private let didDeinit = PublishRelay<Void>()
 
   // MARK: - Init
@@ -34,7 +34,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
     self.tag = tag
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
-  
+
   override func configureRootViewController() {
     rootContainer.container.navigationBar.isTranslucent = false
   }

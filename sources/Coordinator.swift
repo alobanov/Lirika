@@ -1,7 +1,6 @@
 // Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
 
 import Foundation
-import RxSwift
 import UIKit
 
 protocol DeepLink {}
@@ -24,8 +23,6 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
 
   var rootContainer: RootContainerType
 
-  let bag = DisposeBag()
-
   let router: Router<RootContainerType>
 
   // MARK: - Init
@@ -33,9 +30,9 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   init(container: RootContainerType, initialRoute: RouteType? = nil) {
     self.initialRoute = initialRoute
     self.router = Router<RootContainerType>()
-    rootContainer = container
-    self.router.define(root: rootContainer)
-    self.configureRootViewController()
+    self.rootContainer = container
+    router.define(root: rootContainer)
+    configureRootViewController()
   }
 
   // MARK: - Public
@@ -129,5 +126,4 @@ extension Coordinator: Presentable {
     }
     return presentable().presentId()
   }
-
 }

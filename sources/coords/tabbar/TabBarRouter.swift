@@ -6,7 +6,7 @@ extension Router where RootContainer: LirikaTabBar {
   func container() -> LirikaTabBar.Container {
     return rootController?.container ?? LirikaTabBar.Container()
   }
-  
+
   func set(_ viewControllers: [Presentable], animated: Bool, completion: PresentationHandler?) {
     let controllers = unwrapPresentables(viewControllers)
 

@@ -45,7 +45,7 @@ class OptionsViewController: UIViewController, ControllerInOutType {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationItem.largeTitleDisplayMode = .always
+    navigationItem.largeTitleDisplayMode = .always
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -81,11 +81,11 @@ class OptionsViewController: UIViewController, ControllerInOutType {
     customView.showNavigationButton.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.tapRelay.accept(.navigation)
     }).disposed(by: bag)
-    
+
     customView.showPageAsRootButton.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.tapRelay.accept(.pageAsRoot)
     }).disposed(by: bag)
-    
+
     customView.showPageAsModalButton.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.tapRelay.accept(.pageModal)
     }).disposed(by: bag)
