@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,15 @@
 		E84FA31121FDAE61006A6705 /* PTSans.ttc in Resources */ = {isa = PBXBuildFile; fileRef = E84FA31021FDAE61006A6705 /* PTSans.ttc */; };
 		E84FA31321FDAE92006A6705 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31221FDAE92006A6705 /* Theme.swift */; };
 		E84FA31621FDB554006A6705 /* PerfectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FA31521FDB554006A6705 /* PerfectButton.swift */; };
+		E853AC8D2291EC7B00B86553 /* WindowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853AC8C2291EC7B00B86553 /* WindowRouter.swift */; };
+		E853AC8F2291ED4500B86553 /* LirikaRootContaierType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853AC8E2291ED4500B86553 /* LirikaRootContaierType.swift */; };
+		E853AC912291F33500B86553 /* OptionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */; };
+		E86C8D42228EB6460090E9FD /* WindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */; };
+		E88109EF229406020055B9B4 /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109EE229406020055B9B4 /* PageCoordinator.swift */; };
+		E88109F1229406120055B9B4 /* PageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F0229406120055B9B4 /* PageRouter.swift */; };
+		E88109F32294072E0055B9B4 /* PageFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F22294072E0055B9B4 /* PageFlowCoordinator.swift */; };
+		E88109F622940A500055B9B4 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F522940A500055B9B4 /* PageViewController.swift */; };
+		E88109F822940A5B0055B9B4 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F722940A5B0055B9B4 /* PageView.swift */; };
 		E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */; };
 		E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */; };
 		E8E7FA6E2279A32E00B62CA1 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */; };
@@ -28,7 +37,6 @@
 		E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */; };
 		E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */; };
 		E8E7FA7D227AF63500B62CA1 /* NavModalFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */; };
-		E8FA376822808B1F0099BE76 /* ReferenceBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376022808B1F0099BE76 /* ReferenceBox.swift */; };
 		E8FA376922808B1F0099BE76 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376122808B1F0099BE76 /* Presentable.swift */; };
 		E8FA376A22808B1F0099BE76 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376322808B1F0099BE76 /* TabBarCoordinator.swift */; };
 		E8FA376B22808B1F0099BE76 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA376422808B1F0099BE76 /* NavigationCoordinator.swift */; };
@@ -69,6 +77,15 @@
 		E84FA31021FDAE61006A6705 /* PTSans.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSans.ttc; sourceTree = "<group>"; };
 		E84FA31221FDAE92006A6705 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E84FA31521FDB554006A6705 /* PerfectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectButton.swift; sourceTree = "<group>"; };
+		E853AC8C2291EC7B00B86553 /* WindowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRouter.swift; sourceTree = "<group>"; };
+		E853AC8E2291ED4500B86553 /* LirikaRootContaierType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LirikaRootContaierType.swift; sourceTree = "<group>"; };
+		E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionFlowCoordinator.swift; sourceTree = "<group>"; };
+		E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCoordinator.swift; sourceTree = "<group>"; };
+		E88109EE229406020055B9B4 /* PageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
+		E88109F0229406120055B9B4 /* PageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageRouter.swift; sourceTree = "<group>"; };
+		E88109F22294072E0055B9B4 /* PageFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFlowCoordinator.swift; sourceTree = "<group>"; };
+		E88109F522940A500055B9B4 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		E88109F722940A5B0055B9B4 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -78,7 +95,6 @@
 		E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavExitTabFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavModalFlowCoordinator.swift; sourceTree = "<group>"; };
-		E8FA376022808B1F0099BE76 /* ReferenceBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceBox.swift; sourceTree = "<group>"; };
 		E8FA376122808B1F0099BE76 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		E8FA376322808B1F0099BE76 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		E8FA376422808B1F0099BE76 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -178,6 +194,7 @@
 		E836990E21F096CC007D4A05 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				E88109F422940A3B0055B9B4 /* page */,
 				E8E7FA722279C62B00B62CA1 /* singleButton */,
 				E8E7FA6A2279A2B900B62CA1 /* start */,
 			);
@@ -206,8 +223,13 @@
 		E836995B21F0E555007D4A05 /* coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				E8E7FA79227ADE0500B62CA1 /* new */,
 				E836995D21F0E570007D4A05 /* AppCoordinator.swift */,
+				E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */,
+				E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */,
+				E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */,
+				E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */,
+				E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */,
+				E88109F22294072E0055B9B4 /* PageFlowCoordinator.swift */,
 			);
 			path = coordinators;
 			sourceTree = "<group>";
@@ -227,6 +249,33 @@
 				E84FA31521FDB554006A6705 /* PerfectButton.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		E86C8D40228EB6050090E9FD /* window */ = {
+			isa = PBXGroup;
+			children = (
+				E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */,
+				E853AC8C2291EC7B00B86553 /* WindowRouter.swift */,
+			);
+			path = window;
+			sourceTree = "<group>";
+		};
+		E88109ED229405DB0055B9B4 /* page */ = {
+			isa = PBXGroup;
+			children = (
+				E88109EE229406020055B9B4 /* PageCoordinator.swift */,
+				E88109F0229406120055B9B4 /* PageRouter.swift */,
+			);
+			path = page;
+			sourceTree = "<group>";
+		};
+		E88109F422940A3B0055B9B4 /* page */ = {
+			isa = PBXGroup;
+			children = (
+				E88109F522940A500055B9B4 /* PageViewController.swift */,
+				E88109F722940A5B0055B9B4 /* PageView.swift */,
+			);
+			path = page;
 			sourceTree = "<group>";
 		};
 		E8E7FA6A2279A2B900B62CA1 /* start */ = {
@@ -255,25 +304,14 @@
 			path = singleButton;
 			sourceTree = "<group>";
 		};
-		E8E7FA79227ADE0500B62CA1 /* new */ = {
-			isa = PBXGroup;
-			children = (
-				E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */,
-				E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */,
-				E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */,
-				E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */,
-			);
-			path = new;
-			sourceTree = "<group>";
-		};
 		E8FA375F22808B1F0099BE76 /* sources */ = {
 			isa = PBXGroup;
 			children = (
 				E8FA376222808B1F0099BE76 /* coords */,
-				E8FA376022808B1F0099BE76 /* ReferenceBox.swift */,
 				E8FA376622808B1F0099BE76 /* Coordinatorable.swift */,
 				E8FA376122808B1F0099BE76 /* Presentable.swift */,
 				E8FA376522808B1F0099BE76 /* Router.swift */,
+				E853AC8E2291ED4500B86553 /* LirikaRootContaierType.swift */,
 				E8FA376722808B1F0099BE76 /* Coordinator.swift */,
 			);
 			path = sources;
@@ -282,6 +320,8 @@
 		E8FA376222808B1F0099BE76 /* coords */ = {
 			isa = PBXGroup;
 			children = (
+				E88109ED229405DB0055B9B4 /* page */,
+				E86C8D40228EB6050090E9FD /* window */,
 				E8FA377222808C140099BE76 /* navigation */,
 				E8FA376F22808BD30099BE76 /* tabbar */,
 			);
@@ -457,28 +497,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleButton/SimpleButton.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoordinatorExperiment/Pods-CoordinatorExperiment-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -489,26 +516,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8E7FA7D227AF63500B62CA1 /* NavModalFlowCoordinator.swift in Sources */,
+				E88109F822940A5B0055B9B4 /* PageView.swift in Sources */,
 				E8FA376922808B1F0099BE76 /* Presentable.swift in Sources */,
 				E84FA31621FDB554006A6705 /* PerfectButton.swift in Sources */,
+				E853AC912291F33500B86553 /* OptionFlowCoordinator.swift in Sources */,
 				E84FA31321FDAE92006A6705 /* Theme.swift in Sources */,
-				E8FA376822808B1F0099BE76 /* ReferenceBox.swift in Sources */,
 				E8FA376A22808B1F0099BE76 /* TabBarCoordinator.swift in Sources */,
 				E8FA376C22808B1F0099BE76 /* Router.swift in Sources */,
+				E853AC8D2291EC7B00B86553 /* WindowRouter.swift in Sources */,
 				E8E7FA742279C64300B62CA1 /* ButtonsViewController.swift in Sources */,
+				E853AC8F2291ED4500B86553 /* LirikaRootContaierType.swift in Sources */,
 				E8FA377122808BE60099BE76 /* TabBarRouter.swift in Sources */,
 				E836994F21F0E460007D4A05 /* RxViewModelPorotocol.swift in Sources */,
 				E8FA376B22808B1F0099BE76 /* NavigationCoordinator.swift in Sources */,
+				E88109F622940A500055B9B4 /* PageViewController.swift in Sources */,
 				E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */,
 				E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */,
 				E8FA376D22808B1F0099BE76 /* Coordinatorable.swift in Sources */,
+				E88109EF229406020055B9B4 /* PageCoordinator.swift in Sources */,
+				E86C8D42228EB6460090E9FD /* WindowCoordinator.swift in Sources */,
 				E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */,
 				E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */,
 				E83698EC21F094FF007D4A05 /* AppDelegate.swift in Sources */,
 				E836996121F0E571007D4A05 /* AppCoordinator.swift in Sources */,
 				E8E7FA6E2279A32E00B62CA1 /* OptionsView.swift in Sources */,
+				E88109F1229406120055B9B4 /* PageRouter.swift in Sources */,
 				E8E7FA712279A79B00B62CA1 /* ControllerInOutProtocol.swift in Sources */,
 				E8E7FA762279C65200B62CA1 /* ButtonsView.swift in Sources */,
+				E88109F32294072E0055B9B4 /* PageFlowCoordinator.swift in Sources */,
 				E8FA376E22808B1F0099BE76 /* Coordinator.swift in Sources */,
 				E8FA377422808C370099BE76 /* NavigationRouter.swift in Sources */,
 			);

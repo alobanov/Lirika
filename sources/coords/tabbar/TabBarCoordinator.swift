@@ -2,12 +2,21 @@
 
 import UIKit
 
-class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
-  override func generateRootViewController() -> UITabBarController {
-    return super.generateRootViewController()
+class LirikaTabBar: LirikaRootContaierType {
+  private(set) var container: LirikaTabBar.Container
+  class Container: UITabBarController {}
+  
+  init(container: Container? = nil) {
+    self.container = container ?? Container()
   }
+}
 
-  deinit {
-    print("Dead TabBarCoordinator")
+typealias TabBarRouter = Router<LirikaTabBar>
+
+class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
+  
+  convenience init(initialRoute: RouteType) {
+    self.init(container: LirikaTabBar(container: nil), initialRoute: initialRoute)
   }
+  
 }

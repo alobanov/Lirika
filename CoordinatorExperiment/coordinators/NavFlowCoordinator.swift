@@ -29,22 +29,19 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
 
   // MARK: - Init
 
-  init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(controller: nil, initialRoute: .setAsRoot)
+  convenience init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
+    self.init(initialRoute: .setAsRoot)
     self.tag = tag
-    rootViewController.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
-
-    rootViewController.navigationBar.isTranslucent = false
-    rootViewController.navigationBar.prefersLargeTitles = true
+    rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
-
-  init(rootViewController: UINavigationController?, initialRoute: NavFlowRoute) {
-    super.init(controller: rootViewController, initialRoute: initialRoute)
+  
+  override func configureRootViewController() {
+    rootContainer.container.navigationBar.isTranslucent = false
   }
 
   // MARK: - Overrides
 
-  override func prepare(route: NavFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: NavFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .setAsRoot:
       let controller = dummyController(title: "Navigation first", actionButtonTitle: "Push", isFirst: true)

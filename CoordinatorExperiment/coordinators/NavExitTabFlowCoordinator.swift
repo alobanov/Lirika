@@ -31,22 +31,21 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
 
   // MARK: - Init
 
-  init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(controller: nil, initialRoute: .setAsRoot)
+  convenience init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
+    self.init(initialRoute: .setAsRoot)
     self.tag = tag
-    rootViewController.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
 
-    rootViewController.navigationBar.isTranslucent = false
-    rootViewController.navigationBar.prefersLargeTitles = true
+    rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
-
-  init(rootViewController: UINavigationController?, initialRoute: NavExitTabFlowRoute) {
-    super.init(controller: rootViewController, initialRoute: initialRoute)
+  
+  override func configureRootViewController() {
+    rootContainer.container.navigationBar.isTranslucent = false
+    rootContainer.container.navigationBar.prefersLargeTitles = true
   }
 
   // MARK: - Overrides
 
-  override func prepare(route: NavExitTabFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: NavExitTabFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .setAsRoot:
       let controller = dummyController(title: "Exit from tabbar", actionButtonTitle: "Exit", isFirst: true)

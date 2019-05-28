@@ -30,23 +30,21 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
   fileprivate let completeFlow = PublishRelay<Void>()
 
   // MARK: - Init
-
-  init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(controller: nil, initialRoute: .setAsRoot)
+  
+  convenience init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
+    self.init(initialRoute: .setAsRoot)
     self.tag = tag
-    rootViewController.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
-
-    rootViewController.navigationBar.isTranslucent = false
-    rootViewController.navigationBar.prefersLargeTitles = true
+    rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
-
-  init(rootViewController: UINavigationController?, initialRoute: NavModalFlowRoute) {
-    super.init(controller: rootViewController, initialRoute: initialRoute)
+  
+  override func configureRootViewController() {
+    rootContainer.container.navigationBar.isTranslucent = false
+    rootContainer.container.navigationBar.prefersLargeTitles = true
   }
 
   // MARK: - Overrides
 
-  override func prepare(route: NavModalFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: NavModalFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .setAsRoot:
       let controller = dummyController(title: "Modal navigation", actionButtonTitle: "Push", isFirst: true)
