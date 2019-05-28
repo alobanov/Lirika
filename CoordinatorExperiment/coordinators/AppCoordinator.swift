@@ -9,7 +9,7 @@ enum AppRoute: Route {
 }
 
 class AppCoordinator: WindowCoordinator<AppRoute> {
-  override func prepare(route: AppRoute, completion _: PresentationHandler?) {
+  override func drive(route: AppRoute, completion _: PresentationHandler?) {
     switch route {
     case .options:
       let coord = options()
@@ -48,7 +48,7 @@ extension AppCoordinator {
   }
 
   fileprivate func options() -> Coordinatorable {
-    let optionCoord = OptionFlowCoordinator(container: nil, initialRoute: .options)
+    let optionCoord = OptionFlowCoordinator(initialRoute: .options)
     let output = optionCoord.configure()
 
     output.tabbarFlow.drive(onNext: { [weak optionCoord, weak self] in

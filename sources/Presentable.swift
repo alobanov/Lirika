@@ -7,7 +7,6 @@ typealias PresentableID = String
 protocol Presentable: AnyObject {
   func presentable() -> UIViewController
   func presentId() -> PresentableID
-  static func presentId() -> PresentableID
 }
 
 extension UIViewController: Presentable {
@@ -16,10 +15,7 @@ extension UIViewController: Presentable {
   }
 
   func presentId() -> PresentableID {
-    return String(describing: type(of: self))
+    return "\(hash)"
   }
-
-  static func presentId() -> PresentableID {
-    return String(describing: self)
-  }
+  
 }

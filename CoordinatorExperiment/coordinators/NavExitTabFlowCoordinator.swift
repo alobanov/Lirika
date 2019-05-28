@@ -31,15 +31,11 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
 
   // MARK: - Init
 
-  init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(container: nil, initialRoute: .setAsRoot)
+  convenience init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
+    self.init(initialRoute: .setAsRoot)
     self.tag = tag
 
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
-  }
-
-  init(rootViewController: LirikaNavigation?, initialRoute: NavExitTabFlowRoute) {
-    super.init(container: rootViewController, initialRoute: initialRoute)
   }
   
   override func configureRootViewController() {
@@ -49,7 +45,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
 
   // MARK: - Overrides
 
-  override func prepare(route: NavExitTabFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: NavExitTabFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .setAsRoot:
       let controller = dummyController(title: "Exit from tabbar", actionButtonTitle: "Exit", isFirst: true)

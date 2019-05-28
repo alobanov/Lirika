@@ -14,7 +14,9 @@ class LirikaNavigation: LirikaRootContaierType {
 typealias NavigationRouter = Router<LirikaNavigation>
 
 class NavigationCoordinator<RouteType: Route>: Coordinator<RouteType, NavigationRouter> {
-  override func generateRootContainer() -> LirikaNavigation {
-    return LirikaNavigation(container: nil)
+  
+  convenience init(initialRoute: RouteType) {
+    self.init(container: LirikaNavigation(container: nil), initialRoute: initialRoute)
   }
+  
 }

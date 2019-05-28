@@ -1,7 +1,6 @@
 // Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
 
 import Foundation
-import RxCocoa
 import RxSwift
 import UIKit
 
@@ -20,16 +19,10 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
   // Define custom coordinator/module identifier if you use same module more then one times
   private var customCoordinatorNameIdentifier: String?
 
-  // Root controller depends on RootControllerType
-  let rootContainerBox = ReferenceBox<RootContainerType>()
-
   // Route from which the coordinator starts
   var initialRoute: RouteType?
 
-  var rootContainer: RootContainerType {
-    // swiftlint:disable:next force_unwrapping
-    return rootContainerBox.get()!
-  }
+  var rootContainer: RootContainerType
 
   let bag = DisposeBag()
 
@@ -37,25 +30,15 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
 
   // MARK: - Init
 
-  init(container: RootContainerType?, initialRoute: RouteType? = nil) {
+  init(container: RootContainerType, initialRoute: RouteType? = nil) {
     self.initialRoute = initialRoute
     self.router = Router<RootContainerType>()
-
-    if let controller = container {
-      rootContainerBox.set(controller)
-    } else {
-      rootContainerBox.set(self.generateRootContainer())
-    }
-
+    rootContainer = container
     self.router.define(root: rootContainer)
     self.configureRootViewController()
   }
 
   // MARK: - Public
-
-  func generateRootContainer() -> RootContainerType {
-    fatalError("Override generateRootContainer for each Lirika container")
-  }
 
   func start() {
     guard let route = initialRoute else {
@@ -112,16 +95,12 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     return childs
   }
 
-  func coordinator<T: Coordinatorable>(by type: T.Type) -> Coordinatorable? {
-    return child(presentId: type.presentId()) as? Coordinatorable
-  }
-
-  func prepare(route: RouteType, completion: PresentationHandler?) {
+  func drive(route: RouteType, completion: PresentationHandler?) {
     fatalError("Please override the \(#function) method.")
   }
 
   func trigger(_ route: RouteType, comletion: PresentationHandler? = nil) {
-    prepare(route: route, completion: comletion)
+    drive(route: route, completion: comletion)
   }
 
   func deepLink(link: DeepLink) {}
@@ -133,7 +112,6 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
       print("Coordinator next is: \(coord.presentId())")
       return coord
     }
-
     return nil
   }
 }
@@ -146,14 +124,10 @@ extension Coordinator: Presentable {
   }
 
   func presentId() -> PresentableID {
-    guard let id = customCoordinatorNameIdentifier else {
-      return String(describing: type(of: self))
+    if let id = customCoordinatorNameIdentifier {
+      return id
     }
-
-    return id
+    return presentable().presentId()
   }
 
-  static func presentId() -> PresentableID {
-    return String(describing: self)
-  }
 }

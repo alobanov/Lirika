@@ -29,14 +29,10 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
 
   // MARK: - Init
 
-  init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(container: nil, initialRoute: .setAsRoot)
+  convenience init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
+    self.init(initialRoute: .setAsRoot)
     self.tag = tag
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
-  }
-
-  init(rootViewController: LirikaNavigation?, initialRoute: NavFlowRoute) {
-    super.init(container: rootViewController, initialRoute: initialRoute)
   }
   
   override func configureRootViewController() {
@@ -45,7 +41,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
 
   // MARK: - Overrides
 
-  override func prepare(route: NavFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: NavFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .setAsRoot:
       let controller = dummyController(title: "Navigation first", actionButtonTitle: "Push", isFirst: true)

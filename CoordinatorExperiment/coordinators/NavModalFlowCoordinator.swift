@@ -30,15 +30,11 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
   fileprivate let completeFlow = PublishRelay<Void>()
 
   // MARK: - Init
-
-  init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
-    super.init(container: nil, initialRoute: .setAsRoot)
+  
+  convenience init(tag: Int, tabBarSystemItem: UITabBarItem.SystemItem) {
+    self.init(initialRoute: .setAsRoot)
     self.tag = tag
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
-  }
-
-  init(rootViewController: LirikaNavigation?, initialRoute: NavModalFlowRoute) {
-    super.init(container: rootViewController, initialRoute: initialRoute)
   }
   
   override func configureRootViewController() {
@@ -48,7 +44,7 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
 
   // MARK: - Overrides
 
-  override func prepare(route: NavModalFlowRoute, completion: PresentationHandler?) {
+  override func drive(route: NavModalFlowRoute, completion: PresentationHandler?) {
     switch route {
     case .setAsRoot:
       let controller = dummyController(title: "Modal navigation", actionButtonTitle: "Push", isFirst: true)
