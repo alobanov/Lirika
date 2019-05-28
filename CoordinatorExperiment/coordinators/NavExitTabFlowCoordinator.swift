@@ -37,7 +37,7 @@ class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, Coo
 
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
-  
+
   override func configureRootViewController() {
     rootContainer.container.navigationBar.isTranslucent = false
     rootContainer.container.navigationBar.prefersLargeTitles = true

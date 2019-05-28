@@ -17,5 +17,4 @@ extension UIViewController: Presentable {
   func presentId() -> PresentableID {
     return "\(hashValue)"
   }
-  
 }

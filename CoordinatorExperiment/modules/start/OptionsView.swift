@@ -50,13 +50,13 @@ class OptionsView: UIView {
       make.top.equalTo(showNavigationButton.snp.bottom).inset(-20)
       make.height.equalTo(40)
     }
-    
+
     showPageAsRootButton.snp.makeConstraints { make in
       make.left.right.equalToSuperview().inset(15)
       make.top.equalTo(showModalButton.snp.bottom).inset(-20)
       make.height.equalTo(40)
     }
-    
+
     showPageAsModalButton.snp.makeConstraints { make in
       make.left.right.equalToSuperview().inset(15)
       make.top.equalTo(showPageAsRootButton.snp.bottom).inset(-20)

@@ -24,7 +24,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
   convenience init() {
     self.init(initialRoute: .third)
   }
-  
+
   override func configureRootViewController() {
     router.set(buildTabs(), animated: false, completion: nil)
   }
@@ -34,7 +34,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
       firstTabCoordinator(),
       secondTabCoordinator(),
       thirdTabCoordinator(),
-      page()
+      page(),
     ]
 
     coords.forEach { startCoordinator($0) }
@@ -87,15 +87,15 @@ extension TabBarFlowCoordinator {
     }).disposed(by: bag)
     return third
   }
-  
+
   fileprivate func page() -> Coordinatorable {
     let pageCoord = PageFlowCoordinator(container: LirikaPage(), initialRoute: .prepareForTabBar(tag: 3))
     let output = pageCoord.configure()
-    
+
     output.exit.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak self] in
       self?.trigger(.third)
     }).disposed(by: bag)
-    
+
     return pageCoord
   }
 }

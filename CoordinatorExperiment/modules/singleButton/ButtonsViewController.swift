@@ -74,7 +74,7 @@ class ButtonsViewController: UIViewController, ControllerInOutType {
 
   func configure(input: Input) -> Output {
     navigationItem.largeTitleDisplayMode = .never
-    
+
     title = input.controllerTitle
     customView.buttonFirst.setTitle(input.buttonTitle.uppercased(), for: .normal)
     customView.buttonSecond.setTitle("POP", for: .normal)

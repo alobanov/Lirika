@@ -34,7 +34,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput
     self.tag = tag
     rootContainer.container.tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: tag)
   }
-  
+
   override func configureRootViewController() {
     rootContainer.container.navigationBar.isTranslucent = false
   }

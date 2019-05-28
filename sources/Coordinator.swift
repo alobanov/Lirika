@@ -31,8 +31,8 @@ class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable
     self.initialRoute = initialRoute
     self.router = Router<RootContainerType>()
     self.rootContainer = container
-    self.router.define(root: rootContainer)
-    self.configureRootViewController()
+    router.define(root: rootContainer)
+    configureRootViewController()
   }
 
   // MARK: - Public
@@ -126,5 +126,4 @@ extension Coordinator: Presentable {
     }
     return presentable().presentId()
   }
-
 }
