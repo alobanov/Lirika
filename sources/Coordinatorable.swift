@@ -1,7 +1,6 @@
 // Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
 
 import Foundation
-import RxSwift
 
 protocol Route {}
 
