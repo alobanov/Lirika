@@ -4,7 +4,7 @@ import UIKit
 
 public class LirikaNavigation: LirikaRootContaierType {
   public var container: LirikaNavigation.Container
-  public class Container: UINavigationController {}
+  open class Container: UINavigationController {}
 
   public init(container: Container? = nil) {
     self.container = container ?? Container()

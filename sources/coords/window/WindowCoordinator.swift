@@ -4,7 +4,7 @@ import UIKit
 
 public class LirikaWindow: LirikaRootContaierType {
   public var container: LirikaWindow.Container
-  public class Container: UIWindow {}
+  open class Container: UIWindow {}
 
   public init(container: Container? = nil) {
     self.container = container ?? Container()
