@@ -7,6 +7,7 @@ public protocol LirikaPagerProtocol: AnyObject {
   func pageViewController(_ page: UIPageViewController, controllerAfter: UIViewController) -> UIViewController?
   func presentationCountForPageViewController(page: UIPageViewController) -> Int
   func presentationIndexForPageViewController(page: UIPageViewController) -> Int
+  func pageViewController(_ page: UIPageViewController, finished: Bool, previousViewControllers: [UIViewController], completed: Bool)
 }
 
 open class LirikaPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -15,6 +16,7 @@ open class LirikaPageViewController: UIPageViewController, UIPageViewControllerD
   public init(style: UIPageViewController.TransitionStyle, orientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey: Any]? = nil) {
     super.init(transitionStyle: style, navigationOrientation: orientation, options: options)
     self.dataSource = self
+    self.delegate = self
   }
 
   public required init?(coder: NSCoder) {
@@ -35,6 +37,10 @@ open class LirikaPageViewController: UIPageViewController, UIPageViewControllerD
 
   public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
     return pagerDataSource?.presentationIndexForPageViewController(page: pageViewController) ?? 0
+  }
+  
+  public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    pagerDataSource?.pageViewController(pageViewController, finished: finished, previousViewControllers: previousViewControllers, completed: completed)
   }
 }
 

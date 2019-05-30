@@ -131,6 +131,10 @@ extension PageFlowCoordinator: LirikaPagerProtocol {
   func presentationIndexForPageViewController(page: UIPageViewController) -> Int {
     return 0
   }
+  
+  func pageViewController(_ page: UIPageViewController, finished: Bool, previousViewControllers: [UIViewController], completed: Bool) {
+    print("animation finish completed")
+  }
 }
 
 extension PageFlowCoordinator {
