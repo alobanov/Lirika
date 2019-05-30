@@ -7,7 +7,7 @@ import UIKit
 
 class OptionsViewController: UIViewController, ControllerInOutType {
   enum TapEventType {
-    case tabbar, navigation, modal, pageAsRoot, pageModal
+    case tabbar, navigation, modal, pageAsRoot, pageModal, controller
   }
 
   struct Output {
@@ -88,6 +88,10 @@ class OptionsViewController: UIViewController, ControllerInOutType {
 
     customView.showPageAsModalButton.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.tapRelay.accept(.pageModal)
+    }).disposed(by: bag)
+
+    customView.showControllerButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+      self?.tapRelay.accept(.controller)
     }).disposed(by: bag)
   }
 

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		6582022A5828FC1762CFEE40 /* Pods_CoordinatorExperiment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE0085515CB6BF427B8E525 /* Pods_CoordinatorExperiment.framework */; };
 		6EE5D3A07AE17C2C0FD6153F /* Pods_CoordinatorExperimentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D08A3073A01BA5AA7D1380 /* Pods_CoordinatorExperimentTests.framework */; };
+		E80FF564229D848D0078E545 /* ControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80FF563229D848D0078E545 /* ControllerCoordinator.swift */; };
+		E80FF566229D84990078E545 /* ControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80FF565229D84990078E545 /* ControllerRouter.swift */; };
+		E80FF568229D85DD0078E545 /* ControllerFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80FF567229D85DD0078E545 /* ControllerFlowCoordinator.swift */; };
 		E83698EC21F094FF007D4A05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83698EB21F094FF007D4A05 /* AppDelegate.swift */; };
 		E83698F121F094FF007D4A05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E83698EF21F094FF007D4A05 /* Main.storyboard */; };
 		E83698F321F09501007D4A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E83698F221F09501007D4A05 /* Assets.xcassets */; };
@@ -63,6 +66,9 @@
 		82B861FD670301A7538C248A /* Pods-CoordinatorExperimentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoordinatorExperimentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoordinatorExperimentTests/Pods-CoordinatorExperimentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA3D913C7C17CDA0AA85F202 /* Pods-CoordinatorExperimentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoordinatorExperimentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoordinatorExperimentTests/Pods-CoordinatorExperimentTests.release.xcconfig"; sourceTree = "<group>"; };
 		E5D08A3073A01BA5AA7D1380 /* Pods_CoordinatorExperimentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoordinatorExperimentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E80FF563229D848D0078E545 /* ControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerCoordinator.swift; sourceTree = "<group>"; };
+		E80FF565229D84990078E545 /* ControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerRouter.swift; sourceTree = "<group>"; };
+		E80FF567229D85DD0078E545 /* ControllerFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerFlowCoordinator.swift; sourceTree = "<group>"; };
 		E83698E821F094FF007D4A05 /* CoordinatorExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83698EB21F094FF007D4A05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E83698F021F094FF007D4A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -144,6 +150,15 @@
 				BA3D913C7C17CDA0AA85F202 /* Pods-CoordinatorExperimentTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E80FF562229D847E0078E545 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				E80FF563229D848D0078E545 /* ControllerCoordinator.swift */,
+				E80FF565229D84990078E545 /* ControllerRouter.swift */,
+			);
+			path = controller;
 			sourceTree = "<group>";
 		};
 		E83698DF21F094FF007D4A05 = {
@@ -230,6 +245,7 @@
 				E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */,
 				E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */,
 				E88109F22294072E0055B9B4 /* PageFlowCoordinator.swift */,
+				E80FF567229D85DD0078E545 /* ControllerFlowCoordinator.swift */,
 			);
 			path = coordinators;
 			sourceTree = "<group>";
@@ -320,6 +336,7 @@
 		E8FA376222808B1F0099BE76 /* coords */ = {
 			isa = PBXGroup;
 			children = (
+				E80FF562229D847E0078E545 /* controller */,
 				E88109ED229405DB0055B9B4 /* page */,
 				E86C8D40228EB6050090E9FD /* window */,
 				E8FA377222808C140099BE76 /* navigation */,
@@ -525,6 +542,7 @@
 				E8FA376C22808B1F0099BE76 /* Router.swift in Sources */,
 				E853AC8D2291EC7B00B86553 /* WindowRouter.swift in Sources */,
 				E8E7FA742279C64300B62CA1 /* ButtonsViewController.swift in Sources */,
+				E80FF566229D84990078E545 /* ControllerRouter.swift in Sources */,
 				E853AC8F2291ED4500B86553 /* LirikaRootContaierType.swift in Sources */,
 				E8FA377122808BE60099BE76 /* TabBarRouter.swift in Sources */,
 				E836994F21F0E460007D4A05 /* RxViewModelPorotocol.swift in Sources */,
@@ -536,6 +554,7 @@
 				E88109EF229406020055B9B4 /* PageCoordinator.swift in Sources */,
 				E86C8D42228EB6460090E9FD /* WindowCoordinator.swift in Sources */,
 				E8E7FA7B227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift in Sources */,
+				E80FF568229D85DD0078E545 /* ControllerFlowCoordinator.swift in Sources */,
 				E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */,
 				E83698EC21F094FF007D4A05 /* AppDelegate.swift in Sources */,
 				E836996121F0E571007D4A05 /* AppCoordinator.swift in Sources */,
@@ -545,6 +564,7 @@
 				E8E7FA762279C65200B62CA1 /* ButtonsView.swift in Sources */,
 				E88109F32294072E0055B9B4 /* PageFlowCoordinator.swift in Sources */,
 				E8FA376E22808B1F0099BE76 /* Coordinator.swift in Sources */,
+				E80FF564229D848D0078E545 /* ControllerCoordinator.swift in Sources */,
 				E8FA377422808C370099BE76 /* NavigationRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

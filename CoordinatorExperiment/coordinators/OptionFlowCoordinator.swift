@@ -6,7 +6,7 @@ import RxSwift
 import UIKit
 
 enum OptionFlowRoute: Route {
-  case options, navigationFlow, tabbarFlow, modalFlow, dissmisModal, pageAsRootFlow, pageModalFlow
+  case options, navigationFlow, tabbarFlow, modalFlow, dissmisModal, pageAsRootFlow, pageModalFlow, controllerModalFlow
 }
 
 class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, CoordinatorOutput {
@@ -51,6 +51,11 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
       let coord = pageCoordinator()
       startCoordinator(coord)
       router.presentModal(coord, animated: true, completion: nil)
+
+    case .controllerModalFlow:
+      let coord = controllerCoordinator()
+      startCoordinator(coord)
+      router.presentModal(coord, animated: true, completion: nil)
     }
   }
 
@@ -65,6 +70,18 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
 }
 
 extension OptionFlowCoordinator {
+  fileprivate func controllerCoordinator() -> Coordinatorable {
+    let controller = ControllerFlowCoordinator(container: LirikaController())
+    let output = controller.configure()
+
+    output.exit.drive(onNext: { [weak self, weak controller] _ in
+      self?.removeChild(controller)
+      self?.router.dismissModal(animated: true, completion: nil)
+    }).disposed(by: bag)
+
+    return controller
+  }
+
   fileprivate func options() -> Presentable {
     let controller = OptionsViewController()
     let output = controller.configure(input: .init())
@@ -81,6 +98,8 @@ extension OptionFlowCoordinator {
         self?.trigger(.pageAsRootFlow)
       case .pageModal:
         self?.trigger(.pageModalFlow)
+      case .controller:
+        self?.trigger(.controllerModalFlow)
       }
     }).disposed(by: bag)
 
@@ -123,7 +142,7 @@ extension OptionFlowCoordinator {
   }
 
   fileprivate func pageCoordinator() -> Coordinatorable {
-    let container = LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    let container = LirikaPage.Container(style: .scroll, orientation: .horizontal)
     let root = LirikaPage(container: container)
 
     let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)

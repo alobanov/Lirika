@@ -2,21 +2,21 @@
 
 import Foundation
 
-protocol Route {}
+public protocol Route {}
 
-protocol Coordinatorable: Presentable {
+public protocol Coordinatorable: Presentable {
   func start()
   func deepLink(link: DeepLink)
 }
 
-protocol CoordinatorInput {
+public protocol CoordinatorInput {
   associatedtype InputData
   associatedtype Dependencies
 
   func define(data: InputData, dp: Dependencies)
 }
 
-protocol CoordinatorOutput {
+public protocol CoordinatorOutput {
   associatedtype Output
   func configure() -> Output
 }

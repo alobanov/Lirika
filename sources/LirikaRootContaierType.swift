@@ -2,7 +2,7 @@
 
 import Foundation
 
-protocol LirikaRootContaierType: AnyObject {
+public protocol LirikaRootContaierType: AnyObject {
   associatedtype Container
   var container: Container { get }
 }

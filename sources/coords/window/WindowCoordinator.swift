@@ -2,19 +2,19 @@
 
 import UIKit
 
-class LirikaWindow: LirikaRootContaierType {
-  private(set) var container: LirikaWindow.Container
-  class Container: UIWindow {}
+public class LirikaWindow: LirikaRootContaierType {
+  public var container: LirikaWindow.Container
+  public class Container: UIWindow {}
 
-  init(container: Container? = nil) {
+  public init(container: Container? = nil) {
     self.container = container ?? Container()
   }
 }
 
-typealias WindowRouter = Router<LirikaWindow>
+public typealias WindowRouter = Router<LirikaWindow>
 
-class WindowCoordinator<RouteType: Route>: Coordinator<RouteType, WindowRouter> {
-  convenience init(initialRoute: RouteType) {
+open class WindowCoordinator<RouteType: Route>: Coordinator<RouteType, WindowRouter> {
+  public convenience init(initialRoute: RouteType) {
     self.init(container: LirikaWindow(), initialRoute: initialRoute)
   }
 }

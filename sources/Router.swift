@@ -4,32 +4,32 @@ import UIKit
 
 public typealias PresentationHandler = () -> Void
 
-protocol RouterProtocol {
+public protocol RouterProtocol {
   associatedtype RootContainer: LirikaRootContaierType
 }
 
-class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
-  weak var rootController: RootContainer?
+public class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
+  public weak var rootController: RootContainer?
 
-  func define(root: RootContainer) {
+  public func define(root: RootContainer) {
     rootController = root
   }
 
-  func unwrapPresentables(_ modules: [Presentable]) -> [UIViewController] {
+  public func unwrapPresentables(_ modules: [Presentable]) -> [UIViewController] {
     let controllers = modules.map { module -> UIViewController in
       unwrapPresentable(module)
     }
     return controllers
   }
 
-  func unwrapPresentable(_ module: Presentable) -> UIViewController {
+  public func unwrapPresentable(_ module: Presentable) -> UIViewController {
     let controller = module.presentable()
     return controller
   }
 
   // MARK: - Presentable
 
-  func presentable() -> UIViewController {
+  public func presentable() -> UIViewController {
     guard let controller = rootController?.container else {
       return UIViewController()
     }
@@ -43,7 +43,7 @@ class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
     }
   }
 
-  func presentId() -> String {
+  public func presentId() -> String {
     return presentable().presentId()
   }
 }

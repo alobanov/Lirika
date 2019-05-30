@@ -2,23 +2,23 @@
 
 import UIKit
 
-protocol LirikaPageIndexProtocol {
+public protocol LirikaPageIndexProtocol {
   var index: Int { get }
 }
 
-class LirikaPage: LirikaRootContaierType {
-  private(set) var container: LirikaPage.Container
-  class Container: LirikaPageViewController {}
+public class LirikaPage: LirikaRootContaierType {
+  public var container: LirikaPage.Container
+  public class Container: LirikaPageViewController {}
 
-  init(container: Container? = nil) {
-    self.container = container ?? Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+  public init(container: Container? = nil) {
+    self.container = container ?? Container(style: .scroll, orientation: .horizontal)
   }
 }
 
-typealias PageRouter = Router<LirikaPage>
+public typealias PageRouter = Router<LirikaPage>
 
-class PageCoordinator<RouteType: Route>: Coordinator<RouteType, PageRouter> {
-  convenience init() {
+open class PageCoordinator<RouteType: Route>: Coordinator<RouteType, PageRouter> {
+  public convenience init() {
     self.init(container: LirikaPage())
   }
 }

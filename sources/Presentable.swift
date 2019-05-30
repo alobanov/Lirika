@@ -2,19 +2,19 @@
 
 import UIKit
 
-typealias PresentableID = String
+public typealias PresentableID = String
 
-protocol Presentable: AnyObject {
+public protocol Presentable: AnyObject {
   func presentable() -> UIViewController
   func presentId() -> PresentableID
 }
 
 extension UIViewController: Presentable {
-  func presentable() -> UIViewController {
+  public func presentable() -> UIViewController {
     return self
   }
 
-  func presentId() -> PresentableID {
+  public func presentId() -> PresentableID {
     return "\(hashValue)"
   }
 }

@@ -8,6 +8,7 @@ class OptionsView: UIView {
   let showModalButton = PerfectButton()
   let showPageAsRootButton = PerfectButton()
   let showPageAsModalButton = PerfectButton()
+  let showControllerButton = PerfectButton()
 
   override init(frame: CGRect = CGRect.zero) {
     super.init(frame: frame)
@@ -26,10 +27,11 @@ class OptionsView: UIView {
     showModalButton.setTitle("Present modal".uppercased(), for: .normal)
     showPageAsRootButton.setTitle("Page as ROOT".uppercased(), for: .normal)
     showPageAsModalButton.setTitle("Present page as modal".uppercased(), for: .normal)
+    showControllerButton.setTitle("Present controller contains page as model", for: .normal)
   }
 
   private func addSubviews() {
-    [showTabBarButton, showNavigationButton, showModalButton, showPageAsRootButton, showPageAsModalButton].forEach { addSubview($0) }
+    [showTabBarButton, showNavigationButton, showModalButton, showPageAsRootButton, showPageAsModalButton, showControllerButton].forEach { addSubview($0) }
   }
 
   public func makeConstraints(vc: UIViewController) {
@@ -60,6 +62,12 @@ class OptionsView: UIView {
     showPageAsModalButton.snp.makeConstraints { make in
       make.left.right.equalToSuperview().inset(15)
       make.top.equalTo(showPageAsRootButton.snp.bottom).inset(-20)
+      make.height.equalTo(40)
+    }
+
+    showControllerButton.snp.makeConstraints { make in
+      make.left.right.equalToSuperview().inset(15)
+      make.top.equalTo(showPageAsModalButton.snp.bottom).inset(-20)
       make.height.equalTo(40)
     }
   }

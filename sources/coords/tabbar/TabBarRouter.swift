@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension Router where RootContainer: LirikaTabBar {
+public extension Router where RootContainer: LirikaTabBar {
   func container() -> LirikaTabBar.Container {
     return rootController?.container ?? LirikaTabBar.Container()
   }

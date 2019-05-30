@@ -2,19 +2,19 @@
 
 import UIKit
 
-class LirikaTabBar: LirikaRootContaierType {
-  private(set) var container: LirikaTabBar.Container
-  class Container: UITabBarController {}
+public class LirikaTabBar: LirikaRootContaierType {
+  public var container: LirikaTabBar.Container
+  public class Container: UITabBarController {}
 
-  init(container: Container? = nil) {
+  public init(container: Container? = nil) {
     self.container = container ?? Container()
   }
 }
 
-typealias TabBarRouter = Router<LirikaTabBar>
+public typealias TabBarRouter = Router<LirikaTabBar>
 
-class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
-  convenience init(initialRoute: RouteType) {
+open class TabBarCoordinator<RouteType: Route>: Coordinator<RouteType, TabBarRouter> {
+  public convenience init(initialRoute: RouteType) {
     self.init(container: LirikaTabBar(), initialRoute: initialRoute)
   }
 }
