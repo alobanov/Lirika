@@ -1,51 +1,72 @@
 # Lirika
-Coordinator
+Тут надо описать что такое и зачем вообще нужен этот самый координатор
 
-## init
+### Общий пример. Корневой координатор на базе UIWindow (Он же LirikaWindow):
 
-Создание рутового координатора:
+```swift
+class MyWindow: LirikaWindow.Container {
+  // это собственный класс UIWindow в который можно добавить свою логику
+  // ниже смотри как его использовать при инициализации координатора
+}
+
+enum AppRoute: Route {
+  case root
+}
+
+class AppCoordinator: WindowCoordinator<AppRoute> {
+  override func drive(route: AppRoute, completion: PresentationHandler?) {
+    switch route {
+    case .root:
+      let controller = UIViewController()
+      router.setRoot(controller: controller)
+      router.makeKeyAndVisible()
+    }
+  }
+
+  override func start() {
+    trigger(.root) // Вызываем нужный путь для создания транзишна
+  }
+
+  override func configureRootViewController() {
+    // Тут можно настроить окружение и контейнер, вызывается сразу после старта
+    router.container() // Так можно обратиться к контейнеру, в данном примере это UIWindow
+  }
+
+  override func deepLink(link: DeepLink) {
+    switch link {
+    case let item as? ConcreteDeepLink:
+      // выполняем переход через trigger(.action)
+    default:
+      break
+    }
+  }
+}
+```
+
+#### Как использовать AppCoordinator, на примере AppDelgate:
 
 ```swift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  private lazy var coordinator = AppCoordinator(container: LirikaWindow(container: LirikaWindow.Container()), initialRoute: .options)
+  private lazy var coordinator = AppCoordinator(container: LirikaWindow(container: MyWindow()))
 
   func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     coordinator.start()
     return true
   }
 }
+
 ```
 
-Создание базового координатора:
+---
 
-```swift
-enum SampleRoute: Route {  
-  case screenOne, screenTwo, back
-}
+## Базовые координаторов:
 
-class SampleCoordinator: NavigationCoordinator<SampleRoute>, CoordinatorOutput {
-  func configure() -> SampleCoordinator.Output {
-    return Output(exampleAction: outputAction.asObservable())
-  }
-  
-  struct Output {
-    let logout: Observable<Void>
-  }
-  
-  private let outputAction = PublishSubject<Void>()
-  
-  override func prepare(route: AboutRoute, completion: PresentationHandler?) {
-    switch route {
-    case .screenOne:
-      router.set([q()], animated: false, completion: completion)
-    case .screenTwo:
-      outputAction.onNext(())
-    case .back:
-      router.pop(toRoot: false, completion: completion)
-    }
-  }
-```
+1. ControllerCoordinator - `UIViewController`
+2. PageCoordinator - `UIPageViewController`
+3. WindowCoordinator - `UIWindow`
+4. NavigationCoordinator - `UINavigationController`
+5. TabBarCoordinator - `UITabBarController`
 
 ## Install
 

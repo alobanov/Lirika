@@ -4,6 +4,11 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+class MyWindow: LirikaWindow.Container {
+  // это собственный класс UIWindow в который можно добавить свою логику
+  // ниже смотри как его использовать при инициализации координатора
+}
+
 enum AppRoute: Route {
   case options, tabbarFlow, pageFlow
 }
@@ -11,7 +16,7 @@ enum AppRoute: Route {
 class AppCoordinator: WindowCoordinator<AppRoute> {
   fileprivate let bag = DisposeBag()
 
-  override func drive(route: AppRoute, completion _: PresentationHandler?) {
+  override func drive(route: AppRoute, completion: PresentationHandler?) {
     switch route {
     case .options:
       let coord = options()
@@ -30,6 +35,23 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
       router.setRoot(controller: coord)
     }
   }
+  
+  override func start() {
+    trigger(.options)
+  }
+  
+  override func configureRootViewController() {
+    
+  }
+  
+//  override func deepLink(link: DeepLink) {
+//    switch link {
+//    case let item as? ConcreteDeepLink:
+//      // выполняем переход
+//    default:
+//      break
+//    }
+//  }
 
   deinit {
     print("Dead AppCoordinator")

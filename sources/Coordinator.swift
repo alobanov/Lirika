@@ -99,7 +99,7 @@ open class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinato
     drive(route: route, completion: comletion)
   }
 
-  public func deepLink(link: DeepLink) {}
+  open func deepLink(link: DeepLink) {}
 
   // MARK: - Private
 
