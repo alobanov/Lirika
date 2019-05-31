@@ -76,7 +76,7 @@ class ControllerFlowCoordinator: ControllerCoordinator<ControllerFlowRoute>, Coo
 
 extension ControllerFlowCoordinator {
   fileprivate func pageCoord() -> Coordinatorable {
-    let container = LirikaPage.Container(style: .scroll, orientation: .horizontal)
+    let container = MyPageController()
     let root = LirikaPage(container: container)
 
     let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareFirstPage)

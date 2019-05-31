@@ -8,10 +8,10 @@ public protocol LirikaPageIndexProtocol {
 
 public class LirikaPage: LirikaRootContaierType {
   public var container: LirikaPage.Container
-  open class Container: LirikaPageViewController {}
+  open class Container: UIPageViewController {}
 
   public init(container: Container? = nil) {
-    self.container = container ?? Container(style: .scroll, orientation: .horizontal)
+    self.container = container ?? LirikaPage.Container(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
   }
 }
 

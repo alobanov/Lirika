@@ -9,7 +9,11 @@ enum PageFlowRoute: Route {
   case prepareFirstPage, exit, prepareForTabBar(tag: Int)
 }
 
-class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
+class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput, PageFlowProtocol {
+  func pageList() -> [PageFlowCoordinator.Page] {
+    return pages
+  }
+
   func configure() -> Output {
     return Output(exit: exit.asObservable())
   }
@@ -20,8 +24,6 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
 
   fileprivate let exit = PublishRelay<Void>()
   fileprivate let bag = DisposeBag()
-
-  var pageInTabBar = false
 
   struct Page {
     var title: String
@@ -49,20 +51,19 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
       if let controller = viewControllerAtIndex(index: 0)?.presentable() {
         router.set([controller], direction: .forward, animated: true, completion: completion)
       }
-      pageInTabBar = true
       router.container().presentable().tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: tag)
 
     case .exit:
-      if !pageInTabBar {
-        router.reset()
-      }
-
       exit.accept(())
     }
   }
 
   override func configureRootViewController() {
-    router.define(dataSource: self)
+    guard let page = router.container() as? MyPageController else {
+      return
+    }
+
+    page.pageFlowDelegate = self
   }
 
   func viewControllerAtIndex(index: Int) -> Presentable? {
@@ -90,55 +91,8 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput {
   }
 }
 
-extension PageFlowCoordinator: LirikaPagerProtocol {
-  func pageViewController(_ page: UIPageViewController, controllerBefore: UIViewController) -> UIViewController? {
-    guard let controller = controllerBefore as? LirikaPageIndexProtocol else {
-      return nil
-    }
-
-    var index = controller.index
-    if index == 0 || index == NSNotFound {
-      return nil
-    } else {
-      index -= 1
-    }
-
-    return viewControllerAtIndex(index: index)?.presentable()
-  }
-
-  func pageViewController(_ page: UIPageViewController, controllerAfter: UIViewController) -> UIViewController? {
-    guard let controller = controllerAfter as? LirikaPageIndexProtocol else {
-      return nil
-    }
-
-    var index = controller.index
-    if index == NSNotFound {
-      return nil
-    }
-
-    index += 1
-    if index == pages.count {
-      return nil
-    }
-
-    return viewControllerAtIndex(index: index)?.presentable()
-  }
-
-  func presentationCountForPageViewController(page: UIPageViewController) -> Int {
-    return pages.count
-  }
-
-  func presentationIndexForPageViewController(page: UIPageViewController) -> Int {
-    return 0
-  }
-  
-  func pageViewController(_ page: UIPageViewController, finished: Bool, previousViewControllers: [UIViewController], completed: Bool) {
-    print("animation finish completed")
-  }
-}
-
 extension PageFlowCoordinator {
-  fileprivate func page(model: Page) -> Presentable {
+  internal func page(model: Page) -> Presentable {
     let page = PageViewController()
     let input = PageViewController.Input(
       index: model.index, controllerTitle: model.title,

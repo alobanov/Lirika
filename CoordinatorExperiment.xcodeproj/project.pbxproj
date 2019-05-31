@@ -25,6 +25,7 @@
 		E853AC8D2291EC7B00B86553 /* WindowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853AC8C2291EC7B00B86553 /* WindowRouter.swift */; };
 		E853AC8F2291ED4500B86553 /* LirikaRootContaierType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853AC8E2291ED4500B86553 /* LirikaRootContaierType.swift */; };
 		E853AC912291F33500B86553 /* OptionFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */; };
+		E8691E1E22A17CEE00EBECC9 /* MyPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8691E1D22A17CEE00EBECC9 /* MyPageController.swift */; };
 		E86C8D42228EB6460090E9FD /* WindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */; };
 		E88109EF229406020055B9B4 /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109EE229406020055B9B4 /* PageCoordinator.swift */; };
 		E88109F1229406120055B9B4 /* PageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F0229406120055B9B4 /* PageRouter.swift */; };
@@ -86,6 +87,7 @@
 		E853AC8C2291EC7B00B86553 /* WindowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRouter.swift; sourceTree = "<group>"; };
 		E853AC8E2291ED4500B86553 /* LirikaRootContaierType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LirikaRootContaierType.swift; sourceTree = "<group>"; };
 		E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionFlowCoordinator.swift; sourceTree = "<group>"; };
+		E8691E1D22A17CEE00EBECC9 /* MyPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageController.swift; sourceTree = "<group>"; };
 		E86C8D41228EB6460090E9FD /* WindowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCoordinator.swift; sourceTree = "<group>"; };
 		E88109EE229406020055B9B4 /* PageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
 		E88109F0229406120055B9B4 /* PageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageRouter.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		E836990E21F096CC007D4A05 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8691E1C22A17CE100EBECC9 /* pageContainer */,
 				E88109F422940A3B0055B9B4 /* page */,
 				E8E7FA722279C62B00B62CA1 /* singleButton */,
 				E8E7FA6A2279A2B900B62CA1 /* start */,
@@ -265,6 +268,14 @@
 				E84FA31521FDB554006A6705 /* PerfectButton.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		E8691E1C22A17CE100EBECC9 /* pageContainer */ = {
+			isa = PBXGroup;
+			children = (
+				E8691E1D22A17CEE00EBECC9 /* MyPageController.swift */,
+			);
+			path = pageContainer;
 			sourceTree = "<group>";
 		};
 		E86C8D40228EB6050090E9FD /* window */ = {
@@ -546,6 +557,7 @@
 				E853AC8F2291ED4500B86553 /* LirikaRootContaierType.swift in Sources */,
 				E8FA377122808BE60099BE76 /* TabBarRouter.swift in Sources */,
 				E836994F21F0E460007D4A05 /* RxViewModelPorotocol.swift in Sources */,
+				E8691E1E22A17CEE00EBECC9 /* MyPageController.swift in Sources */,
 				E8FA376B22808B1F0099BE76 /* NavigationCoordinator.swift in Sources */,
 				E88109F622940A500055B9B4 /* PageViewController.swift in Sources */,
 				E8E7FA78227A2F0A00B62CA1 /* NavFlowCoordinator.swift in Sources */,
