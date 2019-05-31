@@ -89,7 +89,10 @@ extension TabBarFlowCoordinator {
   }
 
   fileprivate func page() -> Coordinatorable {
-    let pageCoord = PageFlowCoordinator(container: LirikaPage(), initialRoute: .prepareForTabBar(tag: 3))
+    let container = MyPageController()
+    let root = LirikaPage(container: container)
+
+    let pageCoord = PageFlowCoordinator(container: root, initialRoute: .prepareForTabBar(tag: 3))
     let output = pageCoord.configure()
 
     output.exit.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak self] in

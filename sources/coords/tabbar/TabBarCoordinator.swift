@@ -4,7 +4,7 @@ import UIKit
 
 public class LirikaTabBar: LirikaRootContaierType {
   public var container: LirikaTabBar.Container
-  public class Container: UITabBarController {}
+  open class Container: UITabBarController {}
 
   public init(container: Container? = nil) {
     self.container = container ?? Container()

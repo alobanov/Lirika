@@ -33,7 +33,7 @@ class PageView: UIView {
   public func makeConstraints(vc: UIViewController) {
     buttonFirst.snp.makeConstraints { make in
       make.left.right.equalToSuperview().inset(15)
-      make.bottom.equalTo(vc.view.safeAreaLayoutGuide.snp.bottom)
+      make.bottom.equalTo(vc.view.safeAreaLayoutGuide.snp.bottom).offset(-30)
       make.height.equalTo(40)
     }
 
