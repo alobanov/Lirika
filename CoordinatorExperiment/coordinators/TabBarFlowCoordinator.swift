@@ -6,7 +6,7 @@ import RxSwift
 import UIKit
 
 enum TabBarFlowRoute: Route {
-  case first, second, third, fourth, exit
+  case select(index: Int), exit
 }
 
 class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutput {
@@ -22,7 +22,7 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
   fileprivate let bag = DisposeBag()
 
   convenience init() {
-    self.init(initialRoute: .third)
+    self.init(initialRoute: .select(index: 2))
   }
 
   override func configureRootViewController() {
@@ -45,14 +45,8 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutp
 
   override func drive(route: TabBarFlowRoute, completion: PresentationHandler?) {
     switch route {
-    case .first:
-      router.select(index: 0, completion: completion)
-    case .second:
-      router.select(index: 1, completion: completion)
-    case .third:
-      router.select(index: 2, completion: completion)
-    case .fourth:
-      router.select(index: 3, completion: completion)
+    case let .select(index):
+      router.select(index: index, completion: completion)
     case .exit:
       outputLogout.accept(())
       removeAllChilds()
@@ -96,7 +90,7 @@ extension TabBarFlowCoordinator {
     let output = pageCoord.configure()
 
     output.exit.asDriver(onErrorJustReturn: ()).drive(onNext: { [weak self] in
-      self?.trigger(.third)
+      self?.trigger(.select(index: 2))
     }).disposed(by: bag)
 
     return pageCoord
