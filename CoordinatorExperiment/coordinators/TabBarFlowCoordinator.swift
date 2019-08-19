@@ -9,10 +9,12 @@ enum TabBarFlowRoute: Route {
   case select(index: Int), exit
 }
 
-class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorOutput {
-  func configure() -> TabBarFlowCoordinator.Output {
+class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorInOut {
+  func configure(input: Input = .init()) -> TabBarFlowCoordinator.Output {
     return Output(logout: outputLogout.asObservable())
   }
+  
+  struct Input {}
 
   struct Output {
     let logout: Observable<Void>

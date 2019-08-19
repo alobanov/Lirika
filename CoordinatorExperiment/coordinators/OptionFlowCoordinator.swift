@@ -9,12 +9,14 @@ enum OptionFlowRoute: Route {
   case options, navigationFlow, tabbarFlow, modalFlow, dissmisModal, pageAsRootFlow, pageModalFlow, controllerModalFlow
 }
 
-class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, CoordinatorOutput {
-  func configure() -> OptionFlowCoordinator.Output {
+class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, CoordinatorInOut {
+  func configure(input: Input = .init()) -> OptionFlowCoordinator.Output {
     return Output(tabbarFlow: tabbarFlow.asDriver(onErrorJustReturn: ()),
                   pageFlow: pageFlow.asDriver(onErrorJustReturn: ()))
   }
 
+  struct Input {}
+  
   struct Output {
     let tabbarFlow: Driver<Void>
     let pageFlow: Driver<Void>

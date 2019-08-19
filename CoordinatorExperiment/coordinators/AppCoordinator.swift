@@ -35,15 +35,13 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
       router.setRoot(controller: coord)
     }
   }
-  
+
   override func start() {
     trigger(.options)
   }
-  
-  override func configureRootViewController() {
-    
-  }
-  
+
+  override func configureRootViewController() {}
+
 //  override func deepLink(link: DeepLink) {
 //    switch link {
 //    case let item as? ConcreteDeepLink:

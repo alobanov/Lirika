@@ -9,10 +9,12 @@ enum ControllerFlowRoute: Route {
   case setup, close
 }
 
-class ControllerFlowCoordinator: ControllerCoordinator<ControllerFlowRoute>, CoordinatorOutput {
-  func configure() -> Output {
+class ControllerFlowCoordinator: ControllerCoordinator<ControllerFlowRoute>, CoordinatorInOut {
+  func configure(input: Input = .init()) -> Output {
     return Output(exit: exit.asDriver(onErrorJustReturn: ()))
   }
+  
+  struct Input {}
 
   struct Output {
     let exit: Driver<Void>

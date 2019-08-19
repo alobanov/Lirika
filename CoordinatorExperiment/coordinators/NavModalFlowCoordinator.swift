@@ -9,13 +9,15 @@ enum NavModalFlowRoute: Route {
   case setAsRoot, push, pop
 }
 
-class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, CoordinatorOutput {
-  func configure() -> NavModalFlowCoordinator.Output {
+class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, CoordinatorInOut {
+  func configure(input: Input = .init()) -> NavModalFlowCoordinator.Output {
     return Output(
       didDeinit: didDeinit.asDriver(onErrorJustReturn: ()),
       completeFlow: completeFlow.asDriver(onErrorJustReturn: ())
     )
   }
+  
+  struct Input {}
 
   struct Output {
     let didDeinit: Driver<Void>

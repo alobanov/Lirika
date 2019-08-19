@@ -11,12 +11,11 @@ public protocol Coordinatorable: Presentable {
 
 public protocol CoordinatorInput {
   associatedtype InputData
-  associatedtype Dependencies
-
-  func define(data: InputData, dp: Dependencies)
+  func define(data: InputData)
 }
 
-public protocol CoordinatorOutput {
+public protocol CoordinatorInOut {
   associatedtype Output
-  func configure() -> Output
+  associatedtype Input
+  func configure(input: Input) -> Output
 }

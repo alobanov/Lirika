@@ -12,10 +12,12 @@ enum NavFlowRoute: Route {
   case pushIntoExtistNav
 }
 
-class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorOutput {
-  func configure() -> NavFlowCoordinator.Output {
+class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorInOut {
+  func configure(input: Input = .init()) -> NavFlowCoordinator.Output {
     return Output(didDeinit: didDeinit.asDriver(onErrorJustReturn: ()))
   }
+  
+  struct Input {}
 
   struct Output {
     let didDeinit: Driver<Void>

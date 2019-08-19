@@ -64,7 +64,7 @@ class PageViewController: UIViewController, ControllerInOutType, LirikaPageIndex
 
   deinit {
     didDeinit.accept(())
-    print("PageViewController dead")
+    print("====== PageViewController dead")
   }
 
   // MARK: - Configuration

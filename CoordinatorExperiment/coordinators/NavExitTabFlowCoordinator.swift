@@ -9,13 +9,15 @@ enum NavExitTabFlowRoute: Route {
   case setAsRoot
 }
 
-class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, CoordinatorOutput {
-  func configure() -> NavExitTabFlowCoordinator.Output {
+class NavExitTabFlowCoordinator: NavigationCoordinator<NavExitTabFlowRoute>, CoordinatorInOut {
+  func configure(input: Input = .init()) -> NavExitTabFlowCoordinator.Output {
     return Output(
       didDeinit: didDeinit.asDriver(onErrorJustReturn: ()),
       completeFlow: completeFlow.asDriver(onErrorJustReturn: ())
     )
   }
+  
+  struct Input {}
 
   struct Output {
     let didDeinit: Driver<Void>

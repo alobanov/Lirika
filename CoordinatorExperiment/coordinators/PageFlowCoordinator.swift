@@ -9,14 +9,16 @@ enum PageFlowRoute: Route {
   case prepareFirstPage, exit, prepareForTabBar(tag: Int)
 }
 
-class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput, PageFlowProtocol {
+class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorInOut, PageFlowProtocol {
   func pageList() -> [PageFlowCoordinator.Page] {
     return pages
   }
 
-  func configure() -> Output {
+  func configure(input: Input = .init()) -> Output {
     return Output(exit: exit.asObservable())
   }
+  
+  struct Input {}
 
   struct Output {
     let exit: Observable<Void>
@@ -35,7 +37,9 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorOutput, Pa
   let pages = [
     Page(title: "First page", buttonTitle: "Next", index: 0, color: .red),
     Page(title: "Second page", buttonTitle: "One more next", index: 1, color: .yellow),
-    Page(title: "Third page", buttonTitle: "Finish", index: 2, color: .blue),
+    Page(title: "Third page", buttonTitle: "n", index: 2, color: .blue),
+    Page(title: "Fourth page", buttonTitle: "n", index: 3, color: .gray),
+    Page(title: "Fifth page", buttonTitle: "Finish", index: 4, color: .cyan),
   ]
 
   // MARK: - Overrides

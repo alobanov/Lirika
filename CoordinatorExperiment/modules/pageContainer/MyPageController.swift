@@ -16,7 +16,7 @@ class MyPageController: LirikaPage.Container, UIPageViewControllerDataSource, UI
     self.dataSource = self
     self.delegate = self
   }
-  
+
   override func viewDidLoad() {
     setupPageControl()
   }
@@ -35,7 +35,7 @@ class MyPageController: LirikaPage.Container, UIPageViewControllerDataSource, UI
 
     return pageFlowDelegate?.viewControllerAtIndex(index: index)?.presentable()
   }
-  
+
   func setupPageControl() {
     let pageControl = UIPageControl.appearance()
     pageControl.pageIndicatorTintColor = .lightGray
@@ -60,12 +60,11 @@ class MyPageController: LirikaPage.Container, UIPageViewControllerDataSource, UI
 
     return pageFlowDelegate?.viewControllerAtIndex(index: index)?.presentable()
   }
-  
+
   func presentationCount(for pageViewController: UIPageViewController) -> Int {
     return pageFlowDelegate?.pageList().count ?? 0
   }
-  
-  
+
   func presentationIndex(for pageViewController: UIPageViewController) -> Int {
     return 0
   }
