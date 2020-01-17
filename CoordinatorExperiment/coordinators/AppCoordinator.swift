@@ -37,6 +37,7 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
 
   override func start() {
     trigger(.options)
+    router.makeKeyAndVisible()
   }
 
   override func configureRootViewController() {}
