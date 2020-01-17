@@ -10,6 +10,7 @@ public extension Router where RootContainer: LirikaWindow {
   func setRoot(controller: Presentable) {
     guard container().rootViewController != nil else {
       container().rootViewController = controller.presentable()
+      makeKeyAndVisible()
       return
     }
     

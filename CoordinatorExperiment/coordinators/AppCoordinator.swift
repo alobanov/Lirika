@@ -22,7 +22,6 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
       let coord = options()
       startCoordinator(coord)
       router.setRoot(controller: coord)
-      router.makeKeyAndVisible()
 
     case .tabbarFlow:
       let coord = tabbar()
