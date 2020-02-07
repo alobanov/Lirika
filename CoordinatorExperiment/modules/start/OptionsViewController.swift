@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import RxCocoa
@@ -42,7 +42,7 @@ class OptionsViewController: UIViewController, ControllerInOutType {
     super.viewDidLoad()
     configureUI()
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }

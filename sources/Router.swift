@@ -1,8 +1,9 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import UIKit
 
 public typealias PresentationHandler = () -> Void
+public typealias AnimationHandler = () -> Void
 
 public protocol RouterProtocol {
   associatedtype RootContainer: LirikaRootContaierType
@@ -23,8 +24,7 @@ public class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
   }
 
   public func unwrapPresentable(_ module: Presentable) -> UIViewController {
-    let controller = module.presentable()
-    return controller
+    return module.presentable()
   }
 
   // MARK: - Presentable
@@ -45,5 +45,12 @@ public class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
 
   public func presentId() -> String {
     return presentable().presentId()
+  }
+
+  public func wrapAnimation(animation: AnimationHandler, completion: PresentationHandler?) {
+    CATransaction.begin()
+    CATransaction.setCompletionBlock(completion)
+    animation()
+    CATransaction.commit()
   }
 }

@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import RxCocoa
@@ -16,7 +16,7 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
       completeFlow: completeFlow.asDriver(onErrorJustReturn: ())
     )
   }
-  
+
   struct Input {}
 
   struct Output {

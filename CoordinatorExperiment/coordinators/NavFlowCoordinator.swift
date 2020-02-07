@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import RxCocoa
@@ -16,7 +16,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorInOut 
   func configure(input: Input = .init()) -> NavFlowCoordinator.Output {
     return Output(didDeinit: didDeinit.asDriver(onErrorJustReturn: ()))
   }
-  
+
   struct Input {}
 
   struct Output {

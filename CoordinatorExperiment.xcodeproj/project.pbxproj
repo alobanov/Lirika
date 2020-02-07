@@ -430,6 +430,7 @@
 					};
 					E83698FB21F09501007D4A05 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = E83698E721F094FF007D4A05;
 					};
 				};
