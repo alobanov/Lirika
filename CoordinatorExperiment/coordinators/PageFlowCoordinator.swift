@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import RxCocoa
@@ -17,7 +17,7 @@ class PageFlowCoordinator: PageCoordinator<PageFlowRoute>, CoordinatorInOut, Pag
   func configure(input: Input = .init()) -> Output {
     return Output(exit: exit.asObservable())
   }
-  
+
   struct Input {}
 
   struct Output {

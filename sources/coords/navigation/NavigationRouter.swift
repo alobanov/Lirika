@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import UIKit
 
@@ -8,59 +8,43 @@ public extension Router where RootContainer: LirikaNavigation {
   }
 
   func push(_ viewController: Presentable, completion: PresentationHandler? = nil) {
-    CATransaction.begin()
-    CATransaction.setCompletionBlock {
-      completion?()
-    }
-
-    container().pushViewController(unwrapPresentable(viewController), animated: true)
-    CATransaction.commit()
+    let controller = unwrapPresentable(viewController)
+    wrapAnimation(animation: { [weak self] in
+      guard let base = self else { return }
+      base.container().pushViewController(controller, animated: true)
+    }, completion: completion)
   }
 
   func pop(toRoot: Bool = false, completion: PresentationHandler? = nil, animated: Bool = true) {
-    CATransaction.begin()
-    CATransaction.setCompletionBlock {
-      completion?()
-    }
-
-    if toRoot {
-      container().popToRootViewController(animated: animated)
-    } else {
-      container().popViewController(animated: animated)
-    }
-    CATransaction.commit()
+    wrapAnimation(animation: { [weak self] in
+      guard let base = self else { return }
+      if toRoot {
+        base.container().popToRootViewController(animated: animated)
+      } else {
+        base.container().popViewController(animated: animated)
+      }
+    }, completion: completion)
   }
 
-  func set(_ viewControllers: [Presentable],
-           animated: Bool,
-           completion: PresentationHandler? = nil,
-           barHidden: Bool = false) {
-    CATransaction.begin()
-    CATransaction.setCompletionBlock {
-      completion?()
-    }
-
+  func set(_ viewControllers: [Presentable], animated: Bool, completion: PresentationHandler? = nil, barHidden: Bool = false) {
     let controllers = unwrapPresentables(viewControllers)
-    container().setViewControllers(controllers, animated: animated)
-    container().isNavigationBarHidden = barHidden
-
-    CATransaction.commit()
+    wrapAnimation(animation: { [weak self] in
+      guard let base = self else { return }
+      base.container().setViewControllers(controllers, animated: animated)
+      base.container().isNavigationBarHidden = barHidden
+    }, completion: completion)
   }
 
   func setImmediately(_ modules: [Presentable]) {
     set(modules, animated: false, completion: nil, barHidden: false)
   }
 
-  func pop(to viewController: Presentable,
-           completion: PresentationHandler? = nil) {
-    CATransaction.begin()
-    CATransaction.setCompletionBlock {
-      completion?()
-    }
-
-    container().popToViewController(unwrapPresentable(viewController), animated: true)
-
-    CATransaction.commit()
+  func pop(to viewController: Presentable, completion: PresentationHandler? = nil) {
+    let controller = unwrapPresentable(viewController)
+    wrapAnimation(animation: { [weak self] in
+      guard let base = self else { return }
+      base.container().popToViewController(controller, animated: true)
+    }, completion: completion)
   }
 
   func presentModal(_ module: Presentable, animated: Bool, completion: (() -> Void)?) {

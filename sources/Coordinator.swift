@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import UIKit
@@ -9,14 +9,27 @@ public extension Coordinator {
   typealias RootContainerType = RouterType.RootContainer
 }
 
-open class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable {
+open class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinatorable, Hashable {
+  public static func == (lhs: Coordinator<RouteType, RouterType>, rhs: Coordinator<RouteType, RouterType>) -> Bool {
+    return rhs.id == lhs.id
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(identifier)
+  }
+
   // MARK: - Properties
 
   // All child presentables modules (contorollers, coordinators)
-  public var childs: [Presentable] = []
+  private var childs: [Presentable] = []
 
   // Define custom coordinator/module identifier if you use same module more then one times
-  public var customCoordinatorNameIdentifier: String?
+  private var customCoordinatorNameIdentifier: String?
+  private let identifier = UUID().uuidString
+
+  public var id: String {
+    return customCoordinatorNameIdentifier ?? identifier
+  }
 
   // Route from which the coordinator starts
   public var initialRoute: RouteType?
@@ -120,9 +133,7 @@ extension Coordinator: Presentable {
   }
 
   public func presentId() -> PresentableID {
-    if let id = customCoordinatorNameIdentifier {
-      return id
-    }
-    return presentable().presentId()
+    guard let customIdentifier = customCoordinatorNameIdentifier else { return identifier }
+    return customIdentifier
   }
 }

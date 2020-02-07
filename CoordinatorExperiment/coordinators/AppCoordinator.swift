@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import RxCocoa
@@ -22,7 +22,6 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
       let coord = options()
       startCoordinator(coord)
       router.setRoot(controller: coord)
-      router.makeKeyAndVisible()
 
     case .tabbarFlow:
       let coord = tabbar()
@@ -38,6 +37,7 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
 
   override func start() {
     trigger(.options)
+    router.makeKeyAndVisible()
   }
 
   override func configureRootViewController() {}

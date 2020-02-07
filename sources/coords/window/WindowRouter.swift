@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import UIKit
 
@@ -12,15 +12,15 @@ public extension Router where RootContainer: LirikaWindow {
       container().rootViewController = controller.presentable()
       return
     }
-    
+
     guard let snapShot: UIView = container().snapshotView(afterScreenUpdates: true) else {
       container().rootViewController = controller.presentable()
       return
     }
-    
+
     container().rootViewController = controller.presentable()
     controller.presentable().view.addSubview(snapShot)
-    
+
     UIView.animate(
       withDuration: 0.3, delay: 0,
       options: [.curveEaseInOut, .transitionCrossDissolve, .beginFromCurrentState],
@@ -29,7 +29,8 @@ public extension Router where RootContainer: LirikaWindow {
         snapShot.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.1)
       }, completion: { _ in
         snapShot.removeFromSuperview()
-      })
+      }
+    )
   }
 
   func makeKeyAndVisible() {

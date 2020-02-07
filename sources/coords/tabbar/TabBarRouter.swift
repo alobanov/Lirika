@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import UIKit
 
@@ -10,20 +10,14 @@ public extension Router where RootContainer: LirikaTabBar {
   func set(_ viewControllers: [Presentable], animated: Bool, completion: PresentationHandler?) {
     let controllers = unwrapPresentables(viewControllers)
 
-    CATransaction.begin()
-    CATransaction.setCompletionBlock(completion)
-
-    container().setViewControllers(controllers, animated: animated)
-
-    CATransaction.commit()
+    wrapAnimation(animation: { [weak self] in
+      self?.container().setViewControllers(controllers, animated: animated)
+    }, completion: completion)
   }
 
   func select(index: Int, completion: PresentationHandler?) {
-    CATransaction.begin()
-    CATransaction.setCompletionBlock(completion)
-
-    container().selectedIndex = index
-
-    CATransaction.commit()
+    wrapAnimation(animation: { [weak self] in
+      self?.container().selectedIndex = index
+    }, completion: completion)
   }
 }

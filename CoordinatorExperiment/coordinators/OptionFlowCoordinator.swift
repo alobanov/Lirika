@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import RxCocoa
@@ -16,7 +16,7 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
   }
 
   struct Input {}
-  
+
   struct Output {
     let tabbarFlow: Driver<Void>
     let pageFlow: Driver<Void>

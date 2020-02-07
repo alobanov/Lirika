@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Lobanov Aleksey. All rights reserved.
+// Copyright (c) 2020 Lobanov Aleksey. All rights reserved.
 
 import Foundation
 import RxCocoa
@@ -13,7 +13,7 @@ class ControllerFlowCoordinator: ControllerCoordinator<ControllerFlowRoute>, Coo
   func configure(input: Input = .init()) -> Output {
     return Output(exit: exit.asDriver(onErrorJustReturn: ()))
   }
-  
+
   struct Input {}
 
   struct Output {
