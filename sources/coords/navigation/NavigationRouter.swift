@@ -40,12 +40,12 @@ public extension Router where RootContainer: LirikaNavigation {
   }
   
   func pop(toPresentId: String, completion: PresentationHandler? = nil) {
-    guard let controller = container().viewControllers.first(where: { $0.presentId() == toPresentId }) else {
-      completion?()
-      return
+    if let controller = container().viewControllers.first(where: { $0.presentId() == toPresentId }) {
+      wrapAnimation(animation: { [weak self] in
+        guard let base = self else { return }
+        base.container().popToViewController(controller, animated: true)
+      }, completion: completion)
     }
-    
-    pop(to: controller, completion: completion)
   }
 
   func pop(to viewController: Presentable, completion: PresentationHandler? = nil) {
