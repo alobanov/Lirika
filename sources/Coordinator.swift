@@ -118,7 +118,6 @@ open class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinato
 
   public func lastChild() -> Coordinatorable? {
     if let coord = childs.last as? Coordinatorable {
-      print("Coordinator next is: \(coord.presentId())")
       return coord
     }
     return nil

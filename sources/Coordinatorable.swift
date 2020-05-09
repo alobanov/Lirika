@@ -7,6 +7,7 @@ public protocol Route {}
 public protocol Coordinatorable: Presentable {
   func start()
   func deepLink(link: DeepLink)
+  func lastChild() -> Coordinatorable?
 }
 
 public protocol CoordinatorInput {
