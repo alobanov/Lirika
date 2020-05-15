@@ -6,6 +6,9 @@ import UIKit
 public protocol DeepLink {
   var isPostponed: Bool { get }
   func setPostponed(_ state: Bool)
+  
+  var isTappedBehavior: Bool { get }
+  func setTappedBehavior(_ state: Bool)
 }
 
 public extension Coordinator {
