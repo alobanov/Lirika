@@ -33,7 +33,8 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
 
     case .navigationFlow:
       let coord = navigationCoordinator()
-      startCoordinator(coord)
+      coord.start()
+//      startCoordinator(coord)
 
     case .tabbarFlow:
       tabbarFlow.accept(())
@@ -116,9 +117,9 @@ extension OptionFlowCoordinator {
     let navCoord = NavFlowCoordinator(container: LirikaNavigation(container: curentRoot), initialRoute: .pushIntoExtistNav)
     let output = navCoord.configure()
 
-    output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
-      self?.removeChild(navCoord)
-    }).disposed(by: bag)
+//    output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
+//      self?.removeChild(navCoord)
+//    }).disposed(by: bag)
 
     return navCoord
   }

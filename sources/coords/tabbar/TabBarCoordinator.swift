@@ -3,6 +3,9 @@
 import UIKit
 
 public class LirikaTabBar: LirikaRootContaierType {
+  public func addCoordinator(_ coordinator: Coordinatorable) {}
+  public func removeCoordinator(_ coordinator: Coordinatorable?) {}
+  
   public var container: LirikaTabBar.Container
   open class Container: UITabBarController {}
 

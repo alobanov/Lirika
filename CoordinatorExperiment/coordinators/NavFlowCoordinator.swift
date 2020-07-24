@@ -58,6 +58,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorInOut 
 
     case .pushIntoExtistNav:
       let controller = dummyController(title: "Navigation first", actionButtonTitle: "Push", isFirst: true)
+      controller.captureCoordinator(self)
       router.push(controller)
     }
   }

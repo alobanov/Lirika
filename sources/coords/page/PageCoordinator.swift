@@ -6,7 +6,7 @@ public protocol LirikaPageIndexProtocol {
   var index: Int { get }
 }
 
-public class LirikaPage: LirikaRootContaierType {
+public class LirikaPage: LirikaRootContaierType {  
   public var container: LirikaPage.Container
   open class Container: UIPageViewController {}
 

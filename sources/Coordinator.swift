@@ -135,4 +135,8 @@ extension Coordinator: Presentable {
     guard let customIdentifier = customCoordinatorNameIdentifier else { return identifier }
     return customIdentifier
   }
+  
+  public func captureCoordinator(_ coordinator: Coordinatorable) {
+    print("Coordinator can't capture another coordinator yet")
+  }
 }

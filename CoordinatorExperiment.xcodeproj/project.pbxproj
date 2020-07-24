@@ -241,12 +241,12 @@
 		E836995B21F0E555007D4A05 /* coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */,
 				E836995D21F0E570007D4A05 /* AppCoordinator.swift */,
 				E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */,
 				E8E7FA77227A2F0A00B62CA1 /* NavFlowCoordinator.swift */,
 				E8E7FA7A227AE22200B62CA1 /* NavExitTabFlowCoordinator.swift */,
 				E8E7FA7C227AF63500B62CA1 /* NavModalFlowCoordinator.swift */,
-				E853AC902291F33500B86553 /* OptionFlowCoordinator.swift */,
 				E88109F22294072E0055B9B4 /* PageFlowCoordinator.swift */,
 				E80FF567229D85DD0078E545 /* ControllerFlowCoordinator.swift */,
 			);
