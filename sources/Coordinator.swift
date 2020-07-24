@@ -3,10 +3,7 @@
 import Foundation
 import UIKit
 
-public protocol DeepLink {
-  var isPostponed: Bool { set get }
-  var isTappedBehavior: Bool { set get }
-}
+public protocol DeepLink {}
 
 public extension Coordinator {
   typealias RootContainerType = RouterType.RootContainer
