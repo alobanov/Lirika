@@ -20,7 +20,7 @@ class AppCoordinator: WindowCoordinator<AppRoute> {
     switch route {
     case .options:
       let coord = options()
-      startCoordinator(coord)
+      coord.start()
       router.setRoot(controller: coord)
 
     case .tabbarFlow:
@@ -73,13 +73,11 @@ extension AppCoordinator {
     let optionCoord = OptionFlowCoordinator(initialRoute: .options)
     let output = optionCoord.configure()
 
-    output.tabbarFlow.drive(onNext: { [weak optionCoord, weak self] in
-      self?.removeChild(optionCoord)
+    output.tabbarFlow.drive(onNext: { [weak self] in
       self?.trigger(.tabbarFlow)
     }).disposed(by: bag)
 
-    output.pageFlow.drive(onNext: { [weak optionCoord, weak self] in
-      self?.removeChild(optionCoord)
+    output.pageFlow.drive(onNext: { [weak self] in
       self?.trigger(.pageFlow)
     }).disposed(by: bag)
 

@@ -50,7 +50,9 @@ public class Router<RootContainer: LirikaRootContaierType>: RouterProtocol {
   public func wrapAnimation(animation: AnimationHandler, completion: PresentationHandler?) {
     CATransaction.begin()
     CATransaction.setCompletionBlock(completion)
-    animation()
+    autoreleasepool {
+      animation()
+    }
     CATransaction.commit()
   }
 }

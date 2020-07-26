@@ -2,7 +2,7 @@
 
 import UIKit
 
-public class LirikaController: LirikaRootContaierType {
+public class LirikaController: LirikaRootContaierType {  
   public var container: LirikaController.Container
   open class Container: UIViewController {}
 

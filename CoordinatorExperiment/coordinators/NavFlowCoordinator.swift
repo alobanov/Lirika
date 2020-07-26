@@ -12,17 +12,7 @@ enum NavFlowRoute: Route {
   case pushIntoExtistNav
 }
 
-class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorInOut {
-  func configure(input: Input = .init()) -> NavFlowCoordinator.Output {
-    return Output(didDeinit: didDeinit.asDriver(onErrorJustReturn: ()))
-  }
-
-  struct Input {}
-
-  struct Output {
-    let didDeinit: Driver<Void>
-  }
-
+class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute> {
   // MARK: - Stored properties
 
   private var tag: Int = 0
@@ -47,6 +37,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorInOut 
     switch route {
     case .setAsRoot:
       let controller = dummyController(title: "Navigation first", actionButtonTitle: "Push", isFirst: true)
+      controller.captureCoordinator(self)
       router.set([controller], animated: false, completion: completion)
 
     case .pop:
@@ -58,6 +49,7 @@ class NavFlowCoordinator: NavigationCoordinator<NavFlowRoute>, CoordinatorInOut 
 
     case .pushIntoExtistNav:
       let controller = dummyController(title: "Navigation first", actionButtonTitle: "Push", isFirst: true)
+      controller.captureCoordinator(self)
       router.push(controller)
     }
   }
