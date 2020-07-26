@@ -32,6 +32,7 @@
 		E88109F32294072E0055B9B4 /* PageFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F22294072E0055B9B4 /* PageFlowCoordinator.swift */; };
 		E88109F622940A500055B9B4 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F522940A500055B9B4 /* PageViewController.swift */; };
 		E88109F822940A5B0055B9B4 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88109F722940A5B0055B9B4 /* PageView.swift */; };
+		E8D62D4524CD76E6001D6E97 /* UIResponder+associateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D62D4424CD76E6001D6E97 /* UIResponder+associateCoordinator.swift */; };
 		E8E7FA6922799E2A00B62CA1 /* TabBarFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */; };
 		E8E7FA6C2279A2C700B62CA1 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */; };
 		E8E7FA6E2279A32E00B62CA1 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */; };
@@ -94,6 +95,7 @@
 		E88109F22294072E0055B9B4 /* PageFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFlowCoordinator.swift; sourceTree = "<group>"; };
 		E88109F522940A500055B9B4 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E88109F722940A5B0055B9B4 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		E8D62D4424CD76E6001D6E97 /* UIResponder+associateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+associateCoordinator.swift"; sourceTree = "<group>"; };
 		E8E7FA6822799E2A00B62CA1 /* TabBarFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFlowCoordinator.swift; sourceTree = "<group>"; };
 		E8E7FA6B2279A2C700B62CA1 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		E8E7FA6D2279A32E00B62CA1 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				E8FA376522808B1F0099BE76 /* Router.swift */,
 				E853AC8E2291ED4500B86553 /* LirikaRootContaierType.swift */,
 				E8FA376722808B1F0099BE76 /* Coordinator.swift */,
+				E8D62D4424CD76E6001D6E97 /* UIResponder+associateCoordinator.swift */,
 			);
 			path = sources;
 			sourceTree = SOURCE_ROOT;
@@ -552,6 +555,7 @@
 				E84FA31321FDAE92006A6705 /* Theme.swift in Sources */,
 				E8FA376A22808B1F0099BE76 /* TabBarCoordinator.swift in Sources */,
 				E8FA376C22808B1F0099BE76 /* Router.swift in Sources */,
+				E8D62D4524CD76E6001D6E97 /* UIResponder+associateCoordinator.swift in Sources */,
 				E853AC8D2291EC7B00B86553 /* WindowRouter.swift in Sources */,
 				E8E7FA742279C64300B62CA1 /* ButtonsViewController.swift in Sources */,
 				E80FF566229D84990078E545 /* ControllerRouter.swift in Sources */,

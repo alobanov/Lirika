@@ -42,6 +42,7 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
   override func configureRootViewController() {
     rootContainer.container.navigationBar.isTranslucent = false
     rootContainer.container.navigationBar.prefersLargeTitles = true
+    router.container().captureCoordinator(self)
   }
 
   // MARK: - Overrides
@@ -62,7 +63,7 @@ class NavModalFlowCoordinator: NavigationCoordinator<NavModalFlowRoute>, Coordin
   }
 
   deinit {
-    print("Dead NavFlowCoordinator")
+    print("Dead NavModalFlowCoordinator")
   }
 }
 
@@ -84,17 +85,17 @@ extension NavModalFlowCoordinator {
       self?.trigger(.push)
     }).disposed(by: bag)
 
+//    output.didDeinit.drive(onNext: { [weak self] _ in
+//      self?.router.container().removeCoordinator(self)
+//    }).disposed(by: bag)
+    
     output.tabSecondAction.drive(onNext: { [weak self] _ in
       if isFirst {
-        self?.completeFlow.accept(())
+        self?.router.dismissModal(animated: true, completion: {
+//          self?.router.set([], animated: false)
+        })
       } else {
         self?.trigger(.pop)
-      }
-    }).disposed(by: bag)
-
-    output.didDeinit.drive(onNext: { [weak self] in
-      if isFirst {
-        self?.didDeinit.accept(())
       }
     }).disposed(by: bag)
 

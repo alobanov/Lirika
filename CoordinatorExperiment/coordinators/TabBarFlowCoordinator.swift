@@ -63,14 +63,12 @@ class TabBarFlowCoordinator: TabBarCoordinator<TabBarFlowRoute>, CoordinatorInOu
 extension TabBarFlowCoordinator {
   fileprivate func firstTabCoordinator() -> Coordinatorable {
     let first = NavFlowCoordinator(tag: 0, tabBarSystemItem: .favorites)
-    _ = first.configure()
     return first
   }
 
   fileprivate func secondTabCoordinator() -> Coordinatorable {
     let second = NavFlowCoordinator(tag: 1, tabBarSystemItem: .history)
     second.define(coordinatorCustomPresentId: "second")
-    _ = second.configure()
     return second
   }
 

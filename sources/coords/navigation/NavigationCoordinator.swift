@@ -2,6 +2,13 @@
 
 import UIKit
 
+public class MyRootModalNavigationContainer: LirikaNavigation.Container {
+  public override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    self.removeCoordinator(nil)
+  }
+}
+
 public class LirikaNavigation: LirikaRootContaierType {
   
   public var container: LirikaNavigation.Container

@@ -29,20 +29,20 @@ class OptionFlowCoordinator: NavigationCoordinator<OptionFlowRoute>, Coordinator
   override func drive(route: OptionFlowRoute, completion _: PresentationHandler?) {
     switch route {
     case .options:
-      router.set([options()], animated: true)
+      let contorller = options()
+      contorller.captureCoordinator(self)
+      router.set([contorller], animated: true)
 
     case .navigationFlow:
-      let coord = navigationCoordinator()
-      coord.start()
-//      startCoordinator(coord)
+      navigationCoordinator().start()
 
     case .tabbarFlow:
       tabbarFlow.accept(())
 
     case .modalFlow:
       let coord = modalNavigationCoordinator()
-      startCoordinator(coord.0)
-      router.presentModal(coord.1, animated: true, completion: nil)
+      coord.start()
+      router.presentModal(coord.presentable(), animated: true, completion: nil)
 
     case .dissmisModal:
       router.dismissModal(animated: true, completion: nil)
@@ -114,34 +114,19 @@ extension OptionFlowCoordinator {
       fatalError()
     }
 
-    let navCoord = NavFlowCoordinator(container: LirikaNavigation(container: curentRoot), initialRoute: .pushIntoExtistNav)
-    let output = navCoord.configure()
-
-//    output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
-//      self?.removeChild(navCoord)
-//    }).disposed(by: bag)
-
-    return navCoord
+    return NavFlowCoordinator(
+      container: LirikaNavigation(container: curentRoot),
+      initialRoute: .pushIntoExtistNav
+    )
   }
 
-  fileprivate func modalNavigationCoordinator() -> (Coordinatorable, Presentable) {
-    let rootNav = LirikaNavigation()
+  fileprivate func modalNavigationCoordinator() -> Coordinatorable {
+    let rootNav = LirikaNavigation(container: MyRootModalNavigationContainer())
     rootNav.container.navigationBar.isTranslucent = false
     rootNav.container.navigationBar.prefersLargeTitles = true
 
     let navCoord = NavModalFlowCoordinator(container: rootNav, initialRoute: .setAsRoot)
-    let output = navCoord.configure()
-
-    output.didDeinit.drive(onNext: { [weak navCoord, weak self] in
-      self?.removeChild(navCoord)
-    }).disposed(by: bag)
-
-    output.completeFlow.drive(onNext: { [weak navCoord, weak self] in
-      rootNav.container.dismiss(animated: true, completion: nil)
-      self?.removeChild(navCoord)
-    }).disposed(by: bag)
-
-    return (navCoord, rootNav.container)
+    return navCoord
   }
 
   fileprivate func pageCoordinator() -> Coordinatorable {

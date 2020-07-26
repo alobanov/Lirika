@@ -64,44 +64,9 @@ open class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinato
     addChild(coordinator)
     coordinator.start()
   }
-
-  public func addChild(_ child: Presentable) {
-    for element in childs where element.presentId() == child.presentId() {
-      return
-    }
-
-    childs.append(child)
-  }
-
-  public func removeChild(_ child: Presentable?) {
-    guard childs.isEmpty == false, let child = child else {
-      return
-    }
-
-    for (index, element) in childs.enumerated() where element.presentId() == child.presentId() {
-      childs.remove(at: index)
-      break
-    }
-  }
-
-  public func removeAllChilds() {
-    for chaild in allChailds() {
-      removeChild(chaild)
-    }
-  }
-
+  
   public func define(coordinatorCustomPresentId id: String) {
     customCoordinatorNameIdentifier = id
-  }
-
-  public func child(presentId: PresentableID) -> Presentable? {
-    return childs.first(where: { item -> Bool in
-      item.presentId() == presentId
-    })
-  }
-
-  public func allChailds() -> [Presentable] {
-    return childs
   }
 
   open func drive(route: RouteType, completion: PresentationHandler?) {
@@ -111,16 +76,53 @@ open class Coordinator<RouteType: Route, RouterType: RouterProtocol>: Coordinato
   public func trigger(_ route: RouteType, comletion: PresentationHandler? = nil) {
     drive(route: route, completion: comletion)
   }
+  
+  // MARK: - Deep linking
 
   open func deepLink(link: DeepLink) {}
 
-  // MARK: - Private
+  // MARK: - Coordinator stored
 
   public func lastChild() -> Coordinatorable? {
     if let coord = childs.last as? Coordinatorable {
       return coord
     }
     return nil
+  }
+  
+  public func removeChild(_ child: Presentable?) {
+    guard childs.isEmpty == false, let child = child else {
+      return
+    }
+    
+    for (index, element) in childs.enumerated() where element.presentId() == child.presentId() {
+      childs.remove(at: index)
+      break
+    }
+  }
+  
+  public func removeAllChilds() {
+    for chaild in allChailds() {
+      removeChild(chaild)
+    }
+  }
+  
+  public func child(presentId: PresentableID) -> Presentable? {
+    return childs.first(where: { item -> Bool in
+      item.presentId() == presentId
+    })
+  }
+  
+  public func allChailds() -> [Presentable] {
+    return childs
+  }
+  
+  public func addChild(_ child: Presentable) {
+    for element in childs where element.presentId() == child.presentId() {
+      return
+    }
+    
+    childs.append(child)
   }
 }
 
