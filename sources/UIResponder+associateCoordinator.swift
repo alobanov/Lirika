@@ -24,15 +24,18 @@ extension UIResponder: CoordinatroStoreContainerProtocol {
   }
   
   public func resetCoordinators() {
-    associatedCoordinators = nil
-    
-    if let value = self as? UINavigationController {
+    switch self {
+    case let value as UINavigationController:
       value.viewControllers.forEach({ $0.resetCoordinators() })
+    case let value as UITabBarController:
+      value.viewControllers?.forEach({ $0.resetCoordinators() })
+    case let value as UIWindow:
+      value.rootViewController?.resetCoordinators()
+    default:
+      break
     }
     
-    if let value = self as? UITabBarController {
-      value.viewControllers?.forEach({ $0.resetCoordinators() })
-    }
+    associatedCoordinators = nil
   }
 }
 
