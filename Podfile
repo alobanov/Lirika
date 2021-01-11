@@ -2,7 +2,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'CoordinatorExperiment' do
   inhibit_all_warnings!
